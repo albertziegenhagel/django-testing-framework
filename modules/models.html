@@ -288,6 +288,36 @@ non-SQL backends), respectively. Normally, they should not be set.</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="dtf.models.Webhook">
+<em class="property">class </em><code class="sig-prename descclassname">dtf.models.</code><code class="sig-name descname">Webhook</code><span class="sig-paren">(</span><em class="sig-param">id</em>, <em class="sig-param">project</em>, <em class="sig-param">name</em>, <em class="sig-param">url</em>, <em class="sig-param">secret_token</em>, <em class="sig-param">on_submission</em>, <em class="sig-param">on_test_result</em>, <em class="sig-param">on_reference_set</em>, <em class="sig-param">on_test_reference</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.models.Webhook" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
+<dt id="dtf.models.Webhook.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#dtf.models.Webhook.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="dtf.models.Webhook.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#dtf.models.Webhook.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dtf.models.WebhookLogEntry">
+<em class="property">class </em><code class="sig-prename descclassname">dtf.models.</code><code class="sig-name descname">WebhookLogEntry</code><span class="sig-paren">(</span><em class="sig-param">id</em>, <em class="sig-param">webhook</em>, <em class="sig-param">created</em>, <em class="sig-param">trigger</em>, <em class="sig-param">request_url</em>, <em class="sig-param">request_data</em>, <em class="sig-param">request_headers</em>, <em class="sig-param">response_status</em>, <em class="sig-param">response_data</em>, <em class="sig-param">response_headers</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.models.WebhookLogEntry" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="exception">
+<dt id="dtf.models.WebhookLogEntry.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#dtf.models.WebhookLogEntry.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="dtf.models.WebhookLogEntry.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#dtf.models.WebhookLogEntry.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
