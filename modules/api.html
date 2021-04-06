@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Serializer &mdash; Django Testing Framework  documentation</title>
+  <title>REST API &mdash; Django Testing Framework  documentation</title>
   
 
   
@@ -36,7 +36,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Django Testing Framework  documentation" href="../index.html"/>
-        <link rel="prev" title="Views" href="views.html"/> 
+        <link rel="next" title="Projects API" href="api/projects.html"/>
+        <link rel="prev" title="Quickstart Guide" href="quickstart.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,15 +87,15 @@
             
             
               <p class="caption"><span class="caption-text">Content:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#using-the-api">Using the API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">REST API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#general-usage">General usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#api-overview">API Overview</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">REST API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-usage">General usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#api-overview">API Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/projects.html">Projects API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/projects.html#list-projects">List projects</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/projects.html#create-new-project">Create new project</a></li>
@@ -116,10 +117,10 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Code docstrings</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Serializer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serializer.html">Serializer</a></li>
 </ul>
 
             
@@ -164,13 +165,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Serializer</li>
+      <li>REST API</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/modules/serializer.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/modules/api.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -183,50 +184,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-dtf.serializers">
-<span id="serializer"></span><h1>Serializer<a class="headerlink" href="#module-dtf.serializers" title="Permalink to this headline">¶</a></h1>
-<p>Contains all serializers needed for the API to transition between the json representation
-and the database model of data</p>
-<dl class="class">
-<dt id="dtf.serializers.ProjectSerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">ProjectSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.ProjectSerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="dtf.serializers.ProjectSubmissionPropertySerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">ProjectSubmissionPropertySerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.ProjectSubmissionPropertySerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="dtf.serializers.ReferenceSetSerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">ReferenceSetSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.ReferenceSetSerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="dtf.serializers.SubmissionSerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">SubmissionSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.SubmissionSerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="dtf.serializers.TestReferenceSerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">TestReferenceSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.TestReferenceSerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="dtf.serializers.TestResultSerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">TestResultSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.TestResultSerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="dtf.serializers.WebhookLogEntrySerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">WebhookLogEntrySerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.WebhookLogEntrySerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="dtf.serializers.WebhookSerializer">
-<em class="property">class </em><code class="sig-prename descclassname">dtf.serializers.</code><code class="sig-name descname">WebhookSerializer</code><span class="sig-paren">(</span><em class="sig-param">instance=None</em>, <em class="sig-param">data=&lt;class 'rest_framework.fields.empty'&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#dtf.serializers.WebhookSerializer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+  <div class="section" id="rest-api">
+<h1>REST API<a class="headerlink" href="#rest-api" title="Permalink to this headline">¶</a></h1>
+<p>The Django Testing Framework exposes a powerful REST API which can be used to control all aspects of the web-server.</p>
+<div class="section" id="general-usage">
+<h2>General usage<a class="headerlink" href="#general-usage" title="Permalink to this headline">¶</a></h2>
+<p>Currently all REST API endpoints start with the <code class="docutils literal notranslate"><span class="pre">/api/</span></code> prefix. As an example, let’s assume you have hosted your Django Testing Framework instance at <code class="docutils literal notranslate"><span class="pre">dtf.example.com</span></code>. A valid API request to the <a class="reference internal" href="api/projects.html#api-projects-list"><span class="std std-ref">projects</span></a> endpoint could look as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl <span class="s2">&quot;http://dtf.example.com/api/projects&quot;</span>
+</pre></div>
+</div>
+<p>Some API endpoints include parameters of the form <code class="docutils literal notranslate"><span class="pre">:id</span></code>. These are to be replaced with the actual id of an existing object. E.g. a valid API request to the <a class="reference internal" href="api/projects.html#api-projects-get"><span class="std std-ref">projects/:id</span></a> endpoint could look as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl <span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-overview">
+<h2>API Overview<a class="headerlink" href="#api-overview" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="api/projects.html"><span class="doc">Projects</span></a></p>
+<p><a class="reference internal" href="api/submissions.html"><span class="doc">Submissions</span></a></p>
+<p><a class="reference internal" href="api/references.html"><span class="doc">References</span></a></p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
 </div>
 
 
@@ -239,8 +218,10 @@ and the database model of data</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="api/projects.html" class="btn btn-neutral float-right" title="Projects API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="views.html" class="btn btn-neutral" title="Views" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="quickstart.html" class="btn btn-neutral" title="Quickstart Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
