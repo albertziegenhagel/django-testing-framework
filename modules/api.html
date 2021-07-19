@@ -90,11 +90,15 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#using-the-api">Using the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">REST API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#general-usage">General usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#user-credentials">User credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-access-token">User access Token</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#api-overview">API Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/projects.html">Projects API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/projects.html#list-projects">List projects</a></li>
@@ -119,16 +123,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/references.html">References API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/users.html">Users API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/users.html#list-users">List users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/users.html#get-single-user">Get single user</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Code docstrings</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serializer.html">Serializer</a></li>
+</li>
 </ul>
 
             
@@ -206,12 +209,47 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p>To access the API users must authenticate themselves. There are currently two end-user methods for authentication available:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#api-authentication-credentials"><span class="std std-ref">User credentials</span></a> (username and password)</p></li>
+<li><p><a class="reference internal" href="#api-authentication-token"><span class="std std-ref">User access Token</span></a></p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="user-credentials">
+<span id="api-authentication-credentials"></span><h3>User credentials<a class="headerlink" href="#user-credentials" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method should not be used except for simple testing scenarios.</p>
+</div>
+<p>A user can authenticate themselves with their username and password. E.g. when using <cite>curl</cite> this can be done by using the <cite>-u</cite> command line parameter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -u <span class="s2">&quot;username:password&quot;</span> <span class="se">\</span>
+  <span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="user-access-token">
+<span id="api-authentication-token"></span><h3>User access Token<a class="headerlink" href="#user-access-token" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is not yet any front-end functionality for a user to create tokens.</p>
+</div>
+<p>A user can authenticate themselves with a specific token, unique to each user. This token needs to be passed in the <em>header</em> of requests. E.g. when using <cite>curl</cite> this can be done by using the <cite>–header</cite> command line parameter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --header <span class="s2">&quot;Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b&quot;</span> <span class="se">\</span>
+  <span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="api-overview">
 <h2>API Overview<a class="headerlink" href="#api-overview" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="api/projects.html"><span class="doc">Projects</span></a></p>
 <p><a class="reference internal" href="api/submissions.html"><span class="doc">Submissions</span></a></p>
 <p><a class="reference internal" href="api/test_results.html"><span class="doc">Test Results</span></a></p>
 <p><a class="reference internal" href="api/references.html"><span class="doc">References</span></a></p>
+<p><a class="reference internal" href="api/users.html"><span class="doc">Users</span></a></p>
 <div class="toctree-wrapper compound">
 </div>
 </div>

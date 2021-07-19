@@ -89,11 +89,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules/quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="modules/quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/quickstart.html#using-the-api">Using the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules/api.html">REST API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="modules/api.html#general-usage">General usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/api.html#authentication">Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/api.html#user-credentials">User credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/api.html#user-access-token">User access Token</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="modules/api.html#api-overview">API Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="modules/api/projects.html">Projects API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#list-projects">List projects</a></li>
@@ -118,16 +122,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="modules/api/references.html">References API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/api/users.html">Users API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/users.html#list-users">List users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/users.html#get-single-user">Get single user</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Code docstrings</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/models.html">Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/views.html">Views</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/serializer.html">Serializer</a></li>
+</li>
 </ul>
 
             
@@ -193,140 +196,8 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#D"><strong>D</strong></a>
- | <a href="#P"><strong>P</strong></a>
- | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- | <a href="#T"><strong>T</strong></a>
- | <a href="#W"><strong>W</strong></a>
  
 </div>
-<h2 id="D">D</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#module-dtf.models">dtf.models (module)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/serializer.html#module-dtf.serializers">dtf.serializers (module)</a>
-</li>
-      <li><a href="modules/views.html#module-dtf.views">dtf.views (module)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="P">P</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.Project">Project (class in dtf.models)</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.Project.DoesNotExist">Project.DoesNotExist</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.Project.MultipleObjectsReturned">Project.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.ProjectSerializer">ProjectSerializer (class in dtf.serializers)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.ProjectSubmissionProperty">ProjectSubmissionProperty (class in dtf.models)</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.ProjectSubmissionProperty.DoesNotExist">ProjectSubmissionProperty.DoesNotExist</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.ProjectSubmissionProperty.MultipleObjectsReturned">ProjectSubmissionProperty.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.ProjectSubmissionPropertySerializer">ProjectSubmissionPropertySerializer (class in dtf.serializers)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="R">R</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.ReferenceSet">ReferenceSet (class in dtf.models)</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.ReferenceSet.DoesNotExist">ReferenceSet.DoesNotExist</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.ReferenceSet.MultipleObjectsReturned">ReferenceSet.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.ReferenceSet.OrderedDictJSONDecoder">ReferenceSet.OrderedDictJSONDecoder (class in dtf.models)</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.ReferenceSetSerializer">ReferenceSetSerializer (class in dtf.serializers)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.ReferenceSet.save">save() (dtf.models.ReferenceSet method)</a>
-
-      <ul>
-        <li><a href="modules/models.html#dtf.models.TestResult.save">(dtf.models.TestResult method)</a>
-</li>
-      </ul></li>
-      <li><a href="modules/models.html#dtf.models.Submission">Submission (class in dtf.models)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.Submission.DoesNotExist">Submission.DoesNotExist</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.Submission.MultipleObjectsReturned">Submission.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.SubmissionSerializer">SubmissionSerializer (class in dtf.serializers)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="T">T</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.TestReference">TestReference (class in dtf.models)</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.TestReference.DoesNotExist">TestReference.DoesNotExist</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.TestReference.MultipleObjectsReturned">TestReference.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.TestReferenceSerializer">TestReferenceSerializer (class in dtf.serializers)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.TestResult">TestResult (class in dtf.models)</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.TestResult.DoesNotExist">TestResult.DoesNotExist</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.TestResult.MultipleObjectsReturned">TestResult.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.TestResultSerializer">TestResultSerializer (class in dtf.serializers)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="W">W</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.Webhook">Webhook (class in dtf.models)</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.Webhook.DoesNotExist">Webhook.DoesNotExist</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.Webhook.MultipleObjectsReturned">Webhook.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.WebhookLogEntry">WebhookLogEntry (class in dtf.models)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#dtf.models.WebhookLogEntry.DoesNotExist">WebhookLogEntry.DoesNotExist</a>
-</li>
-      <li><a href="modules/models.html#dtf.models.WebhookLogEntry.MultipleObjectsReturned">WebhookLogEntry.MultipleObjectsReturned</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.WebhookLogEntrySerializer">WebhookLogEntrySerializer (class in dtf.serializers)</a>
-</li>
-      <li><a href="modules/serializer.html#dtf.serializers.WebhookSerializer">WebhookSerializer (class in dtf.serializers)</a>
-</li>
-  </ul></td>
-</tr></table>
-
 
 
            </div>

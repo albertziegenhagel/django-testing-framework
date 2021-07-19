@@ -90,11 +90,15 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example-installation-for-nix">Example installation for *nix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-the-api">Using the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">REST API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#general-usage">General usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#authentication">Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#user-credentials">User credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#user-access-token">User access Token</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#api-overview">API Overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/projects.html">Projects API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/projects.html#list-projects">List projects</a></li>
@@ -119,16 +123,15 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/references.html">References API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/users.html">Users API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/users.html#list-users">List users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/users.html#get-single-user">Get single user</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Code docstrings</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serializer.html">Serializer</a></li>
+</li>
 </ul>
 
             
@@ -226,9 +229,6 @@ python manage.py runserver
 </pre></div>
 </div>
 <p>The server is then reachable for all hosts on the network under the default HTTP port 80.</p>
-</div>
-<div class="section" id="using-the-api">
-<h2>Using the API<a class="headerlink" href="#using-the-api" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
