@@ -112,6 +112,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#get-single-project-property">Get single project property</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#modify-project-property">Modify project property</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#delete-project-property">Delete project property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-project-members">List project members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-new-project-member">Add new project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-single-project-member">Get single project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modify-project-member">Modify project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-project-member">Delete project member</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="submissions.html">Submissions API</a></li>
@@ -762,6 +767,280 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="list-project-members">
+<h2>List project members<a class="headerlink" href="#list-project-members" title="Permalink to this headline">¶</a></h2>
+<p>List all members of a given project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project to get the members of.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
+  http://dtf.example.com/api/projects/1/members
+</pre></div>
+</div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;project&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Demo&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;owner&quot;</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-new-project-member">
+<span id="api-projects-members-new"></span><h2>Add new project member<a class="headerlink" href="#add-new-project-member" title="Permalink to this headline">¶</a></h2>
+<p>Add a new member to a project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project to add the new member to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">user</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The user to add as a member to the project.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">role</span></code></p></td>
+<td><p>string</p></td>
+<td><p>no (default: <code class="docutils literal notranslate"><span class="pre">&quot;guest&quot;</span></code>)</p></td>
+<td><p>The role of the user to be added. Can be ‘guest’, ‘developer’ or ‘owner’.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
+  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+  --data <span class="s1">&#39;{</span>
+<span class="s1">             &quot;user&quot;: 1,</span>
+<span class="s1">             &quot;role&quot;: &quot;developer&quot;</span>
+<span class="s1">         }&#39;</span> <span class="se">\</span>
+  http://dtf.example.com/api/projects/1/members
+</pre></div>
+</div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;project&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;developer&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-single-project-member">
+<span id="api-projects-members-get"></span><h2>Get single project member<a class="headerlink" href="#get-single-project-member" title="Permalink to this headline">¶</a></h2>
+<p>Retrieve a specific member from a project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span><span class="o">/</span><span class="p">:</span><span class="n">member_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:member_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the membership to get.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
+  http://dtf.example.com/api/projects/1/members/1
+</pre></div>
+</div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;project&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Demo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;owner&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-project-member">
+<span id="api-projects-members-modify"></span><h2>Modify project member<a class="headerlink" href="#modify-project-member" title="Permalink to this headline">¶</a></h2>
+<p>Modify the fields of an existing members. All fields have to be given (even the ones that are unchanged).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span><span class="o">/</span><span class="p">:</span><span class="n">member_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:member_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the membership to modify.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">user</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The new user associated with this membership.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">role</span></code></p></td>
+<td><p>string</p></td>
+<td><p>no (default: <code class="docutils literal notranslate"><span class="pre">&quot;guest&quot;</span></code>)</p></td>
+<td><p>The new role of the user in the project. Can be ‘guest’, ‘developer’ or ‘owner’.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X PUT <span class="se">\</span>
+  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+  --data <span class="s1">&#39;{</span>
+<span class="s1">             &quot;project&quot;: 1,</span>
+<span class="s1">             &quot;user&quot;: 2,</span>
+<span class="s1">             &quot;role&quot;: &quot;developer&quot;</span>
+<span class="s1">         }&#39;</span> <span class="se">\</span>
+  http://dtf.example.com/api/projects/1/members/1
+</pre></div>
+</div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;project&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;first_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Demo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;last_name&quot;</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;developer&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-project-member">
+<span id="api-projects-members-delete"></span><h2>Delete project member<a class="headerlink" href="#delete-project-member" title="Permalink to this headline">¶</a></h2>
+<p>Deletes a member from a project. This can not be undone!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span><span class="o">/</span><span class="p">:</span><span class="n">member_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:member_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the membership to delete.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X DELETE <span class="se">\</span>
+  http://dtf.example.com/api/projects/1/members/1
+</pre></div>
+</div>
+<span class="target" id="api-projects-members-list"></span></div>
 </div>
 
 
