@@ -143,22 +143,22 @@ $('document').ready(function(){
 
 </div>
 
-<table id="resultsTable" class="table table-striped table-hover table-sm tablesorter">
+<table id="resultsTable" class="table table-striped table-hover table-sm">
     <thead>
     <tr>
-        <th class="noselect fit">
+        <th class="sort noselect fit" data-sort="status-filter">
             Status
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="name-filter">
             Name
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="value-filter">
             Result
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="reference-on-submission-filter">
             Reference on submission
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="global-reference-filter">
             Global reference
         </th>
         {% if test_reference_permissions.add or test_reference_permissions.change %}

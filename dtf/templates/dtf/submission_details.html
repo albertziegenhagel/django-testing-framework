@@ -54,16 +54,16 @@
     {% include 'dtf/filter-box.html' with show_broken=True filter_context=submission%}
 </div>
 
-<table class="table table-hover tablesorter">
+<table class="table table-hover">
     <thead>
     <tr>
-        <th class="noselect fit">
+        <th class="sort noselect fit" data-sort="status-filter">
             Status
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="name-filter">
             Test Name
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="date-filter">
             Created on
         </th>
     </tr>
