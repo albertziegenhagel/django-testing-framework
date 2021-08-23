@@ -9,6 +9,7 @@
     <script src="{% static 'dtf/badge.js' %}"></script>
     <script src="{% static 'dtf/test_result_value.js' %}"></script>
     <script src="{% static 'dtf/results_table.js' %}"></script>
+    <script src="{% static 'dtf/list.min.js' %}"></script>
 {% endblock %}
 
 {% block containertype %}fluid{% endblock %}
@@ -63,6 +64,11 @@ $('document').ready(function(){
         {% else %}
         false
         {% endif %});
+
+    var options = {
+        valueNames: [ 'status-filter', 'name-filter', 'value-filter', 'reference-on-submission-filter', 'global-reference-filter' ]
+    };
+    var resultsTable = new List('test-results', options);
 });
 
 </script>
@@ -105,6 +111,8 @@ $('document').ready(function(){
         </div>
     </nav>
 </div>
+
+<div id="test-results">
 
 <div class="bg-white pt-3 pb-1">
 
@@ -160,7 +168,7 @@ $('document').ready(function(){
         {% endif %}
     </tr>
     </thead>
-    <tbody>
+    <tbody class="list">
     {% for i in placeholder_range %}
         <tr class="placeholder-glow">
             <td><span class="placeholder placeholder-lg w-100"></span></td>
@@ -175,6 +183,8 @@ $('document').ready(function(){
     {% endfor %}
     </tbody>
 </table>
+
+</div>
 
 {% if test_result_permissions.delete %}
 

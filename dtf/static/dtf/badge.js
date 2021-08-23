@@ -30,7 +30,10 @@ function renderStatusBadge(status) {
     return $('<span>')
         .attr('class', `badge border ${badgeClass}`)
         .append($('<i>')
-            .attr('class', `bi ${iconClass}`)
+            .attr('class', `me-1 bi ${iconClass}`)
         )
-        .append(` ${status}`)
+        .append($('<span>')
+            .attr('class', 'status-filter')
+            .append(`${status}`)
+        )
 }

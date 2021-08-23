@@ -1,6 +1,11 @@
 {% extends 'dtf/page_with_two_sidebars.html' %}
 
+{% load static %}
 {% load dtf.custom_filters %}
+
+{% block head %}
+    <script src="{% static 'dtf/list.min.js' %}"></script>
+{% endblock %}
 
 {% block navigation-sidebar-content %}
     {% include "dtf/project_sidebar.html" with active_page='submissions' project=submission.project %}
@@ -44,6 +49,7 @@
     </nav>
 </div>
 
+<div id="submission-tests">
 <div class="pt-3 pb-1">
     {% include 'dtf/filter-box.html' with show_broken=True filter_context=submission%}
 </div>
@@ -62,22 +68,30 @@
         </th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="list">
     {% for test in submission.tests.all %}
     <tr class="filtered-row test">
-        <td class="filter-status status">
+        <td class="status">
             <a href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.status|status_badge }}</a>
         </td>
         <td class="name">
-            <a href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.name }}</a>
+            <a class="name-filter" href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.name }}</a>
         </td>
         <td class="date">
-            <a href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.created }}</a>
+            <a class="date-filter" href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.created }}</a>
         </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+
+<script>
+var options = {
+    valueNames: [ 'status-filter', 'name-filter', 'date-filter' ]
+};
+var testsTable = new List('submission-tests', options);
+</script>
+<div>
 
 {% if submission_permissions.delete %}
 

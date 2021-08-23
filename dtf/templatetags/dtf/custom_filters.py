@@ -36,7 +36,7 @@ def status_badge(text):
     badge_class = status_to_badge_class.get(text, "text-secondary border-secondary")
     icon_class = status_to_icon_class.get(text, "bi-info-circle")
 
-    safe_text = f'<span class="badge border {badge_class}"><i class="bi {icon_class}"></i> {text}</span>'
+    safe_text = f'<span class="badge border {badge_class}"><i class="me-1 bi {icon_class}"></i><span class="status-filter">{text}</span></span>'
     return mark_safe(safe_text)
 
 @register.filter
