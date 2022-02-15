@@ -1,0 +1,4 @@
+Attribute|Type|Required|Description
+``:project_id``|string/integer|yes|The id or slug of the project.
+``:submission_id``|integer|yes|The id of the submission to modify.
+``info``|json|no (default: ``{}``)|Property name-value pairs for the submission. These have to match the properties specified in the project.

@@ -1,0 +1,11 @@
+{
+    "project": 1,
+    "id": 2,
+    "created": "2021-04-06T10:10:24.740000+02:00",
+    "last_updated": "2022-02-15T13:10:01.207524+01:00",
+    "info": {
+        "Hostname": "Vasa",
+        "Branch": "feature"
+    },
+    "url": "http://dtf.example.com/demo/submissions/2"
+}
