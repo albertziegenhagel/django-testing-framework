@@ -35,6 +35,40 @@ which might give a result like this:
    :language: json
 
 
+.. _api-test_results-submissions-list:
+
+List test results of a submission
+---------------------------------
+
+List all test results from a specific submission of a given project.
+
+.. literalinclude :: generated/test_results/projects_id_tests-GET-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/test_results/projects_id_submissions_id_tests-GET-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_results/projects_id_submissions_id_tests-GET-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_results/projects_id_submissions_id_tests-GET-curl.ps1
+         :language: powershell
+
+which might give a result like this:
+
+.. literalinclude :: generated/test_results/projects_id_submissions_id_tests-GET-response.json
+   :language: json
+
+
 .. _api-test_results-project-get:
 
 Get single test result of a project
