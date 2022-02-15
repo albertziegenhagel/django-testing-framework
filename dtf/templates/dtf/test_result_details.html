@@ -38,23 +38,20 @@ function onReferenceUpdateButton() {
         "{{ csrf_token }}",
         "{{ test_result.name }}",
         {{ test_result.id }},
-        initialTestResultsData,
-        {{ property_values | to_js_dict }},
-        {% if reference_set is not None %}
-            {{ reference_set.id }},
-        {% else %}
-            null,
-        {% endif %}
-        {% if test_reference is not None %}
-            {{ test_reference.id }},
-        {% else %}
-            null,
-        {% endif %}
+        "{{ project.slug }}")
+}
+
+function onCommentUpdateButton() {
+    updateComments(
+        "{{ csrf_token }}",
+        "{{ test_result.name }}",
+        {{ test_result.id }},
         "{{ project.slug }}")
 }
 
 $('document').ready(function(){
     buildResultsTable(
+        "{{ csrf_token }}",
         "{{ test_result.submission.project.slug }}",
         {{ test_result.id }},
         initialTestResultsData,
@@ -126,6 +123,7 @@ $('document').ready(function(){
     {% if test_reference_permissions.add or test_reference_permissions.change %}
     <div class="col-md-auto">
         <button class="btn btn-sm btn-primary btn-lg active" onclick="onReferenceUpdateButton()">Update selected references</button>
+        <button class="btn btn-sm btn-primary btn-lg active" onclick="onCommentUpdateButton()">Add comment for selected references</button>
     </div>
     {% endif %}
 </div>

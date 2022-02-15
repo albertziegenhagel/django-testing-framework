@@ -1,5 +1,5 @@
 
-function buildResultsTable(projectSlug, testId, results, references, canUpdate) {
+function buildResultsTable(csrfToken, projectSlug, testId, results, references, canUpdate) {
     let tableBody = $("#resultsTable").find('tbody');
 
     tableBody.empty();
@@ -44,7 +44,7 @@ function buildResultsTable(projectSlug, testId, results, references, canUpdate) 
                 )
                 .append($('<div>')
                     .attr('class', 'ms-auto')
-                    .append(renderCommentBadge(projectSlug, testId, resultIndex, result['comment']))
+                    .append(renderCommentBadge(csrfToken, projectSlug, testId, resultIndex, result['comment']))
                 )
             )
         )
