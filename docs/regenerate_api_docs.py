@@ -159,6 +159,7 @@ else:
     print("Starting server")
     env = dict(os.environ)
     env['DTF_DEFAULT_DATABASE'] = 'demo'
+    env['DTF_ENABLE_WEBHOOKS'] = '0'
     with open('server_output.txt', 'w') as server_output:
         with subprocess.Popen(args=[sys.executable, "-u", manage_script_path, "runserver"], stdout=server_output, stderr=subprocess.STDOUT, cwd=root_path, env=env) as server_process:
             print(f"Started server with pid: {server_process.pid}")
