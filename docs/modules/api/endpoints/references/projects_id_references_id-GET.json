@@ -1,0 +1,24 @@
+{
+    "endpoint": "/projects/:project_id/references/:reference_id",
+    "method": "GET",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project."
+        },
+        ":reference_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the reference set to get."
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1,
+                "reference_id": 1
+            }
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "endpoint": "/projects/:project_id/references/:reference_id",
+    "method": "PUT",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project."
+        },
+        ":reference_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the reference set to modify."
+        },
+        "property_values" : {
+            "type": "json",
+            "required": false,
+            "default": "{}",
+            "description": [
+                "Property name-value pairs for the reference set.",
+                "These have to match the properties specified in the project."
+            ]
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1,
+                "reference_id": 1
+            },
+            "data": {
+                "project": 1,
+                "property_values": {
+                    "Hostname": "Vasa",
+                    "Branch": "main"
+                }
+            }
+        }
+    ]
+}
