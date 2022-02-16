@@ -17,6 +17,25 @@ function renderCommentBadge(comment){
     }
 }
 
+function renderCommentCheck(comment) {
+    if (comment === undefined || comment === null || comment === "") {
+        return $('<div>')
+                .attr('class', 'badge text-dark')
+                .append($('<i>')
+                    .attr('class', 'bi bi-question-circle')
+                    .attr('style', 'font-size: 2.0em; ')
+            )
+    }
+    else {
+        return $('<div>')
+                .attr('class', 'badge text-success')
+                .append($('<i>')
+                    .attr('class', 'bi bi-check-circle')
+                    .attr('style', 'font-size: 2.0em')
+            )
+    }
+}
+
 function updateResultsTableComments(result) {
     let resultsRows = $('#resultsTable > tbody > tr');
 
@@ -24,9 +43,13 @@ function updateResultsTableComments(result) {
         const testResultIndex = tr.getAttribute('test-result-index');
 
         let CommentsData = $(tr).find('#tableDataComments').first();
+        let StatusData = $(tr).find('#tableDataStatus').first();
 
         CommentsData.empty();
         CommentsData.append(renderCommentBadge(result["results"][testResultIndex]["comment"]));
+
+        StatusData.empty();
+        StatusData.append(renderStatusBadge(result["results"][testResultIndex]["status"],result["results"][testResultIndex]["comment"]));
     });
 }
 

@@ -1,5 +1,5 @@
 
-function renderStatusBadge(status) {
+function renderStatusBadge(status, comment) {
     const statusToBadgeClass = {
         successful: "text-success border-success",
         unstable:   "text-warning border-warning",
@@ -26,11 +26,22 @@ function renderStatusBadge(status) {
     if(iconClass === undefined) {
         iconClass = statusToIconClass.unknown;
     }
-
-    return $('<span>')
-        .attr('class', `badge border ${badgeClass}`)
-        .append($('<i>')
-            .attr('class', `bi ${iconClass}`)
-        )
-        .append(` ${status}`)
+    
+    if(status === "successful"){
+        return $('<span>')
+            .attr('class', `badge border ${badgeClass}`)
+            .append($('<i>')
+                .attr('class', `bi ${iconClass}`)
+            )
+            .append(` ${status} `)
+    }
+    else {
+        return $('<span>')
+            .attr('class', `badge border ${badgeClass}`)
+            .append($('<i>')
+                .attr('class', `bi ${iconClass}`)
+            )
+            .append(` ${status} `)
+            .append(renderCommentCheck(comment))
+    }
 }
