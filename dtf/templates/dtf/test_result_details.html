@@ -34,10 +34,22 @@ const initialTestReferencesData = {};
 {% endif %}
 
 function onReferenceUpdateButton() {
-    updateReferences(
+    updateReferences(        
         "{{ csrf_token }}",
         "{{ test_result.name }}",
         {{ test_result.id }},
+        initialTestResultsData,
+        {{ property_values | to_js_dict }},
+        {% if reference_set is not None %}
+            {{ reference_set.id }},
+        {% else %}
+            null,
+        {% endif %}
+        {% if test_reference is not None %}
+            {{ test_reference.id }},
+        {% else %}
+            null,
+        {% endif %}
         "{{ project.slug }}")
 }
 
