@@ -44,7 +44,8 @@ function buildResultsTable(csrfToken, projectSlug, testId, results, references, 
                 )
                 .append($('<div>')
                     .attr('class', 'ms-auto')
-                    .append(renderCommentBadge(csrfToken, projectSlug, testId, resultIndex, result['comment']))
+                    .attr('id', 'tableDataComments')
+                    .append(renderCommentBadge(result['comment']))
                 )
             )
         )
@@ -63,7 +64,7 @@ function buildResultsTable(csrfToken, projectSlug, testId, results, references, 
         if(canUpdate) {
             row.append($('<td>')
                 .append($('<input>')
-                    .attr('id', 'updateReferenceCheckbox')
+                    .attr('id', 'updateCheckbox')
                     .attr('class', 'form-check-input ms-2 me-2')
                     .attr('type', 'checkbox')
                     .attr('autocomplete', 'off')
@@ -93,8 +94,8 @@ function updateResultsTableReferences(projectSlug, testResults, references) {
 }
 
 function toggleAllBoxes(){
-    let toggleAllBox = $('#toggleAllReferencesCheckbox')[0];
-    let allBoxes = $('[id=updateReferenceCheckbox]');
+    let toggleAllBox = $('#toggleAllCheckbox')[0];
+    let allBoxes = $('[id=updateCheckbox]');
     for (var i = 0; i < allBoxes.length; i++) {
         if (allBoxes[i].parentElement.parentElement.style.display == "none") {
             continue;
@@ -104,9 +105,9 @@ function toggleAllBoxes(){
 }
 
 function uncheckAllBoxes(){
-    let toggleAllBox = $('#toggleAllReferencesCheckbox')[0];
+    let toggleAllBox = $('#toggleAllCheckbox')[0];
     toggleAllBox.checked = false;
-    let allBoxes = $('[id=updateReferenceCheckbox]');
+    let allBoxes = $('[id=updateCheckbox]');
     for (var i = 0; i < allBoxes.length; i++) {
         allBoxes[i].checked = false;
     }
@@ -123,7 +124,7 @@ function postReferenceUpdate(csrfToken, testName, testId, testResults, reference
     let resultsRows = $('#resultsTable > tbody > tr');
 
     resultsRows.each(function(index, tr) {
-        let checkBox = $(tr).find('#updateReferenceCheckbox')[0];
+        let checkBox = $(tr).find('#updateCheckbox')[0];
         if(checkBox.checked) {
             const testResultIndex = tr.getAttribute('test-result-index');
             const testResult = testResults[testResultIndex];

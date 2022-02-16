@@ -56,7 +56,6 @@ function onReferenceUpdateButton() {
 function onCommentUpdateButton() {
     updateComments(
         "{{ csrf_token }}",
-        "{{ test_result.name }}",
         {{ test_result.id }},
         "{{ project.slug }}")
 }
@@ -166,7 +165,7 @@ $('document').ready(function(){
         </th>
         {% if test_reference_permissions.add or test_reference_permissions.change %}
         <th class="noselect fit sorter-false">
-            <input class="form-check-input ms-2 me-2" id="toggleAllReferencesCheckbox" type="checkbox" onclick="toggleAllBoxes()" autocomplete="off"/>
+            <input class="form-check-input ms-2 me-2" id="toggleAllCheckbox" type="checkbox" onclick="toggleAllBoxes()" autocomplete="off"/>
         </th>
         {% endif %}
     </tr>
