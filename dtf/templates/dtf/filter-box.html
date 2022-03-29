@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col">
-        <input class="form-control" type="text" id="filter_text" placeholder="Filter...">
+        <input class="form-control search" type="text" id="filter_text" placeholder="Filter...">
     </div>
 
     <div class="col-auto ps-1 pe-1">
@@ -52,13 +52,6 @@ function restoreFilterState(status_type, filter_status) {
 
 $('document').ready(function(){
 
-$("#filter_text").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $(".filtered-row").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-});
-
 if(sessionStorage) {
     var filter_status = {};
     filter_status["successful"] = restoreFilterState("successful");
@@ -70,7 +63,7 @@ if(sessionStorage) {
 
     const rows = document.getElementsByClassName("filtered-row");
     Array.prototype.forEach.call(rows, function(item){
-        const row_status_type = item.getElementsByClassName("filter-status")[0].textContent.trim();
+        const row_status_type = item.getElementsByClassName("status-filter")[0].textContent.trim();
         const checked = filter_status[row_status_type]
         if (checked) {
             item.style.display = "table-row";
@@ -88,7 +81,7 @@ $("input[name='filter_status']").change(function () {
 
     const rows = document.getElementsByClassName("filtered-row");
     Array.prototype.forEach.call(rows, function(item){
-        const row_status_type = item.getElementsByClassName("filter-status")[0].textContent.trim();
+        const row_status_type = item.getElementsByClassName("status-filter")[0].textContent.trim();
         if (row_status_type != status_type){
             return;
         }

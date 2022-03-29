@@ -9,6 +9,7 @@
     <script src="{% static 'dtf/badge.js' %}"></script>
     <script src="{% static 'dtf/test_result_value.js' %}"></script>
     <script src="{% static 'dtf/results_table.js' %}"></script>
+    <script src="{% static 'dtf/list.min.js' %}"></script>
 {% endblock %}
 
 {% block containertype %}fluid{% endblock %}
@@ -63,6 +64,11 @@ $('document').ready(function(){
         {% else %}
         false
         {% endif %});
+
+    var options = {
+        valueNames: [ 'status-filter', 'name-filter', 'value-filter', 'reference-on-submission-filter', 'global-reference-filter' ]
+    };
+    var resultsTable = new List('test-results', options);
 });
 
 </script>
@@ -106,6 +112,8 @@ $('document').ready(function(){
     </nav>
 </div>
 
+<div id="test-results">
+
 <div class="bg-white pt-3 pb-1">
 
 <div id="toast-container" class="toast-container position-absolute content-wrapper p-3 top-0 start-50 translate-middle-x">
@@ -135,22 +143,22 @@ $('document').ready(function(){
 
 </div>
 
-<table id="resultsTable" class="table table-striped table-hover table-sm tablesorter">
+<table id="resultsTable" class="table table-striped table-hover table-sm">
     <thead>
     <tr>
-        <th class="noselect fit">
+        <th class="sort noselect fit" data-sort="status-filter">
             Status
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="name-filter">
             Name
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="value-filter">
             Result
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="reference-on-submission-filter">
             Reference on submission
         </th>
-        <th class="noselect">
+        <th class="sort noselect" data-sort="global-reference-filter">
             Global reference
         </th>
         {% if test_reference_permissions.add or test_reference_permissions.change %}
@@ -160,7 +168,7 @@ $('document').ready(function(){
         {% endif %}
     </tr>
     </thead>
-    <tbody>
+    <tbody class="list">
     {% for i in placeholder_range %}
         <tr class="placeholder-glow">
             <td><span class="placeholder placeholder-lg w-100"></span></td>
@@ -175,6 +183,8 @@ $('document').ready(function(){
     {% endfor %}
     </tbody>
 </table>
+
+</div>
 
 {% if test_result_permissions.delete %}
 
