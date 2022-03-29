@@ -7,11 +7,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <input type="text" id="comment" name="comment" placeholder="comment"/>
+            <textarea class="form-control" type="text" id="comment" name="comment" placeholder="comment"/></textarea>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-info" onclick="{{modal_id}}()" data-bs-dismiss="modal">Comment {{ object_type }}</button>
+        <button type="button" class="btn btn-primary" onclick="{{modal_id}}()" data-bs-dismiss="modal">Comment {{ object_type }}</button>
         </div>
     </div>
     </div>
