@@ -7,6 +7,7 @@
     <script src="{% static 'dtf/toast.js' %}"></script>
     <script src="{% static 'dtf/duration.js' %}"></script>
     <script src="{% static 'dtf/badge.js' %}"></script>
+    <script src="{% static 'dtf/comment.js' %}"></script>
     <script src="{% static 'dtf/test_result_value.js' %}"></script>
     <script src="{% static 'dtf/results_table.js' %}"></script>
 {% endblock %}
@@ -33,7 +34,7 @@ const initialTestReferencesData = {};
 {% endif %}
 
 function onReferenceUpdateButton() {
-    updateReferences(
+    updateReferences(        
         "{{ csrf_token }}",
         "{{ test_result.name }}",
         {{ test_result.id }},
@@ -52,8 +53,17 @@ function onReferenceUpdateButton() {
         "{{ project.slug }}")
 }
 
+function onCommentUpdateButton() {
+    updateComments(
+        "{{ csrf_token }}",
+        {{ test_result.id }},
+        "{{ project.slug }}",
+        "blubb")
+}
+
 $('document').ready(function(){
     buildResultsTable(
+        "{{ csrf_token }}",
         "{{ test_result.submission.project.slug }}",
         {{ test_result.id }},
         initialTestResultsData,
@@ -125,6 +135,8 @@ $('document').ready(function(){
     {% if test_reference_permissions.add or test_reference_permissions.change %}
     <div class="col-md-auto">
         <button class="btn btn-sm btn-primary btn-lg active" onclick="onReferenceUpdateButton()">Update selected references</button>
+        <button class="btn btn-sm btn-primary btn-lg active" data-bs-toggle="modal" data-bs-target="#addCommentsModal" title="comment Test">Add comment for selected references</button>
+        <!--<button class="btn btn-sm btn-primary btn-lg active" onclick="onCommentUpdateButton()">Add comment for selected references</button>-->
     </div>
     {% endif %}
 </div>
@@ -155,7 +167,7 @@ $('document').ready(function(){
         </th>
         {% if test_reference_permissions.add or test_reference_permissions.change %}
         <th class="noselect fit sorter-false">
-            <input class="form-check-input ms-2 me-2" id="toggleAllReferencesCheckbox" type="checkbox" onclick="toggleAllBoxes()" autocomplete="off"/>
+            <input class="form-check-input ms-2 me-2" id="toggleAllCheckbox" type="checkbox" onclick="toggleAllBoxes()" autocomplete="off"/>
         </th>
         {% endif %}
     </tr>
@@ -199,5 +211,27 @@ $('document').ready(function(){
 </script>
 
 {% endif %}
+
+{% include 'dtf/add_comment_modal.html' with modal_id='addComments' object_name=test_result.name %}
+<script>
+    function addComments(){
+        var comment = $("#comment").val();
+        $.ajax({
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", "{{csrfToken}}");
+        },
+        type: 'GET',
+        contentType: "application/json; charset=utf-8",
+        url: `/api/projects/{{project.slug}}/tests/{{test_result.id}}`,
+        success: function (result) {
+            updateComments(result, "{{ csrf_token }}", "{{ project.slug }}", {{ test_result.id }}, comment)
+        },
+        error: function (result) {
+            console.log(result);
+        }
+    });
+    $("#comment").val('');
+    }
+</script>
 
 {% endblock %}

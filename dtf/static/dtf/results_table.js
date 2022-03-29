@@ -1,5 +1,5 @@
 
-function buildResultsTable(projectSlug, testId, results, references, canUpdate) {
+function buildResultsTable(csrfToken, projectSlug, testId, results, references, canUpdate) {
     let tableBody = $("#resultsTable").find('tbody');
 
     tableBody.empty();
@@ -15,8 +15,19 @@ function buildResultsTable(projectSlug, testId, results, references, canUpdate) 
             .attr('class', 'filtered-row')
             .attr('test-result-index', resultIndex)
             .append($('<td>')
-                .attr('class', 'filter-status')
-                .append(renderStatusBadge(result['status']))
+                .append($('<div>')
+                    .attr('class', 'd-flex')
+                    .append($('<span>')
+                        .attr('id', 'tableDataStatus')
+                        .attr('class', 'filter-status')
+                        .append(renderStatusBadge(result['status']))
+                    )
+                    .append($('<div>')
+                        .attr('class', 'ms-auto')
+                        .attr('id', 'tableDataComments')
+                        .append(renderCommentBadge(result['comment']))
+                    )
+                )
             )
             .append($('<td>')
                 .append($('<div>')
@@ -38,7 +49,8 @@ function buildResultsTable(projectSlug, testId, results, references, canUpdate) 
             )
             .append($('<td>')
                 .attr('id', 'tableDataValue')
-                .append(renderTestResultValue(projectSlug, result['value'], null))
+                .append(renderTestResultValue(projectSlug, result['value'], null)
+                )
             )
             .append($('<td>')
                 .attr('id', 'tableDataReferenceOnSubmission')
@@ -51,7 +63,7 @@ function buildResultsTable(projectSlug, testId, results, references, canUpdate) 
         if(canUpdate) {
             row.append($('<td>')
                 .append($('<input>')
-                    .attr('id', 'updateReferenceCheckbox')
+                    .attr('id', 'updateCheckbox')
                     .attr('class', 'form-check-input ms-2 me-2')
                     .attr('type', 'checkbox')
                     .attr('autocomplete', 'off')
@@ -81,8 +93,8 @@ function updateResultsTableReferences(projectSlug, testResults, references) {
 }
 
 function toggleAllBoxes(){
-    let toggleAllBox = $('#toggleAllReferencesCheckbox')[0];
-    let allBoxes = $('[id=updateReferenceCheckbox]');
+    let toggleAllBox = $('#toggleAllCheckbox')[0];
+    let allBoxes = $('[id=updateCheckbox]');
     for (var i = 0; i < allBoxes.length; i++) {
         if (allBoxes[i].parentElement.parentElement.style.display == "none") {
             continue;
@@ -92,9 +104,9 @@ function toggleAllBoxes(){
 }
 
 function uncheckAllBoxes(){
-    let toggleAllBox = $('#toggleAllReferencesCheckbox')[0];
+    let toggleAllBox = $('#toggleAllCheckbox')[0];
     toggleAllBox.checked = false;
-    let allBoxes = $('[id=updateReferenceCheckbox]');
+    let allBoxes = $('[id=updateCheckbox]');
     for (var i = 0; i < allBoxes.length; i++) {
         allBoxes[i].checked = false;
     }
@@ -111,7 +123,7 @@ function postReferenceUpdate(csrfToken, testName, testId, testResults, reference
     let resultsRows = $('#resultsTable > tbody > tr');
 
     resultsRows.each(function(index, tr) {
-        let checkBox = $(tr).find('#updateReferenceCheckbox')[0];
+        let checkBox = $(tr).find('#updateCheckbox')[0];
         if(checkBox.checked) {
             const testResultIndex = tr.getAttribute('test-result-index');
             const testResult = testResults[testResultIndex];

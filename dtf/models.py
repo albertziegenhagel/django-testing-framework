@@ -294,6 +294,12 @@ class TestResult(models.Model):
                         {'type': 'null'}
                     ]
                 },
+                'comment': {
+                    'oneOf': [
+                        {'type': 'string'},
+                        {'type': 'null'}
+                    ]
+                },
                 'reference_source': {'type': 'integer'},
                 'status': {
                     'type': 'string',
