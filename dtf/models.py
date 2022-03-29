@@ -178,7 +178,6 @@ class TestResult(models.Model):
     Model to store test results and metadata
     """
     _value_json_schema = {
-        '$id' : '#value',
         'type': 'object',
             'properties': {
                 'data': {},
