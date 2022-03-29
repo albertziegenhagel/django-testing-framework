@@ -1,0 +1,18 @@
+
+<div class="modal fade" id="{{modal_id}}Modal" tabindex="-1" aria-labelledby="{{modal_id}}ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="{{modal_id}}ModalLabel">Add Comment to {{ object_name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input type="text" id="comment" name="comment" placeholder="comment"/>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-info" onclick="{{modal_id}}()" data-bs-dismiss="modal">Comment {{ object_type }}</button>
+        </div>
+    </div>
+    </div>
+</div>

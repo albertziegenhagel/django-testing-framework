@@ -1,38 +1,11 @@
 function renderCommentBadge(comment){
     if (comment === undefined || comment === null || comment === "") {
-        return $('<a>')
-            .attr('class', 'btn btn-outline-dark dtf-btn-xs me-1')
-            .attr('title', ``)
-            .append($('<i>')
-                .attr('class', 'bi bi-chat')
-            )
+        return 
     }
     else {
-        return $('<a>')
-            .attr('class', 'btn btn-dark dtf-btn-xs me-1')
+        return $('<span>')
+            .attr('class', 'bi bi-chat')
             .attr('title',`${comment}`)
-            .append($('<i>')
-                .attr('class', 'bi bi-chat')
-            )
-    }
-}
-
-function renderCommentCheck(comment) {
-    if (comment === undefined || comment === null || comment === "") {
-        return $('<div>')
-                .attr('class', 'badge text-dark')
-                .append($('<i>')
-                    .attr('class', 'bi bi-question-circle')
-                    .attr('style', 'font-size: 2.0em; ')
-            )
-    }
-    else {
-        return $('<div>')
-                .attr('class', 'badge text-success')
-                .append($('<i>')
-                    .attr('class', 'bi bi-check-circle')
-                    .attr('style', 'font-size: 2.0em')
-            )
     }
 }
 
@@ -49,11 +22,11 @@ function updateResultsTableComments(result) {
         CommentsData.append(renderCommentBadge(result["results"][testResultIndex]["comment"]));
 
         StatusData.empty();
-        StatusData.append(renderStatusBadge(result["results"][testResultIndex]["status"],result["results"][testResultIndex]["comment"]));
+        StatusData.append(renderStatusBadge(result["results"][testResultIndex]["status"]));
     });
 }
 
-function addComments(result,csrfToken, projectSlug, testId, comment){
+function updateComments(result,csrfToken, projectSlug, testId, comment){
     let resultsRows = $('#resultsTable > tbody > tr');
 
     resultsRows.each(function(index, tr) {
@@ -80,24 +53,4 @@ function addComments(result,csrfToken, projectSlug, testId, comment){
             console.log(result);
         }
     }); 
-}
-
-function updateComments(csrfToken, testId, projectSlug) {
-    let input = prompt(`Enter comments for ${projectSlug}/tests/${testId}`, "");
-
-    $.ajax({
-        beforeSend: function (xhr, settings) {
-            xhr.setRequestHeader("X-CSRFToken", csrfToken);
-        },
-        type: 'GET',
-        contentType: "application/json; charset=utf-8",
-        url: `/api/projects/${projectSlug}/tests/${testId}`,
-        success: function (result) {
-            addComments(result,csrfToken, projectSlug, testId, input)
-        },
-        error: function (result) {
-            console.log(result);
-        }
-    });
-
 }
