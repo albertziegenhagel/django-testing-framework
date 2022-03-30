@@ -26,13 +26,11 @@ function renderStatusBadge(status) {
     if(iconClass === undefined) {
         iconClass = statusToIconClass.unknown;
     }
-    
-    
+
     return $('<span>')
         .attr('class', `badge border ${badgeClass}`)
         .append($('<i>')
             .attr('class', `bi ${iconClass}`)
         )
-        .append(` ${status} `)
-   
+        .append(` ${status}`)  
 }

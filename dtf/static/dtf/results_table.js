@@ -1,5 +1,5 @@
 
-function buildResultsTable(csrfToken, projectSlug, testId, results, references, canUpdate) {
+function buildResultsTable(projectSlug, testId, results, references, canUpdate) {
     let tableBody = $("#resultsTable").find('tbody');
 
     tableBody.empty();
@@ -49,8 +49,7 @@ function buildResultsTable(csrfToken, projectSlug, testId, results, references, 
             )
             .append($('<td>')
                 .attr('id', 'tableDataValue')
-                .append(renderTestResultValue(projectSlug, result['value'], null)
-                )
+                .append(renderTestResultValue(projectSlug, result['value'], null))
             )
             .append($('<td>')
                 .attr('id', 'tableDataReferenceOnSubmission')

@@ -34,7 +34,7 @@ const initialTestReferencesData = {};
 {% endif %}
 
 function onReferenceUpdateButton() {
-    updateReferences(        
+    updateReferences(   
         "{{ csrf_token }}",
         "{{ test_result.name }}",
         {{ test_result.id }},
@@ -53,17 +53,8 @@ function onReferenceUpdateButton() {
         "{{ project.slug }}")
 }
 
-function onCommentUpdateButton() {
-    updateComments(
-        "{{ csrf_token }}",
-        {{ test_result.id }},
-        "{{ project.slug }}",
-        "blubb")
-}
-
 $('document').ready(function(){
     buildResultsTable(
-        "{{ csrf_token }}",
         "{{ test_result.submission.project.slug }}",
         {{ test_result.id }},
         initialTestResultsData,
@@ -136,7 +127,6 @@ $('document').ready(function(){
     <div class="col-md-auto">
         <button class="btn btn-sm btn-primary btn-lg active" onclick="onReferenceUpdateButton()">Update selected references</button>
         <button class="btn btn-sm btn-primary btn-lg active" data-bs-toggle="modal" data-bs-target="#addCommentsModal" title="comment Test">Add comment for selected references</button>
-        <!--<button class="btn btn-sm btn-primary btn-lg active" onclick="onCommentUpdateButton()">Add comment for selected references</button>-->
     </div>
     {% endif %}
 </div>
