@@ -46,10 +46,18 @@ function updateComments(result,csrfToken, projectSlug, testId, comment){
         data: JSON.stringify(result),
         url: `/api/projects/${projectSlug}/tests/${testId}`,
         success: function (result) {
+            $.toast({
+                type: 'success',
+                content: `Successfully updated comment(s).`
+            });
             updateResultsTableComments(result);
             uncheckAllBoxes();
         },
         error: function (result) {
+            $.toast({
+                type: 'danger',
+                content: `Failed to update comment(s).`
+            });
             console.log(result);
         }
     }); 
