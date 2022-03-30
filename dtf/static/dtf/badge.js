@@ -32,5 +32,5 @@ function renderStatusBadge(status) {
         .append($('<i>')
             .attr('class', `bi ${iconClass}`)
         )
-        .append(` ${status}`)  
+        .append(` ${status}`)
 }

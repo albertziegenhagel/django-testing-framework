@@ -34,7 +34,7 @@ const initialTestReferencesData = {};
 {% endif %}
 
 function onReferenceUpdateButton() {
-    updateReferences(   
+    updateReferences(
         "{{ csrf_token }}",
         "{{ test_result.name }}",
         {{ test_result.id }},
