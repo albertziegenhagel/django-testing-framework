@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rest References API &mdash; Django Testing Framework  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Users API" href="users.html" />
+    <link rel="prev" title="References API" href="references.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Django Testing Framework
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Content:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">REST API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-usage">General usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#authentication">Authentication</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#user-credentials">User credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#user-access-token">User access Token</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#api-overview">API Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="projects.html">Projects API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#list-projects">List projects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#create-new-project">Create new project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#get-single-project">Get single project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#modify-single-project">Modify single project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#delete-single-project">Delete single project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#list-project-properties">List project properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#add-new-project-property">Add new project property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#get-single-project-property">Get single project property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#modify-project-property">Modify project property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#delete-project-property">Delete project property</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#list-project-members">List project members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#add-new-project-member">Add new project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#get-single-project-member">Get single project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#modify-project-member">Modify project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#delete-project-member">Delete project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#list-project-webhooks">List project webhooks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#add-new-project-webhook">Add new project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#get-single-project-webhook">Get single project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#modify-project-webhook">Modify project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#delete-project-webhook">Delete project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#retrieve-logs-of-a-webhook">Retrieve logs of a webhook</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="submissions.html">Submissions API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#list-submissions-of-a-project">List submissions of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#create-new-submission">Create new submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#get-single-submission-of-a-project">Get single submission of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#modify-submissions-of-a-project">Modify submissions of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#delete-submissions-of-a-project">Delete submissions of a project</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="test_results.html">Rest Results API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#list-test-results-of-a-project">List test results of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#get-single-test-result-of-a-project">Get single test result of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-test-results-of-a-project">Modify test results of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-test-results-of-a-project">Delete test results of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#list-test-results-of-a-submission">List test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#add-new-test-result-to-a-submission">Add new test result to a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#get-single-test-result-of-a-submission">Get single test result of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-test-results-of-a-submission">Modify test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-test-results-of-a-submission">Delete test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#history-of-a-test-result-measurement">History of a test result measurement</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="references.html">References API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="references.html#list-reference-sets-of-a-project">List reference sets of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="references.html#create-new-reference-set">Create new reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="references.html#get-single-reference-set-of-a-project">Get single reference set of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="references.html#modify-reference-sets-of-a-project">Modify reference sets of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="references.html#delete-reference-sets-of-a-project">Delete reference sets of a project</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Rest References API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-test-references-of-a-reference-set">List test references of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-new-test-reference-to-a-reference-set">Add new test reference to a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-single-test-reference-of-a-reference-set">Get single test reference of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modify-test-references-of-a-reference-set">Modify test references of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-test-reference-of-a-reference-set">Delete test reference of a reference set</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="users.html">Users API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="users.html#list-users">List users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="users.html#get-single-user">Get single user</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Django Testing Framework</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">REST API</a></li>
+      <li class="breadcrumb-item active">Rest References API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/modules/api/test_references.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="rest-references-api">
+<h1>Rest References API<a class="headerlink" href="#rest-references-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="list-test-references-of-a-reference-set">
+<span id="api-test-references-reference-set-list"></span><h2>List test references of a reference set<a class="headerlink" href="#list-test-references-of-a-reference-set" title="Permalink to this headline">¶</a></h2>
+<p>List all test references from a reference set.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project to get the test references of.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set to get the tests references of.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-0-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-0-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-0-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/1/tests
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">tests</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;reference_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;test_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo (np=1)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;residual[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;integer[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;algorithm-time[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;argument[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;argument[1]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 2&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;screenshot-image.png&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-new-test-reference-to-a-reference-set">
+<span id="api-test-references-reference-set-create"></span><h2>Add new test reference to a reference set<a class="headerlink" href="#add-new-test-reference-to-a-reference-set" title="Permalink to this headline">¶</a></h2>
+<p>Add a new test reference to the reference set.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project of the reference set to create the new test reference for.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set to create a new test reference for.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_name</span></code></p></td>
+<td><p>string</p></td>
+<td><p>yes</p></td>
+<td><p>The name of the test the new references are for.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default_source</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>no</p></td>
+<td><p>The id of the submission which is used as default source for references that do not have an explicit source given.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">references</span></code></p></td>
+<td><p>json</p></td>
+<td><p>yes</p></td>
+<td><p>Test result references. TODO: add JSON schema</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example to create a new test reference could look like this:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-1-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-1-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-1-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">             &quot;test_name&quot;: &quot;New Test&quot;,</span>
+<span class="s1">             &quot;default_source&quot;: 2,</span>
+<span class="s1">             &quot;references&quot;: {</span>
+<span class="s1">                 &quot;runtime&quot;: {</span>
+<span class="s1">                     &quot;value&quot;: {</span>
+<span class="s1">                         &quot;data&quot;: &quot;PT0.124356S&quot;,</span>
+<span class="s1">                         &quot;type&quot;: &quot;duration&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;source&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;Result1&quot;: {</span>
+<span class="s1">                     &quot;value&quot;: {</span>
+<span class="s1">                         &quot;data&quot;: 123,</span>
+<span class="s1">                         &quot;type&quot;: &quot;integer&quot;</span>
+<span class="s1">                     }</span>
+<span class="s1">                 }</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/1/tests
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">POST</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-header</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-data</span> <span class="s1">&#39;{</span>
+<span class="s1">             &quot;&quot;test_name&quot;&quot;: &quot;&quot;New Test&quot;&quot;,</span>
+<span class="s1">             &quot;&quot;default_source&quot;&quot;: 2,</span>
+<span class="s1">             &quot;&quot;references&quot;&quot;: {</span>
+<span class="s1">                 &quot;&quot;runtime&quot;&quot;: {</span>
+<span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
+<span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;PT0.124356S&quot;&quot;,</span>
+<span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;duration&quot;&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;&quot;Result1&quot;&quot;: {</span>
+<span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
+<span class="s1">                         &quot;&quot;data&quot;&quot;: 123,</span>
+<span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;integer&quot;&quot;</span>
+<span class="s1">                     }</span>
+<span class="s1">                 }</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">tests</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;reference_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;test_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New Test&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:17.566513Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:17.566513Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Result1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-single-test-reference-of-a-reference-set">
+<span id="api-test-references-reference-set-get"></span><h2>Get single test reference of a reference set<a class="headerlink" href="#get-single-test-reference-of-a-reference-set" title="Permalink to this headline">¶</a></h2>
+<p>Retrieve a specific test reference from a reference set.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:test_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the test references to get.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-2-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-2-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-2-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/1/tests/1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">tests</span><span class="p">/</span><span class="n">1</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;reference_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;test_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo (np=1)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;residual[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;integer[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;algorithm-time[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;argument[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;argument[1]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 2&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;screenshot-image.png&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-test-references-of-a-reference-set">
+<span id="api-test-references-reference-set-modify"></span><h2>Modify test references of a reference set<a class="headerlink" href="#modify-test-references-of-a-reference-set" title="Permalink to this headline">¶</a></h2>
+<p>Modify the fields of an existing test reference. All fields have to be given (even the ones that are unchanged).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:test_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the test references to modify.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_name</span></code></p></td>
+<td><p>string</p></td>
+<td><p>yes</p></td>
+<td><p>The name of the test the references are for.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">references</span></code></p></td>
+<td><p>json</p></td>
+<td><p>yes</p></td>
+<td><p>Test references. TODO: add JSON schema</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-3-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-3-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-3-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">             &quot;reference_set&quot;: 1,</span>
+<span class="s1">             &quot;test_name&quot;: &quot;demo (np=1)&quot;,</span>
+<span class="s1">             &quot;references&quot;: {</span>
+<span class="s1">                 &quot;runtime&quot;: {</span>
+<span class="s1">                     &quot;value&quot;: {</span>
+<span class="s1">                         &quot;data&quot;: &quot;PT0.124356S&quot;,</span>
+<span class="s1">                         &quot;type&quot;: &quot;duration&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;source&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;residual[0]&quot;: {</span>
+<span class="s1">                     &quot;value&quot;: {</span>
+<span class="s1">                         &quot;data&quot;: 2.345,</span>
+<span class="s1">                         &quot;type&quot;: &quot;float&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;source&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;integer[0]&quot;: {</span>
+<span class="s1">                     &quot;value&quot;: {</span>
+<span class="s1">                         &quot;data&quot;: 98,</span>
+<span class="s1">                         &quot;type&quot;: &quot;integer&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;source&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;algorithm-time[0]&quot;: {</span>
+<span class="s1">                     &quot;value&quot;: {</span>
+<span class="s1">                         &quot;data&quot;: &quot;PT0.345000S&quot;,</span>
+<span class="s1">                         &quot;type&quot;: &quot;duration&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;source&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;argument[0]&quot;: {</span>
+<span class="s1">                     &quot;value&quot;: {</span>
+<span class="s1">                         &quot;data&quot;: &quot;process argument 1&quot;,</span>
+<span class="s1">                         &quot;type&quot;: &quot;string&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;source&quot;: 1</span>
+<span class="s1">                 }</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/1/tests/1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">PUT</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-header</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-data</span> <span class="s1">&#39;{</span>
+<span class="s1">             &quot;&quot;reference_set&quot;&quot;: 1,</span>
+<span class="s1">             &quot;&quot;test_name&quot;&quot;: &quot;&quot;demo (np=1)&quot;&quot;,</span>
+<span class="s1">             &quot;&quot;references&quot;&quot;: {</span>
+<span class="s1">                 &quot;&quot;runtime&quot;&quot;: {</span>
+<span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
+<span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;PT0.124356S&quot;&quot;,</span>
+<span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;duration&quot;&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;&quot;residual[0]&quot;&quot;: {</span>
+<span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
+<span class="s1">                         &quot;&quot;data&quot;&quot;: 2.345,</span>
+<span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;float&quot;&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;&quot;integer[0]&quot;&quot;: {</span>
+<span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
+<span class="s1">                         &quot;&quot;data&quot;&quot;: 98,</span>
+<span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;integer&quot;&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;&quot;algorithm-time[0]&quot;&quot;: {</span>
+<span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
+<span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;PT0.345000S&quot;&quot;,</span>
+<span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;duration&quot;&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
+<span class="s1">                 },</span>
+<span class="s1">                 &quot;&quot;argument[0]&quot;&quot;: {</span>
+<span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
+<span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;process argument 1&quot;&quot;,</span>
+<span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;string&quot;&quot;</span>
+<span class="s1">                     },</span>
+<span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
+<span class="s1">                 }</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">tests</span><span class="p">/</span><span class="n">1</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;reference_set&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;test_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo (np=1)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:12.122702Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;residual[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;integer[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;algorithm-time[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;argument[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-test-reference-of-a-reference-set">
+<span id="api-test-references-reference-set-delete"></span><h2>Delete test reference of a reference set<a class="headerlink" href="#delete-test-reference-of-a-reference-set" title="Permalink to this headline">¶</a></h2>
+<p>Deletes a test reference from a reference set. This can not be undone!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:test_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the test references to delete.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-4-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-4-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-4-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/1/tests/2
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">DELETE</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">tests</span><span class="p">/</span><span class="n">2</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="references.html" class="btn btn-neutral float-left" title="References API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="users.html" class="btn btn-neutral float-right" title="Users API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Christopher Voss.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

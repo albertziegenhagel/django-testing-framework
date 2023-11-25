@@ -1,94 +1,45 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>References API &mdash; Django Testing Framework  documentation</title>
-  
-
-  
-  
-  
-  
-
-  
-
-  
-  
-    
-
-  
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Django Testing Framework  documentation" href="../../index.html"/>
-        <link rel="up" title="REST API" href="../api.html"/>
-        <link rel="next" title="Users API" href="users.html"/>
-        <link rel="prev" title="Rest Results API" href="test_results.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>References API &mdash; Django Testing Framework  documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Rest References API" href="test_references.html" />
+    <link rel="prev" title="Rest Results API" href="test_results.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
+        <div class="wy-side-nav-search" >
 
           
-            <a href="../../index.html" class="icon icon-home"> Django Testing Framework
           
-
-          
+          <a href="../../index.html" class="icon icon-home">
+            Django Testing Framework
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Content:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide</a><ul>
@@ -119,18 +70,51 @@
 <li class="toctree-l4"><a class="reference internal" href="projects.html#get-single-project-member">Get single project member</a></li>
 <li class="toctree-l4"><a class="reference internal" href="projects.html#modify-project-member">Modify project member</a></li>
 <li class="toctree-l4"><a class="reference internal" href="projects.html#delete-project-member">Delete project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#list-project-webhooks">List project webhooks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#add-new-project-webhook">Add new project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#get-single-project-webhook">Get single project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#modify-project-webhook">Modify project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#delete-project-webhook">Delete project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="projects.html#retrieve-logs-of-a-webhook">Retrieve logs of a webhook</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="submissions.html">Submissions API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="submissions.html">Submissions API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#list-submissions-of-a-project">List submissions of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#create-new-submission">Create new submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#get-single-submission-of-a-project">Get single submission of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#modify-submissions-of-a-project">Modify submissions of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="submissions.html#delete-submissions-of-a-project">Delete submissions of a project</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="test_results.html">Rest Results API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#list-test-results-of-a-project">List test results of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#get-single-test-result-of-a-project">Get single test result of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-test-results-of-a-project">Modify test results of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-test-results-of-a-project">Delete test results of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#list-test-results-of-a-submission">List test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#add-new-test-result-to-a-submission">Add new test result to a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#get-single-test-result-of-a-submission">Get single test result of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-test-results-of-a-submission">Modify test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-test-results-of-a-submission">Delete test results of a submission</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#history-of-a-test-result-measurement">History of a test result measurement</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">References API</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">References API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#list-reference-sets-of-a-project">List reference sets of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-new-reference-set">Create new reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-single-reference-set-of-a-project">Get single reference set of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modify-reference-sets-of-a-project">Modify reference sets of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-reference-sets-of-a-project">Delete reference sets of a project</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="test_references.html">Rest References API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test_references.html#list-test-references-of-a-reference-set">List test references of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_references.html#add-new-test-reference-to-a-reference-set">Add new test reference to a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_references.html#get-single-test-reference-of-a-reference-set">Get single test reference of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_references.html#modify-test-references-of-a-reference-set">Modify test references of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_references.html#delete-test-reference-of-a-reference-set">Delete test reference of a reference set</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="users.html">Users API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="users.html#list-users">List users</a></li>
 <li class="toctree-l4"><a class="reference internal" href="users.html#get-single-user">Get single user</a></li>
@@ -142,145 +126,373 @@
 </li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Django Testing Framework</a>
-        
       </nav>
 
-
-      
       <div class="wy-nav-content">
         <div class="rst-content">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../api.html">REST API</a> &raquo;</li>
-        
-      <li>References API</li>
-    
-    
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">REST API</a></li>
+      <li class="breadcrumb-item active">References API</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../../_sources/modules/api/references.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="references-api">
 <h1>References API<a class="headerlink" href="#references-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="list-reference-sets-of-a-project">
+<span id="api-references-list"></span><h2>List reference sets of a project<a class="headerlink" href="#list-reference-sets-of-a-project" title="Permalink to this headline">¶</a></h2>
+<p>List all reference sets of a given project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project to get the reference sets of.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-0-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-0-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-0-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T10:03:29.011000+02:00&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T10:03:29.011000+02:00&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;property_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Hostname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Vasa&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-new-reference-set">
+<span id="api-references-new"></span><h2>Create new reference set<a class="headerlink" href="#create-new-reference-set" title="Permalink to this headline">¶</a></h2>
+<p>Create a new, empty reference set for the project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project to add the new reference set to.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">property_values</span></code></p></td>
+<td><p>json</p></td>
+<td><p>no (default: <code class="docutils literal notranslate"><span class="pre">{}</span></code>)</p></td>
+<td><p>Property value pairs for the reference set. These have to match the properties specified in the project.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-1-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-1-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-1-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">             &quot;property_values&quot;: {</span>
+<span class="s1">                 &quot;Hostname&quot;: &quot;Vasa&quot;,</span>
+<span class="s1">                 &quot;Branch&quot;: &quot;feature&quot;</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">POST</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-header</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-data</span> <span class="s1">&#39;{</span>
+<span class="s1">             &quot;&quot;property_values&quot;&quot;: {</span>
+<span class="s1">                 &quot;&quot;Hostname&quot;&quot;: &quot;&quot;Vasa&quot;&quot;,</span>
+<span class="s1">                 &quot;&quot;Branch&quot;&quot;: &quot;&quot;feature&quot;&quot;</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-02-15T14:49:01.772663+01:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-02-15T14:49:01.772663+01:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;property_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;feature&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Hostname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Vasa&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-single-reference-set-of-a-project">
+<span id="api-references-get"></span><h2>Get single reference set of a project<a class="headerlink" href="#get-single-reference-set-of-a-project" title="Permalink to this headline">¶</a></h2>
+<p>Retrieve a specific reference set from a project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set to get.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-2-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-2-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-2-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T10:03:29.011000+02:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T10:03:29.011000+02:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;property_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Hostname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Vasa&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-reference-sets-of-a-project">
+<span id="api-references-modify"></span><h2>Modify reference sets of a project<a class="headerlink" href="#modify-reference-sets-of-a-project" title="Permalink to this headline">¶</a></h2>
+<p>Modify the fields of an existing reference set. All fields have to be given (even the ones that are unchanged).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set to modify.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">property_values</span></code></p></td>
+<td><p>json</p></td>
+<td><p>no (default: <code class="docutils literal notranslate"><span class="pre">{}</span></code>)</p></td>
+<td><p>Property name-value pairs for the reference set. These have to match the properties specified in the project.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-3-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-3-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-3-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">             &quot;project&quot;: 1,</span>
+<span class="s1">             &quot;property_values&quot;: {</span>
+<span class="s1">                 &quot;Hostname&quot;: &quot;Vasa&quot;,</span>
+<span class="s1">                 &quot;Branch&quot;: &quot;main&quot;</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">PUT</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-header</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="p">`</span>
+  <span class="p">-</span><span class="n">-data</span> <span class="s1">&#39;{</span>
+<span class="s1">             &quot;&quot;project&quot;&quot;: 1,</span>
+<span class="s1">             &quot;&quot;property_values&quot;&quot;: {</span>
+<span class="s1">                 &quot;&quot;Hostname&quot;&quot;: &quot;&quot;Vasa&quot;&quot;,</span>
+<span class="s1">                 &quot;&quot;Branch&quot;&quot;: &quot;&quot;main&quot;&quot;</span>
+<span class="s1">             }</span>
+<span class="s1">         }&#39;</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span>
+</pre></div>
+</div>
+</div></div>
+<p>which might give a result like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T10:03:29.011000+02:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2022-02-15T14:49:00.604396+01:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;property_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Hostname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Vasa&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-reference-sets-of-a-project">
+<span id="api-references-delete"></span><h2>Delete reference sets of a project<a class="headerlink" href="#delete-reference-sets-of-a-project" title="Permalink to this headline">¶</a></h2>
+<p>Deletes a reference set and all its associated data (like test result references) from a project. This can not be undone!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">:project_id</span></code></p></td>
+<td><p>string/integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id or slug of the project.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">:reference_id</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>yes</p></td>
+<td><p>The id of the reference set to delete.</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example could look as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-4-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-4-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-4-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/references/2
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">DELETE</span> <span class="p">`</span>
+  <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">2</span>
+</pre></div>
+</div>
+</div></div>
+</div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="users.html" class="btn btn-neutral float-right" title="Users API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="test_results.html" class="btn btn-neutral" title="Rest Results API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="test_results.html" class="btn btn-neutral float-left" title="Rest Results API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_references.html" class="btn btn-neutral float-right" title="Rest References API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Christopher Voss.
-
-    </p>
+    <p>&#169; Copyright 2020, Christopher Voss.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../_static/language_data.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

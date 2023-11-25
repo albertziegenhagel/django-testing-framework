@@ -1,91 +1,46 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Search &mdash; Django Testing Framework  documentation</title>
-  
-
-  
-  
-  
-  
-
-  
-
-  
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search &mdash; Django Testing Framework  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
     
-
-  
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="#"/>
-    <link rel="top" title="Django Testing Framework  documentation" href="index.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
-          
+        <div class="wy-side-nav-search" >
 
           
-            <a href="index.html" class="icon icon-home"> Django Testing Framework
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            Django Testing Framework
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="#" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Content:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="modules/quickstart.html">Quickstart Guide</a><ul>
@@ -116,18 +71,51 @@
 <li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#get-single-project-member">Get single project member</a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#modify-project-member">Modify project member</a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#delete-project-member">Delete project member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#list-project-webhooks">List project webhooks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#add-new-project-webhook">Add new project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#get-single-project-webhook">Get single project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#modify-project-webhook">Modify project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#delete-project-webhook">Delete project webhook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/projects.html#retrieve-logs-of-a-webhook">Retrieve logs of a webhook</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="modules/api/submissions.html">Submissions API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/api/submissions.html">Submissions API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/submissions.html#list-submissions-of-a-project">List submissions of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/submissions.html#create-new-submission">Create new submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/submissions.html#get-single-submission-of-a-project">Get single submission of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/submissions.html#modify-submissions-of-a-project">Modify submissions of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/submissions.html#delete-submissions-of-a-project">Delete submissions of a project</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="modules/api/test_results.html">Rest Results API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#list-test-results-of-a-project">List test results of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#get-single-test-result-of-a-project">Get single test result of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#modify-test-results-of-a-project">Modify test results of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#delete-test-results-of-a-project">Delete test results of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#list-test-results-of-a-submission">List test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#add-new-test-result-to-a-submission">Add new test result to a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#get-single-test-result-of-a-submission">Get single test result of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#modify-test-results-of-a-submission">Modify test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#delete-test-results-of-a-submission">Delete test results of a submission</a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/test_results.html#history-of-a-test-result-measurement">History of a test result measurement</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="modules/api/references.html">References API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/api/references.html">References API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/references.html#list-reference-sets-of-a-project">List reference sets of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/references.html#create-new-reference-set">Create new reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/references.html#get-single-reference-set-of-a-project">Get single reference set of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/references.html#modify-reference-sets-of-a-project">Modify reference sets of a project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/references.html#delete-reference-sets-of-a-project">Delete reference sets of a project</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="modules/api/test_references.html">Rest References API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_references.html#list-test-references-of-a-reference-set">List test references of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_references.html#add-new-test-reference-to-a-reference-set">Add new test reference to a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_references.html#get-single-test-reference-of-a-reference-set">Get single test reference of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_references.html#modify-test-references-of-a-reference-set">Modify test references of a reference set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="modules/api/test_references.html#delete-test-reference-of-a-reference-set">Delete test reference of a reference set</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="modules/api/users.html">Users API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/users.html#list-users">List users</a></li>
 <li class="toctree-l4"><a class="reference internal" href="modules/api/users.html#get-single-user">Get single user</a></li>
@@ -139,70 +127,33 @@
 </li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Django Testing Framework</a>
-        
       </nav>
 
-
-      
       <div class="wy-nav-content">
         <div class="rst-content">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Search</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Search</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <noscript>
   <div id="fallback" class="admonition warning">
     <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
+      Please activate JavaScript to enable the search functionality.
     </p>
   </div>
   </noscript>
@@ -213,73 +164,35 @@
   </div>
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Christopher Voss.
-
-    </p>
+    <p>&#169; Copyright 2020, Christopher Voss.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/language_data.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-  
-  <script type="text/javascript">
+  <script>
     jQuery(function() { Search.loadIndex("searchindex.js"); });
   </script>
   
-  <script type="text/javascript" id="searchindexloader"></script>
+  <script id="searchindexloader"></script>
    
 
 
