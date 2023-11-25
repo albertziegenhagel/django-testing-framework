@@ -85,7 +85,7 @@ class WebhookForm(forms.ModelForm):
             'project': forms.HiddenInput()
         }
         help_texts = {
-            'secret_token': mark_safe('This is send in the reqest header as <b>X-DTF-Token</b> and should be used by the client to authenticate the payload.'),
+            'secret_token': mark_safe('This is send in the request header as <b>X-DTF-Token</b> and should be used by the client to authenticate the payload.'),
             'on_submission': 'Trigger when a submission is created, modified or deleted.',
             'on_test_result': 'Trigger when test results for a submission are created, modified or deleted.',
             'on_reference_set': 'Trigger when a reference set is created, modified or deleted.',
