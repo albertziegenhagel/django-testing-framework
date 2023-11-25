@@ -215,8 +215,8 @@
 </div>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-0-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-0-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-0-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
-  http://dtf.example.com/api/projects
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-0-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-0-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-0-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
@@ -225,16 +225,16 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo Project&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/demo&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">]</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo Project&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/demo&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -273,13 +273,13 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-1-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-1-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-1-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
-  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-  --data <span class="s1">&#39;{</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-1-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-1-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-1-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;name&quot;: &quot;My Test Project&quot;,</span>
 <span class="s1">             &quot;slug&quot;: &quot;my-test-project&quot;</span>
-<span class="s1">         }&#39;</span> <span class="se">\</span>
-  http://dtf.example.com/api/projects
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">POST</span> <span class="p">`</span>
@@ -293,14 +293,14 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Test Project&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-test-project&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T14:03:49.164368Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T14:03:49.165367Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/my-test-project&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;My Test Project&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-test-project&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T14:03:49.164368Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T14:03:49.165367Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/my-test-project&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -334,8 +334,8 @@
 </table>
 <p>An example using the id could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-2-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-2-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-2-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
-  http://dtf.example.com/api/projects/1
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-2-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-2-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-2-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-2-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
@@ -345,8 +345,8 @@
 </div></div>
 <p>or using the project slug:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-3-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-3-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-3-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
-  http://dtf.example.com/api/projects/demo
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-3-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-3-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-3-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/demo
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-3-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
@@ -355,14 +355,14 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo Project&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/demo&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo Project&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/demo&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -406,13 +406,13 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-4-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-4-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-4-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X PUT <span class="se">\</span>
-  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-  --data <span class="s1">&#39;{</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-4-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-4-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-4-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;name&quot;: &quot;Demo Project New Name&quot;,</span>
 <span class="s1">             &quot;slug&quot;: &quot;demo-project&quot;</span>
-<span class="s1">         }&#39;</span> <span class="se">\</span>
-  http://dtf.example.com/api/projects/1
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-4-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">PUT</span> <span class="p">`</span>
@@ -426,14 +426,14 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo Project New Name&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo-project&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T14:03:49.131395Z&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/demo-project&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo Project New Name&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;slug&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo-project&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T07:21:22.515000Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T14:03:49.131395Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://dtf.example.com/demo-project&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -467,8 +467,8 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-5-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-5-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-5-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X DELETE <span class="se">\</span>
-  http://dtf.example.com/api/projects/1
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-5-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-5-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-5-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-5-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">DELETE</span> <span class="p">`</span>
@@ -507,8 +507,8 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-6-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-6-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-6-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/properties
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-6-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-6-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-6-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/properties
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-6-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-6-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
@@ -517,38 +517,38 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GitLab CI Job&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://gitlab.example.com/demo/demo-project/-/jobs/{VALUE}&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hostname&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Branch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">]</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GitLab CI Job&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://gitlab.example.com/demo/demo-project/-/jobs/{VALUE}&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hostname&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Branch&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -612,17 +612,17 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-7-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-7-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-7-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
-  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-  --data <span class="s1">&#39;{</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-7-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-7-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-7-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;name&quot;: &quot;Property Name&quot;,</span>
 <span class="s1">             &quot;required&quot;: false,</span>
 <span class="s1">             &quot;display&quot;: true,</span>
 <span class="s1">             &quot;display_as_link&quot;: false,</span>
 <span class="s1">             &quot;display_replace&quot;: &quot;Value is {VALUE}&quot;,</span>
 <span class="s1">             &quot;influence_reference&quot;: false</span>
-<span class="s1">         }&#39;</span> <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/properties
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/properties
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-7-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-7-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">POST</span> <span class="p">`</span>
@@ -640,16 +640,16 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Property Name&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Value is {VALUE}&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Property Name&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Value is {VALUE}&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -688,8 +688,8 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-8-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-8-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-8-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-8-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-8-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/properties/1
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-8-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-8-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-8-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-8-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-8-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/properties/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-8-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-8-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
@@ -698,16 +698,16 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Branch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Branch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -776,9 +776,9 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-9-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-9-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-9-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-9-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X PUT <span class="se">\</span>
-  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-  --data <span class="s1">&#39;{</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-9-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-9-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-9-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-9-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;project&quot;: 1,</span>
 <span class="s1">             &quot;name&quot;: &quot;Branch&quot;,</span>
 <span class="s1">             &quot;required&quot;: false,</span>
@@ -786,8 +786,8 @@
 <span class="s1">             &quot;display_as_link&quot;: false,</span>
 <span class="s1">             &quot;display_replace&quot;: &quot;&quot;,</span>
 <span class="s1">             &quot;influence_reference&quot;: false</span>
-<span class="s1">         }&#39;</span> <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/properties/1
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/properties/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-9-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-9-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">PUT</span> <span class="p">`</span>
@@ -806,16 +806,16 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Branch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Branch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display_replace&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;display_as_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;influence_reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -854,8 +854,8 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-10-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-10-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-10-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-10-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-10-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X DELETE <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/properties/1
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-10-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-10-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-10-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-10-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-10-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/properties/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-10-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-10-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">DELETE</span> <span class="p">`</span>
@@ -894,8 +894,8 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-11-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-11-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-11-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-11-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-11-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/members
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-11-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-11-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-11-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-11-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-11-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/members
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-11-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-11-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
@@ -904,19 +904,19 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">]</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -960,13 +960,13 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-12-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-12-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-12-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-12-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X POST <span class="se">\</span>
-  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-  --data <span class="s1">&#39;{</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-12-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-12-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-12-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-12-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;user&quot;: 1,</span>
 <span class="s1">             &quot;role&quot;: &quot;developer&quot;</span>
-<span class="s1">         }&#39;</span> <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/members
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/members
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-12-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-12-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">POST</span> <span class="p">`</span>
@@ -980,17 +980,17 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;root&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1029,8 +1029,8 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-13-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-13-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-13-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-13-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-13-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X GET <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/members/1
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-13-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-13-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-13-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-13-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-13-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/members/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-13-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-13-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">GET</span> <span class="p">`</span>
@@ -1039,17 +1039,17 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owner&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1098,14 +1098,14 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-14-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-14-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-14-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-14-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-14-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X PUT <span class="se">\</span>
-  --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-  --data <span class="s1">&#39;{</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-14-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-14-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-14-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-14-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-14-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;project&quot;: 1,</span>
 <span class="s1">             &quot;user&quot;: 2,</span>
 <span class="s1">             &quot;role&quot;: &quot;developer&quot;</span>
-<span class="s1">         }&#39;</span> <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/members/1
+<span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/members/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-14-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-14-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">PUT</span> <span class="p">`</span>
@@ -1120,17 +1120,17 @@
 </div>
 </div></div>
 <p>which might give a result like this:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Demo&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;User&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;developer&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1169,8 +1169,8 @@
 </table>
 <p>An example could look as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-15-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-15-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-15-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-15-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-15-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-15-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -X DELETE <span class="se">\</span>
-  http://dtf.example.com/api/projects/1/members/1
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-15-QmFzaA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-15-QmFzaA==" name="QmFzaA==" role="tab" tabindex="0">Bash</button><button aria-controls="panel-15-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-15-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-15-QmFzaA==" class="sphinx-tabs-panel group-tab" id="panel-15-QmFzaA==" name="QmFzaA==" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://dtf.example.com/api/projects/1/members/1
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-15-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-15-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">curl </span><span class="n">-X</span> <span class="n">DELETE</span> <span class="p">`</span>
@@ -1237,7 +1237,6 @@
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
       <script type="text/javascript" src="../../_static/language_data.js"></script>
-      <script type="text/javascript" src="../../_static/tabs.js"></script>
 
   
 

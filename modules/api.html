@@ -208,11 +208,11 @@
 <div class="section" id="general-usage">
 <h2>General usage<a class="headerlink" href="#general-usage" title="Permalink to this headline">¶</a></h2>
 <p>Currently all REST API endpoints start with the <code class="docutils literal notranslate"><span class="pre">/api/</span></code> prefix. As an example, let’s assume you have hosted your Django Testing Framework instance at <code class="docutils literal notranslate"><span class="pre">dtf.example.com</span></code>. A valid API request to the <a class="reference internal" href="api/projects.html#api-projects-list"><span class="std std-ref">projects</span></a> endpoint could look as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl <span class="s2">&quot;http://dtf.example.com/api/projects&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">&quot;http://dtf.example.com/api/projects&quot;</span>
 </pre></div>
 </div>
 <p>Some API endpoints include parameters of the form <code class="docutils literal notranslate"><span class="pre">:id</span></code>. These are to be replaced with the actual id of an existing object. E.g. a valid API request to the <a class="reference internal" href="api/projects.html#api-projects-get"><span class="std std-ref">projects/:id</span></a> endpoint could look as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl <span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -232,8 +232,8 @@
 <p>This method should not be used except for simple testing scenarios.</p>
 </div>
 <p>A user can authenticate themselves with their username and password. E.g. when using <cite>curl</cite> this can be done by using the <cite>-u</cite> command line parameter:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -u <span class="s2">&quot;username:password&quot;</span> <span class="se">\</span>
-  <span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;username:password&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -244,8 +244,8 @@
 <p>There is not yet any front-end functionality for a user to create tokens.</p>
 </div>
 <p>A user can authenticate themselves with a specific token, unique to each user. This token needs to be passed in the <em>header</em> of requests. E.g. when using <cite>curl</cite> this can be done by using the <cite>–header</cite> command line parameter:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --header <span class="s2">&quot;Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b&quot;</span> <span class="se">\</span>
-  <span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>--header<span class="w"> </span><span class="s2">&quot;Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
 </pre></div>
 </div>
 </div>

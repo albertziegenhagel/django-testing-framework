@@ -211,13 +211,13 @@
 <p class="admonition-title">Note</p>
 <p>If you use the default SQL backend SQLite3 the database will also be saved in that folder. Make sure you have enough disk space available</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xf dtf.tar
-<span class="nb">cd</span> dtf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>xf<span class="w"> </span>dtf.tar
+<span class="nb">cd</span><span class="w"> </span>dtf
 </pre></div>
 </div>
 <p>Using a python virtual environment to install packages with pip is recommended</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>virtualenv -p python3 env
-<span class="nb">source</span> env/bin/activate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>virtualenv<span class="w"> </span>-p<span class="w"> </span>python3<span class="w"> </span>env
+<span class="nb">source</span><span class="w"> </span>env/bin/activate
 </pre></div>
 </div>
 <p>You should have the following files in your folder:</p>
@@ -226,13 +226,13 @@
 </pre></div>
 </div>
 <p>Install all the python package requirements, create the database and start the server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
 </pre></div>
 </div>
 <p>By default, the server is only available locally and starts on port 8000. You can specify the bind ip as well as the port when starting the server:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python manage.py runserver <span class="m">0</span>.0.0.0:80
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">0</span>.0.0.0:80
 </pre></div>
 </div>
 <p>The server is then reachable for all hosts on the network under the default HTTP port 80.</p>
