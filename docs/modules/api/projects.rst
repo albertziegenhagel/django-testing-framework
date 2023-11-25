@@ -331,6 +331,8 @@ An example could look as follows:
       .. literalinclude :: generated/projects/projects_id_properties_id-DELETE-curl.ps1
          :language: PowerShell
 
+.. _api-projects-members-list:
+
 List project members
 --------------------
 
@@ -490,4 +492,196 @@ An example could look as follows:
       .. literalinclude :: generated/projects/projects_id_members_id-DELETE-curl.ps1
          :language: PowerShell
 
-.. _api-projects-members-list:
+.. _api-projects-webhooks-list:
+
+List project webhooks
+---------------------
+
+List all webhooks of a given project.
+
+.. literalinclude :: generated/projects/projects_id_webhooks-GET-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/projects/projects_id_webhooks-GET-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/projects/projects_id_webhooks-GET-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/projects/projects_id_webhooks-GET-curl.ps1
+         :language: PowerShell
+
+which might give a result like this:
+
+.. literalinclude :: generated/projects/projects_id_webhooks-GET-response.json
+   :language: json
+
+.. _api-projects-webhooks-new:
+
+Add new project webhook
+-----------------------
+
+Add a new webhook to a project.
+
+.. literalinclude :: generated/projects/projects_id_webhooks-POST-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/projects/projects_id_webhooks-POST-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/projects/projects_id_webhooks-POST-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/projects/projects_id_webhooks-POST-curl.ps1
+         :language: PowerShell
+
+which might give a result like this:
+
+.. literalinclude :: generated/projects/projects_id_webhooks-POST-response.json
+    :language: json
+
+
+.. _api-projects-webhooks-get:
+
+Get single project webhook
+--------------------------
+
+Retrieve a specific webhook from a project.
+
+.. literalinclude :: generated/projects/projects_id_webhooks_id-GET-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/projects/projects_id_webhooks_id-GET-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id-GET-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id-GET-curl.ps1
+         :language: PowerShell
+
+which might give a result like this:
+
+.. literalinclude :: generated/projects/projects_id_webhooks_id-GET-response.json
+   :language: json
+
+.. _api-projects-webhooks-modify:
+
+Modify project webhook
+----------------------
+
+Modify the fields of an existing webhook. All fields have to be given (even the ones that are unchanged).
+
+.. literalinclude :: generated/projects/projects_id_webhooks_id-PUT-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/projects/projects_id_webhooks_id-PUT-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id-PUT-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id-PUT-curl.ps1
+         :language: PowerShell
+
+which might give a result like this:
+
+.. literalinclude :: generated/projects/projects_id_webhooks_id-PUT-response.json
+    :language: json
+
+.. _api-projects-webhooks-delete:
+
+Delete project webhook
+----------------------
+
+Deletes a webhook from a project. This can not be undone!
+
+.. literalinclude :: generated/projects/projects_id_webhooks_id-DELETE-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/projects/projects_id_webhooks_id-DELETE-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id-DELETE-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id-DELETE-curl.ps1
+         :language: PowerShell
+
+.. _api-projects-webhooks-logs-get:
+
+Retrieve logs of a webhook
+--------------------------
+
+Retrieves the history of trigger events for a webhook.
+
+.. literalinclude :: generated/projects/projects_id_webhooks_id_logs-GET-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/projects/projects_id_webhooks_id_logs-GET-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id_logs-GET-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/projects/projects_id_webhooks_id_logs-GET-curl.ps1
+         :language: PowerShell
+
+which might give a result like this:
+
+.. literalinclude :: generated/projects/projects_id_webhooks_id_logs-GET-response.json
+    :language: json

@@ -1,0 +1,3 @@
+Attribute|Type|Required|Description
+``:project_id``|string/integer|yes|The id or slug of the project to add the new submission to.
+``info``|json|no (default: ``{}``)|Property value pairs for the submission. These have to match the properties specified in the project.

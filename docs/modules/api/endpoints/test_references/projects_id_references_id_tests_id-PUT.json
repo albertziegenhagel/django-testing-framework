@@ -1,0 +1,81 @@
+{
+    "endpoint": "/projects/:project_id/references/:reference_id/tests/:test_id",
+    "method": "PUT",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project."
+        },
+        ":reference_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the reference set."
+        },
+        ":test_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the test references to modify."
+        },
+        "test_name" : {
+            "type": "string",
+            "required": true,
+            "description": "The name of the test the references are for."
+        },
+        "references" : {
+            "type": "json",
+            "required": true,
+            "description": "Test references. TODO: add JSON schema"
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1,
+                "reference_id" : 1,
+                "test_id": 1
+            },
+            "data": {
+                "reference_set": 1,
+                "test_name": "demo (np=1)",
+                "references": {
+                    "runtime": {
+                        "value": {
+                            "data": "PT0.124356S",
+                            "type": "duration"
+                        },
+                        "source": 1
+                    },
+                    "residual[0]": {
+                        "value": {
+                            "data": 2.345,
+                            "type": "float"
+                        },
+                        "source": 1
+                    },
+                    "integer[0]": {
+                        "value": {
+                            "data": 98,
+                            "type": "integer"
+                        },
+                        "source": 1
+                    },
+                    "algorithm-time[0]": {
+                        "value": {
+                            "data": "PT0.345000S",
+                            "type": "duration"
+                        },
+                        "source": 1
+                    },
+                    "argument[0]": {
+                        "value": {
+                            "data": "process argument 1",
+                            "type": "string"
+                        },
+                        "source": 1
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "endpoint": "/projects/:project_id/references/:reference_id/tests",
+    "method": "POST",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project of the reference set to create the new test reference for."
+        },
+        ":reference_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the reference set to create a new test reference for."
+        },
+        "test_name" : {
+            "type": "string",
+            "required": true,
+            "description": "The name of the test the new references are for."
+        },
+        "default_source" : {
+            "type": "integer",
+            "required": false,
+            "description": "The id of the submission which is used as default source for references that do not have an explicit source given."
+        },
+        "references" : {
+            "type": "json",
+            "required": true,
+            "description": "Test result references. TODO: add JSON schema"
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1,
+                "reference_id": 1
+            },
+            "data": {
+                "test_name" : "New Test",
+                "default_source" : 2,
+                "references" : {
+                    "runtime" : {
+                        "value": {
+                            "data": "PT0.124356S",
+                            "type": "duration"
+                        },
+                        "source" : 1
+                    },
+                    "Result1" : {
+                        "value" : {
+                            "data": 123,
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

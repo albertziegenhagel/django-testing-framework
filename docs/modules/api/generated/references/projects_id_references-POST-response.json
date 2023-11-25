@@ -1,0 +1,10 @@
+{
+    "project": 1,
+    "id": 2,
+    "created": "2022-02-15T14:49:01.772663+01:00",
+    "last_updated": "2022-02-15T14:49:01.772663+01:00",
+    "property_values": {
+        "Branch": "feature",
+        "Hostname": "Vasa"
+    }
+}

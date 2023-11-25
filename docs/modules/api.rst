@@ -67,6 +67,8 @@ API Overview
 
 :doc:`References <api/references>`
 
+:doc:`Test References <api/test_references>`
+
 :doc:`Users <api/users>`
 
 .. toctree::
@@ -76,4 +78,5 @@ API Overview
    api/submissions
    api/test_results
    api/references
+   api/test_references
    api/users

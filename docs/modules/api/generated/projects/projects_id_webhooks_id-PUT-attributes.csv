@@ -1,0 +1,10 @@
+Attribute|Type|Required|Description
+``:project_id``|string/integer|yes|The id or slug of the project.
+``:webhook_id``|integer|yes|The id of the webhook to modify.
+``name``|string|yes|The new name of the webhook.
+``url``|url|yes|The new URL to be triggered by the webhook.
+``secret_token``|string|yes|This is send in the request header as `X-DTF-Token` and should be used by the client to authenticate the payload.
+``on_submission``|boolean|no (default: ``true``)|Trigger when a submission is created, modified or deleted.
+``on_test_result``|boolean|no (default: ``true``)|Trigger when test results for a submission are created, modified or deleted.
+``on_reference_set``|boolean|no (default: ``true``)|Trigger when a reference set is created, modified or deleted.
+``on_test_reference``|boolean|no (default: ``true``)|Trigger when test references are created, modified or deleted.

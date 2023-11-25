@@ -1,0 +1,77 @@
+{
+    "endpoint": "/projects/:project_id/webhooks/:webhook_id",
+    "method": "PUT",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project."
+        },
+        ":webhook_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the webhook to modify."
+        },
+        "name" : {
+            "type": "string",
+            "required": true,
+            "description": "The new name of the webhook."
+        },
+        "url" : {
+            "type": "url",
+            "required": true,
+            "description": "The new URL to be triggered by the webhook."
+        },
+        "secret_token" : {
+            "type": "string",
+            "required": true,
+            "description": [
+                "This is send in the request header as `X-DTF-Token` and",
+                "should be used by the client to authenticate the payload."
+            ]
+        },
+        "on_submission" : {
+            "type": "boolean",
+            "required": false,
+            "default": true,
+            "description": "Trigger when a submission is created, modified or deleted."
+        },
+        "on_test_result" : {
+            "type": "boolean",
+            "required": false,
+            "default": true,
+            "description": "Trigger when test results for a submission are created, modified or deleted."
+        },
+        "on_reference_set" : {
+            "type": "boolean",
+            "required": false,
+            "default": true,
+            "description": "Trigger when a reference set is created, modified or deleted."
+        },
+        "on_test_reference" : {
+            "type": "boolean",
+            "required": false,
+            "default": true,
+            "description": "Trigger when test references are created, modified or deleted."
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1,
+                "webhook_id": 1
+            },
+            "data": {
+                "project": 1,
+                "id": 1,
+                "name": "Demo Bot",
+                "url": "http://129.26.133.164:8666/references/demo",
+                "secret_token": "58a61681-f3c0-4d0f-a8bf-c87193f2603d",
+                "on_submission": true,
+                "on_test_result": false,
+                "on_reference_set": false,
+                "on_test_reference": true
+            }
+        }
+    ]
+}

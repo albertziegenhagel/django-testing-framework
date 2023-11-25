@@ -1,0 +1,11 @@
+{
+    "project": 1,
+    "id": 2,
+    "name": "My Webhook",
+    "url": "http://example.com/my/hook/path",
+    "secret_token": "sMeyqOYenB8Czi2zGOFHNg",
+    "on_submission": false,
+    "on_test_result": true,
+    "on_reference_set": true,
+    "on_test_reference": true
+}

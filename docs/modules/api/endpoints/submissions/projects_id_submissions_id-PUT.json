@@ -1,0 +1,40 @@
+{
+    "endpoint": "/projects/:project_id/submissions/:submission_id",
+    "method": "PUT",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project."
+        },
+        ":submission_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the submission to modify."
+        },
+        "info" : {
+            "type": "json",
+            "required": false,
+            "default": "{}",
+            "description": [
+                "Property name-value pairs for the submission.",
+                "These have to match the properties specified in the project."
+            ]
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1,
+                "submission_id": 2
+            },
+            "data": {
+                "project": 1,
+                "info": {
+                    "Hostname": "Vasa",
+                    "Branch": "feature"
+                }
+            }
+        }
+    ]
+}

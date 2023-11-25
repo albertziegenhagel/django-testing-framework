@@ -1,0 +1,59 @@
+{
+    "endpoint": "/projects/:project_id/submissions/:submission_id/tests",
+    "method": "POST",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project of the submission to create the new test for."
+        },
+        ":submission_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the submission to create a new test for."
+        },
+        "name" : {
+            "type": "string",
+            "required": true,
+            "description": "The name of the new test."
+        },
+        "results" : {
+            "type": "json",
+            "required": false,
+            "description": "Test results. TODO: add JSON schema"
+        }
+    },
+    "examples" : [
+        {
+            "name" : "empty",
+            "arguments" : {
+                "project_id" : 1,
+                "submission_id": 1
+            },
+            "data": {
+                "name" : "New Empty Test"
+            }
+        },
+        {
+            "name" : "nonempty",
+            "arguments" : {
+                "project_id" : 1,
+                "submission_id": 1
+            },
+            "data": {
+                "name" : "New Test",
+                "results" : [
+                    {
+                        "name": "runtime",
+                        "value": {
+                            "data": "PT0.124356S",
+                            "type": "duration"
+                        },
+                        "status": "unknown",
+                        "reference": null
+                    }
+                ]
+            }
+        }
+    ]
+}

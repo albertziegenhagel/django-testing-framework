@@ -1,0 +1,33 @@
+{
+    "endpoint": "/projects/:project_id/references",
+    "method": "POST",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project to add the new reference set to."
+        },
+        "property_values" : {
+            "type": "json",
+            "required": false,
+            "default": "{}",
+            "description": [
+                "Property value pairs for the reference set.",
+                "These have to match the properties specified in the project."
+            ]
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1
+            },
+            "data": {
+                "property_values": {
+                    "Hostname": "Vasa",
+                    "Branch": "feature"
+                }
+            }
+        }
+    ]
+}
