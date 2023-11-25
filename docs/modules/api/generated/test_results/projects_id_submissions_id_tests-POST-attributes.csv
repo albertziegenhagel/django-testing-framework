@@ -1,0 +1,5 @@
+Attribute|Type|Required|Description
+``:project_id``|string/integer|yes|The id or slug of the project of the submission to create the new test for.
+``:submission_id``|integer|yes|The id of the submission to create a new test for.
+``name``|string|yes|The name of the new test.
+``results``|json|no|Test results. TODO: add JSON schema

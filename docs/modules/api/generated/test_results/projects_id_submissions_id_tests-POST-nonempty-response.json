@@ -1,0 +1,20 @@
+{
+    "name": "New Test",
+    "id": 4,
+    "results": [
+        {
+            "name": "runtime",
+            "value": {
+                "data": "PT0.124356S",
+                "type": "duration"
+            },
+            "status": "unknown",
+            "reference": null
+        }
+    ],
+    "created": "2023-11-25T14:18:41.896178Z",
+    "last_updated": "2023-11-25T14:18:41.896178Z",
+    "submission": 1,
+    "url": "http://dtf.example.com/demo-project/tests/4",
+    "status": "unknown"
+}
