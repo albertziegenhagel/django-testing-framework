@@ -347,9 +347,10 @@ class TestResult(models.Model):
 
     def calculate_status(self):
         status = None
-        for result in self.results:
-            if status is None or self.status_order[result['status']] > self.status_order[status]:
-                status = result['status']
+        if self.results is not None:
+            for result in self.results:
+                if status is None or self.status_order[result['status']] > self.status_order[status]:
+                    status = result['status']
         if status is None:
             self.status = "unknown"
         else:
