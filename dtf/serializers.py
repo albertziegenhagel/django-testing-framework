@@ -10,7 +10,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 from dtf.models import Project, Membership, TestResult, ReferenceSet, TestReference, Submission, ProjectSubmissionProperty, Webhook, WebhookLogEntry
-from dtf.functions import fill_result_default_values
+from dtf.functions import create_reference_query
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
@@ -144,11 +144,71 @@ class TestResultSerializer(serializers.ModelSerializer):
         extra_kwargs = {'created': {'read_only': False, 'required':False}}
 
     def validate(self, data):
-        data['results'] = fill_result_default_values(
-            data['results'],
-            data['name'],
-            data['submission'])
+        # Default values in the 'results' JSON field have to be handled manually
+        results = data.get('results', None)
+        if not results:
+            # if this is a partial update, that does not alter the results, we do not need to do anything
+            # assert(self.partial)
+            return data
+
+        def get_current_reference(submission, test_name):
+            reference_query = create_reference_query(submission.project, submission.info)
+            reference_set = submission.project.reference_sets.filter(**reference_query).first()
+
+            if reference_set is not None:
+                return reference_set.test_references.filter(test_name=test_name).first()
+
+            return None
+
+        current_reference = None
+        tried_get_reference = False
+
+        for result in results:
+            if not 'name' in result:
+                continue # This is invalid and will be handled by the JSON schema validator
+
+            # Set default status
+            if not 'status' in result:
+                result['status'] = 'unknown'
+
+            # Set default reference
+            if not 'reference' in result:
+                # On the first missing reference, we try to find the current global reference for this test
+                if current_reference is None and not tried_get_reference:
+                    if self.partial:
+                        # In a partial update, the submission and the name could either be modified
+                        # (available in the 'data' field), or unmodified (use the current instance values)
+                        submission = data.get('submission', self.instance.submission)
+                        name = data.get('name', self.instance.name)
+                        current_reference = get_current_reference(submission, name)
+                    else:
+                        current_reference = get_current_reference(data['submission'], data['name'])
+                    tried_get_reference = True
+
+                if current_reference is not None:
+                    result['reference'] = current_reference.get_reference_or_none(result['name'])
+                else:
+                    result['reference'] = None
         return data
+
+    def update(self, instance, validated_data):
+        if 'results' in validated_data and self.partial:
+            existing_results = instance.results.copy() if instance.results is not None else []
+
+            existing_results_by_name = {}
+            for i, result in enumerate(existing_results):
+                existing_results_by_name[result['name']] = i
+
+            for new_result in validated_data['results']:
+                existing_result_index = existing_results_by_name.get(new_result['name'])
+                if existing_result_index is None:
+                    existing_results.append(new_result)
+                else:
+                    existing_results[existing_result_index].update(new_result)
+
+            validated_data['results'] = existing_results
+
+        return super().update(instance, validated_data)
 
     def get_url(self, obj):
         url = reverse('test_result_details', kwargs={'project_slug' : obj.submission.project.slug, 'test_id' : obj.pk})

@@ -832,6 +832,46 @@ class SubmissionTestResultApiTest(ApiTestCase):
         self.assertEqual(test_1.results[1]["name"], new_test_data["name"])
         self.assertEqual(test_1.results[1]["value"], new_test_data["value"])
 
+    def test_modify_partial(self):
+        expected_name = self.test_2.name
+        expected_results = copy.deepcopy(self.test_2.results)
+        expected_submission = self.test_2.submission
+
+        # Update name only
+        new_name = "Test 2 New Name"
+        response, data = self.patch(self.url_2, {'name' : new_name})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        expected_name = new_name
+        test_2_new = TestResult.objects.get(id=self.test_2_id)
+        self.assertEqual(test_2_new.name, expected_name)
+        self.assertEqual(test_2_new.results, expected_results)
+        self.assertEqual(test_2_new.submission, expected_submission)
+
+        # Update existing results value
+        new_value = 135
+        response, data = self.patch(self.url_2, {'results' : [{'name' : 'Result1', 'value' : { 'data' : new_value, 'type' : 'integer'}}]})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        expected_results[0]['value']['data'] = new_value
+        test_2_new = TestResult.objects.get(id=self.test_2_id)
+        self.assertEqual(test_2_new.name, expected_name)
+        self.assertEqual(test_2_new.results, expected_results)
+        self.assertEqual(test_2_new.submission, expected_submission)
+
+        # Update new result entry
+        new_results_entry = {'name' : 'Result2', 'value' : { 'data' : 2, 'type' : 'integer'}}
+        response, data = self.patch(self.url_2, {'results' : [new_results_entry]})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        new_results_entry['reference'] = None
+        new_results_entry['status'] = 'unknown'
+        expected_results.append(new_results_entry)
+        test_2_new = TestResult.objects.get(id=self.test_2_id)
+        self.assertEqual(test_2_new.name, expected_name)
+        self.assertEqual(test_2_new.results, expected_results)
+        self.assertEqual(test_2_new.submission, expected_submission)
+
     def test_delete(self):
         response = client.delete(self.url_1)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

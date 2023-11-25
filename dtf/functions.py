@@ -9,25 +9,6 @@ def create_reference_query(project, query_params):
                 queries['property_values__' + prop.name] = prop_value
     return queries
 
-def fill_result_default_values(results, test_name, submission):
-    reference_query = create_reference_query(submission.project, submission.info)
-    reference_set = submission.project.reference_sets.filter(**reference_query).first()
-
-    if reference_set is not None:
-        current_reference = reference_set.test_references.filter(test_name=test_name).first()
-    else:
-        current_reference = None
-
-    for result in results:
-        if not 'reference' in result:
-            if current_reference is not None:
-                result['reference'] = current_reference.get_reference_or_none(result['name'])
-            else:
-                result['reference'] = None
-        if not 'status' in result:
-            result['status'] = 'unknown'
-    return results
-
 def get_project_by_id(project_id, queryset):
     """
     Retrieve a project by its Id. Returns None if no project is found.
