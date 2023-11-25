@@ -1,0 +1,6 @@
+Attribute|Type|Required|Description
+``:project_id``|string/integer|yes|The id or slug of the project of the reference set to create the new test reference for.
+``:reference_id``|integer|yes|The id of the reference set to create a new test reference for.
+``test_name``|string|yes|The name of the test the new references are for.
+``default_source``|integer|no|The id of the submission which is used as default source for references that do not have an explicit source given.
+``references``|json|yes|Test result references. TODO: add JSON schema

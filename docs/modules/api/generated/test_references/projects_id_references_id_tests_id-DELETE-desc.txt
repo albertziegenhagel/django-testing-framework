@@ -1,0 +1,1 @@
+DELETE /projects/:project_id/references/:reference_id/tests/:test_id
