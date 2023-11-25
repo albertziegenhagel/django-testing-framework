@@ -382,13 +382,14 @@ class TestMeasurementHistory(views.APIView, ProjectAPIViewMixin):
                 'value_source' : test.id,
                 'date' : test.created
             }
-            for measurement in test.results:
-                if measurement['name'] == measurement_name:
-                    entry['value'] = copy.deepcopy(measurement['value'])
-                    entry['reference'] = copy.deepcopy(measurement['reference'])
-                    entry['status'] = copy.deepcopy(measurement['status'])
-                    entry['reference_source'] = measurement.get('reference_source')
-                    break
+            if test.results is not None:
+                for measurement in test.results:
+                    if measurement['name'] == measurement_name:
+                        entry['value'] = copy.deepcopy(measurement['value'])
+                        entry['reference'] = copy.deepcopy(measurement['reference'])
+                        entry['status'] = copy.deepcopy(measurement['status'])
+                        entry['reference_source'] = measurement.get('reference_source')
+                        break
             data.append(entry)
 
         return Response(data, status.HTTP_200_OK)
