@@ -575,7 +575,7 @@ class SubmissionApiTest(ApiTestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Project.objects.count(), 1)
 
-class TestResultsApiTest(ApiTestCase):
+class SubmissionTestResultsApiTest(ApiTestCase):
     """ Test module for submitting test results via the API """
 
     def setUp(self):
@@ -766,7 +766,7 @@ class TestResultsApiTest(ApiTestCase):
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-class TestResultApiTest(ApiTestCase):
+class SubmissionTestResultApiTest(ApiTestCase):
     def setUp(self):
         super().setUp()
         _, data = self.create_project("Test Project", "test-project")
@@ -785,6 +785,11 @@ class TestResultApiTest(ApiTestCase):
         self.url_2 = reverse('api_project_submission_test', kwargs={'project_id' : self.project_id, 'submission_id' : self.submission_id, 'test_id' : self.test_2_id})
         self.test_2 = TestResult.objects.get(id=self.test_2_id)
 
+        response, data = self.post(create_url, {'name' : 'Test 3'})
+        self.test_3_id = data['id']
+        self.url_3 = reverse('api_project_submission_test', kwargs={'project_id' : self.project_id, 'submission_id' : self.submission_id, 'test_id' : self.test_3_id})
+        self.test_3 = TestResult.objects.get(id=self.test_3_id)
+
     def test_get(self):
         response = client.get(self.url_1)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -794,6 +799,11 @@ class TestResultApiTest(ApiTestCase):
         response = client.get(self.url_2)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         serializer = TestResultSerializer(self.test_2, context={"request": response.wsgi_request})
+        self.assertEqual(response.data, serializer.data)
+
+        response = client.get(self.url_3)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        serializer = TestResultSerializer(self.test_3, context={"request": response.wsgi_request})
         self.assertEqual(response.data, serializer.data)
 
     def test_get_invalid(self):
@@ -825,7 +835,7 @@ class TestResultApiTest(ApiTestCase):
     def test_delete(self):
         response = client.delete(self.url_1)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertEqual(TestResult.objects.count(), 1)
+        self.assertEqual(TestResult.objects.count(), 2)
 
 class TestResultHistoryApiTest(ApiTestCase):
     def setUp(self):
@@ -981,7 +991,7 @@ class ProjectTestResultsApiTest(ApiTestCase):
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-class TestResultApiTest(ApiTestCase):
+class ProjectTestResultApiTest(ApiTestCase):
     def setUp(self):
         super().setUp()
         _, data = self.create_project("Test Project", "test-project")
