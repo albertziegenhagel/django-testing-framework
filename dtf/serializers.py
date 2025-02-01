@@ -224,6 +224,7 @@ class SubmissionSerializer(serializers.ModelSerializer):
                   'last_updated',
                   'info',
                   'url']
+        read_only_fields = ['status']
         extra_kwargs = {'created': {'read_only': False, 'required':False}}
 
     def validate(self, data):

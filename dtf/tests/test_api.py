@@ -570,6 +570,14 @@ class SubmissionApiTest(ApiTestCase):
         submission_1 = Submission.objects.get(id=self.submission_1_id)
         self.assertEqual(submission_1.info, new_info)
 
+        # Try setting status to something else ...
+        response.data['status'] = 'broken'
+        response, data = self.put(self.url_1, response.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # ... but status stays unchanged
+        submission_1 = Submission.objects.get(id=self.submission_1_id)
+        self.assertEqual(submission_1.status, 'unknown')
+
     def test_delete_project(self):
         response = client.delete(self.url_1)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -684,17 +692,57 @@ class SubmissionTestResultsApiTest(ApiTestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(data['id'], 1)
         self.assertEqual(data['name'], self.small_valid_payload['name'])
+        self.assertEqual(data['status'], "unknown")
         self.assertEqual(data['results'][0]["name"], self.small_valid_payload['results'][0]["name"])
         self.assertEqual(data['results'][0]["value"], self.small_valid_payload['results'][0]["value"])
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'unknown')
 
         response, data = self.post(self.url, self.large_valid_payload)
         self.assertEqual(TestResult.objects.count(), 2)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(data['id'], 2)
         self.assertEqual(data['name'], self.large_valid_payload['name'])
+        self.assertEqual(data['status'], "unknown")
         for i in range(len(self.large_valid_payload['results'])):
             self.assertEqual(data['results'][i]["name"], self.large_valid_payload['results'][i]["name"])
             self.assertEqual(data['results'][i]["value"], self.large_valid_payload['results'][i]["value"])
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'unknown')
+
+        payload = copy.deepcopy(self.small_valid_payload)
+        payload['results'][0]["name"]   = 'UNSTABLE_TEST'
+        payload['results'][0]["status"] = 'unstable'
+        response, data = self.post(self.url, payload)
+        self.assertEqual(TestResult.objects.count(), 3)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(data['id'], 3)
+        self.assertEqual(data['name'], payload['name'])
+        self.assertEqual(data['status'], "unstable")
+        self.assertEqual(data['results'][0]["name"], payload['results'][0]["name"])
+        self.assertEqual(data['results'][0]["value"], payload['results'][0]["value"])
+        self.assertEqual(data['results'][0]["status"], payload['results'][0]["status"])
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'unstable')
+
+        payload = copy.deepcopy(self.small_valid_payload)
+        payload['results'][0]["name"]   = 'FAILED_TEST'
+        payload['results'][0]["status"] = 'failed'
+        response, data = self.post(self.url, payload)
+        self.assertEqual(TestResult.objects.count(), 4)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(data['id'], 4)
+        self.assertEqual(data['name'], payload['name'])
+        self.assertEqual(data['status'], "failed")
+        self.assertEqual(data['results'][0]["name"], payload['results'][0]["name"])
+        self.assertEqual(data['results'][0]["value"], payload['results'][0]["value"])
+        self.assertEqual(data['results'][0]["status"], payload['results'][0]["status"])
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'failed')
 
     def test_create_invalid(self):
         missing_name_payload = {
@@ -820,17 +868,76 @@ class SubmissionTestResultApiTest(ApiTestCase):
         response = client.get(self.url_1)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'unknown')
+
+        # Change name and add test result
         new_name = "Test 1 New Name"
         response.data['name'] = new_name
-        new_test_data = {'name' : 'Result2', 'value' : { 'data' : 2, 'type' : 'integer'}}
+        new_test_data = {'name' : 'Result2', 'value' : { 'data' : 2, 'type' : 'integer'}, 'status': 'failed'}
         response.data['results'].append(new_test_data)
         response, data = self.put(self.url_1, response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         test_1 = TestResult.objects.get(id=self.test_1_id)
         self.assertEqual(test_1.name, new_name)
+        self.assertEqual(test_1.status, "failed")
         self.assertEqual(test_1.results[1]["name"], new_test_data["name"])
         self.assertEqual(test_1.results[1]["value"], new_test_data["value"])
+        self.assertEqual(test_1.results[1]["status"], new_test_data["status"])
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'failed') # Submission is now failed, too
+
+        # Try to upgrade test status
+        response.data['status'] = "successful"
+        response, data = self.put(self.url_1, response.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        test_1 = TestResult.objects.get(id=self.test_1_id)
+        self.assertEqual(test_1.status, "failed") # Stays 'failed', since one result is still 'failed'
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'failed') # Submission stays 'failed', too
+
+        # Modify with better statuses for results
+        response.data['results'][0]['status'] = 'successful'
+        response.data['results'][1]['status'] = 'successful'
+        response, data = self.put(self.url_1, response.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        test_1 = TestResult.objects.get(id=self.test_1_id)
+        self.assertEqual(test_1.name, new_name)
+        self.assertEqual(test_1.status, "failed") # Stays 'failed'.
+        self.assertEqual(test_1.results[0]["status"], 'successful')
+        self.assertEqual(test_1.results[1]["name"], new_test_data["name"])
+        self.assertEqual(test_1.results[1]["value"], new_test_data["value"])
+        self.assertEqual(test_1.results[1]["status"], 'successful')
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'failed') # Submission stays failed, too
+
+        # Now, try to upgrade test status again
+        response.data['status'] = "successful"
+        response, data = self.put(self.url_1, response.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        test_1 = TestResult.objects.get(id=self.test_1_id)
+        self.assertEqual(test_1.status, "successful") # Has been improved now!
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'unknown') # Submission is 'unknown' again, due to other tests in it
+
+        # Or, try to downgrade test status
+        response.data['status'] = "broken"
+        response, data = self.put(self.url_1, response.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        test_1 = TestResult.objects.get(id=self.test_1_id)
+        self.assertEqual(test_1.status, "broken")
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'broken')
 
     def test_modify_partial(self):
         expected_name = self.test_2.name
@@ -873,9 +980,27 @@ class SubmissionTestResultApiTest(ApiTestCase):
         self.assertEqual(test_2_new.submission, expected_submission)
 
     def test_delete(self):
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'unknown')
+
         response = client.delete(self.url_1)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(TestResult.objects.count(), 2)
+
+        # Set second test to failed, then delete it and make sure the
+        # submission status was adjusted accordingly
+        response, data = self.patch(self.url_2, {'status' : 'failed'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'failed')
+
+        response = client.delete(self.url_2)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(TestResult.objects.count(), 1)
+
+        submission = Submission.objects.get(id=self.submission_id)
+        self.assertEqual(submission.status, 'skip')
 
 class TestResultHistoryApiTest(ApiTestCase):
     def setUp(self):

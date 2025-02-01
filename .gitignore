@@ -13,3 +13,6 @@ settings/local.py
 
 # Code coverage
 .coverage
+
+# Project specific
+server_output.txt
