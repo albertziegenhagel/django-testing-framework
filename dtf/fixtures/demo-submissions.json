@@ -9,7 +9,8 @@
             "info": {
                 "Hostname": "Vasa",
                 "Branch": "main"
-            }
+            },
+            "status": "unknown"
         }
     },
     {
@@ -22,7 +23,8 @@
             "info": {
                 "Hostname": "Vasa",
                 "Branch": "main"
-            }
+            },
+            "status": "failed"
         }
     },
     {

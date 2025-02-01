@@ -61,5 +61,5 @@
     "last_updated": "2023-11-25T14:18:31.977796Z",
     "submission": 1,
     "url": "http://dtf.example.com/demo/tests/1",
-    "status": "unknown"
+    "status": "failed"
 }

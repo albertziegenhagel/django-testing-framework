@@ -9,7 +9,7 @@ curl -X POST `
                          ""data"": ""PT0.124356S"",
                          ""type"": ""duration""
                      },
-                     ""status"": ""unknown"",
+                     ""status"": ""failed"",
                      ""reference"": null
                  }
              ]

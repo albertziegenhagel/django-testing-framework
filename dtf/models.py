@@ -10,6 +10,16 @@ from django.contrib.auth.models import User
 
 from dtf.validators import JSONSchemaValidator
 
+
+_POSSIBLE_STATUS = [
+    ("skip", "skip"),
+    ("successful", "successful"),
+    ("unstable", "unstable"),
+    ("unknown", "unknown"),
+    ("failed", "failed"),
+    ("broken", "broken")
+]
+
 class Membership(models.Model):
     user = models.ForeignKey(
         User,
@@ -153,6 +163,8 @@ class Submission(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     info = models.JSONField(null=False, default=dict, validators=[JSONSchemaValidator(schema=_info_json_schema)])
 
+    status = models.CharField(choices=_POSSIBLE_STATUS, default="unknown", max_length=20)
+
     required_project_membership_role = {
         'view'   : 'guest',
         'add'    : 'owner',
@@ -160,15 +172,33 @@ class Submission(models.Model):
         'delete' : 'owner'
     }
 
-    def status(self):
+    def update_status(self, new_status):
+        if self.status is None:
+            self.status = new_status
+            return True
+        if TestResult.status_order[new_status] > TestResult.status_order[self.status]:
+            self.status = new_status
+            return True
+        if TestResult.status_order[new_status] < TestResult.status_order[self.status]:
+            original_status = self.status
+            self.recalculate_status()
+            if self.status != original_status:
+                return True
+        return False
+
+    def recalculate_status(self):
         status = None
         for test in self.tests.all():
             test_status = test.status
             if status is None or TestResult.status_order[test_status] > TestResult.status_order[status]:
                 status = test_status
         if status is None:
-            return "unknown"
-        return status
+            self.status = "unknown"
+        else:
+            self.status = status
+
+    def save(self, *args, **kwargs):
+        super(Submission, self).save(*args, **kwargs)
 
     class Meta:
         app_label = 'dtf'
@@ -318,16 +348,7 @@ class TestResult(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     results = models.JSONField(null=True, validators=[JSONSchemaValidator(schema=_results_json_schema)])
 
-    POSSIBLE_STATUS = [
-        ("skip", "skip"),
-        ("successful", "successful"),
-        ("unstable", "unstable"),
-        ("unknown", "unknown"),
-        ("failed", "failed"),
-        ("broken", "broken")
-    ]
-
-    status = models.CharField(choices=POSSIBLE_STATUS, default="unknown", max_length=20)
+    status = models.CharField(choices=_POSSIBLE_STATUS, default="skip", max_length=20)
 
     status_order = {
         "skip": 0,
@@ -345,20 +366,25 @@ class TestResult(models.Model):
         'delete' : 'owner'
     }
 
-    def calculate_status(self):
-        status = None
-        if self.results is not None:
-            for result in self.results:
-                if status is None or self.status_order[result['status']] > self.status_order[status]:
-                    status = result['status']
-        if status is None:
-            self.status = "unknown"
-        else:
-            self.status = status
+    def downgrade_status(self):
+        if self.results is None: return
+        for result in self.results:
+            if self.status_order[result['status']] > self.status_order[self.status]:
+                self.status = result['status']
 
     def save(self, *args, **kwargs):
-        self.calculate_status()
+        self.downgrade_status()
         super(TestResult, self).save(*args, **kwargs)
+        updated = self.submission.update_status(self.status)
+        if updated:
+            self.submission.save()
+
+    def delete(self, *args, **kwargs):
+        submission = self.submission
+        super(TestResult, self).delete(*args, **kwargs)
+        updated = submission.update_status('skip')
+        if updated:
+            submission.save()
 
     def get_next_not_successful_test_id(self):
         same_submission_tests = self.submission.tests.all()

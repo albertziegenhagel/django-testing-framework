@@ -8,7 +8,7 @@
                 "data": "PT0.124356S",
                 "type": "duration"
             },
-            "status": "unknown",
+            "status": "failed",
             "reference": null
         }
     ],
@@ -16,5 +16,5 @@
     "last_updated": "2023-11-25T14:18:41.896178Z",
     "submission": 1,
     "url": "http://dtf.example.com/demo-project/tests/4",
-    "status": "unknown"
+    "status": "failed"
 }
