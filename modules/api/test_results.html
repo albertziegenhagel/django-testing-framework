@@ -1,27 +1,23 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rest Results API &mdash; Django Testing Framework  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/underscore.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/language_data.js"></script>
-      <script src="../../_static/tabs.js"></script>
-      <script src="../../_static/tabs.js"></script>
-      <script src="../../_static/tabs.js"></script>
-      <script src="../../_static/tabs.js"></script>
-      <script src="../../_static/tabs.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -48,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Content:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Content:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
@@ -159,21 +155,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="rest-results-api">
-<h1>Rest Results API<a class="headerlink" href="#rest-results-api" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="list-test-results-of-a-project">
-<span id="api-test-results-project-list"></span><h2>List test results of a project<a class="headerlink" href="#list-test-results-of-a-project" title="Permalink to this headline">¶</a></h2>
+  <section id="rest-results-api">
+<h1>Rest Results API<a class="headerlink" href="#rest-results-api" title="Link to this heading"></a></h1>
+<section id="list-test-results-of-a-project">
+<span id="api-test-results-project-list"></span><h2>List test results of a project<a class="headerlink" href="#list-test-results-of-a-project" title="Link to this heading"></a></h2>
 <p>List all test results from all submissions of a given project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">tests</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -381,20 +371,14 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-single-test-result-of-a-project">
-<span id="api-test-results-project-get"></span><h2>Get single test result of a project<a class="headerlink" href="#get-single-test-result-of-a-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-single-test-result-of-a-project">
+<span id="api-test-results-project-get"></span><h2>Get single test result of a project<a class="headerlink" href="#get-single-test-result-of-a-project" title="Link to this heading"></a></h2>
 <p>Retrieve a specific test result from a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -503,20 +487,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-test-results-of-a-project">
-<span id="api-test-results-project-modify"></span><h2>Modify test results of a project<a class="headerlink" href="#modify-test-results-of-a-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-test-results-of-a-project">
+<span id="api-test-results-project-modify"></span><h2>Modify test results of a project<a class="headerlink" href="#modify-test-results-of-a-project" title="Link to this heading"></a></h2>
 <p>Modify the fields of an existing test result. All fields have to be given (even the ones that are unchanged).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -755,20 +733,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete-test-results-of-a-project">
-<span id="api-test-results-project-delete"></span><h2>Delete test results of a project<a class="headerlink" href="#delete-test-results-of-a-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="delete-test-results-of-a-project">
+<span id="api-test-results-project-delete"></span><h2>Delete test results of a project<a class="headerlink" href="#delete-test-results-of-a-project" title="Link to this heading"></a></h2>
 <p>Deletes a test result from a project. This can not be undone!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -800,20 +772,14 @@
 </pre></div>
 </div>
 </div></div>
-</div>
-<div class="section" id="list-test-results-of-a-submission">
-<span id="api-test-results-submissions-list"></span><h2>List test results of a submission<a class="headerlink" href="#list-test-results-of-a-submission" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="list-test-results-of-a-submission">
+<span id="api-test-results-submissions-list"></span><h2>List test results of a submission<a class="headerlink" href="#list-test-results-of-a-submission" title="Link to this heading"></a></h2>
 <p>List all test results from a specific submission of a given project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span><span class="o">/</span><span class="n">tests</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -924,20 +890,14 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="add-new-test-result-to-a-submission">
-<span id="api-test-results-submissions-create"></span><h2>Add new test result to a submission<a class="headerlink" href="#add-new-test-result-to-a-submission" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="add-new-test-result-to-a-submission">
+<span id="api-test-results-submissions-create"></span><h2>Add new test result to a submission<a class="headerlink" href="#add-new-test-result-to-a-submission" title="Link to this heading"></a></h2>
 <p>Add a new test result to the submission.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span><span class="o">/</span><span class="n">tests</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1064,20 +1024,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-single-test-result-of-a-submission">
-<span id="api-test-results-submissions-get"></span><h2>Get single test result of a submission<a class="headerlink" href="#get-single-test-result-of-a-submission" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-single-test-result-of-a-submission">
+<span id="api-test-results-submissions-get"></span><h2>Get single test result of a submission<a class="headerlink" href="#get-single-test-result-of-a-submission" title="Link to this heading"></a></h2>
 <p>Retrieve a specific test result from a submission.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1186,20 +1140,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-test-results-of-a-submission">
-<span id="api-test-results-submissions-modify"></span><h2>Modify test results of a submission<a class="headerlink" href="#modify-test-results-of-a-submission" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-test-results-of-a-submission">
+<span id="api-test-results-submissions-modify"></span><h2>Modify test results of a submission<a class="headerlink" href="#modify-test-results-of-a-submission" title="Link to this heading"></a></h2>
 <p>Modify the fields of an existing test result. All fields have to be given (even the ones that are unchanged).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1438,20 +1386,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete-test-results-of-a-submission">
-<span id="api-test-results-submissions-delete"></span><h2>Delete test results of a submission<a class="headerlink" href="#delete-test-results-of-a-submission" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="delete-test-results-of-a-submission">
+<span id="api-test-results-submissions-delete"></span><h2>Delete test results of a submission<a class="headerlink" href="#delete-test-results-of-a-submission" title="Link to this heading"></a></h2>
 <p>Deletes a test result from a submission. This can not be undone!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1483,9 +1425,9 @@
 </pre></div>
 </div>
 </div></div>
-</div>
-<div class="section" id="history-of-a-test-result-measurement">
-<span id="api-test-results-history"></span><h2>History of a test result measurement<a class="headerlink" href="#history-of-a-test-result-measurement" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="history-of-a-test-result-measurement">
+<span id="api-test-results-history"></span><h2>History of a test result measurement<a class="headerlink" href="#history-of-a-test-result-measurement" title="Link to this heading"></a></h2>
 <p>Retrieves the history of a measurement for a given test.
 The history is extracted for all test results of that project that belong to a submission
 which has the same <em>reference relevant properties</em> as the submission the current test belongs to.</p>
@@ -1493,12 +1435,6 @@ which has the same <em>reference relevant properties</em> as the submission the 
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1575,8 +1511,8 @@ which has the same <em>reference relevant properties</em> as the submission the 
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

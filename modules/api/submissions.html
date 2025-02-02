@@ -1,23 +1,23 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Submissions API &mdash; Django Testing Framework  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/underscore.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/language_data.js"></script>
-      <script src="../../_static/tabs.js"></script>
-      <script src="../../_static/tabs.js"></script>
-      <script src="../../_static/tabs.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -44,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Content:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Content:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
@@ -155,21 +155,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="submissions-api">
-<h1>Submissions API<a class="headerlink" href="#submissions-api" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="list-submissions-of-a-project">
-<span id="api-submissions-list"></span><h2>List submissions of a project<a class="headerlink" href="#list-submissions-of-a-project" title="Permalink to this headline">¶</a></h2>
+  <section id="submissions-api">
+<h1>Submissions API<a class="headerlink" href="#submissions-api" title="Link to this heading"></a></h1>
+<section id="list-submissions-of-a-project">
+<span id="api-submissions-list"></span><h2>List submissions of a project<a class="headerlink" href="#list-submissions-of-a-project" title="Link to this heading"></a></h2>
 <p>List all submissions of a given project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -223,20 +217,14 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-new-submission">
-<span id="api-submissions-new"></span><h2>Create new submission<a class="headerlink" href="#create-new-submission" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="create-new-submission">
+<span id="api-submissions-new"></span><h2>Create new submission<a class="headerlink" href="#create-new-submission" title="Link to this heading"></a></h2>
 <p>Create a new, empty submission for the project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -296,20 +284,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-single-submission-of-a-project">
-<span id="api-submissions-get"></span><h2>Get single submission of a project<a class="headerlink" href="#get-single-submission-of-a-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-single-submission-of-a-project">
+<span id="api-submissions-get"></span><h2>Get single submission of a project<a class="headerlink" href="#get-single-submission-of-a-project" title="Link to this heading"></a></h2>
 <p>Retrieve a specific submission from a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -355,20 +337,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-submissions-of-a-project">
-<span id="api-submissions-modify"></span><h2>Modify submissions of a project<a class="headerlink" href="#modify-submissions-of-a-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-submissions-of-a-project">
+<span id="api-submissions-modify"></span><h2>Modify submissions of a project<a class="headerlink" href="#modify-submissions-of-a-project" title="Link to this heading"></a></h2>
 <p>Modify the fields of an existing submission. All fields have to be given (even the ones that are unchanged).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -435,20 +411,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete-submissions-of-a-project">
-<span id="api-submissions-delete"></span><h2>Delete submissions of a project<a class="headerlink" href="#delete-submissions-of-a-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="delete-submissions-of-a-project">
+<span id="api-submissions-delete"></span><h2>Delete submissions of a project<a class="headerlink" href="#delete-submissions-of-a-project" title="Link to this heading"></a></h2>
 <p>Deletes a submission and all its associated data (like test results) from a project. This can not be undone!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">submissions</span><span class="o">/</span><span class="p">:</span><span class="n">submission_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -480,8 +450,8 @@
 </pre></div>
 </div>
 </div></div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

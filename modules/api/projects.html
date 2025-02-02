@@ -1,19 +1,23 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects API &mdash; Django Testing Framework  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/underscore.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/language_data.js"></script>
-      <script src="../../_static/tabs.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/tabs.js?v=3030b3cb"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -40,7 +44,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Content:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Content:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
@@ -151,10 +155,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="projects-api">
-<h1>Projects API<a class="headerlink" href="#projects-api" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="list-projects">
-<span id="api-projects-list"></span><h2>List projects<a class="headerlink" href="#list-projects" title="Permalink to this headline">¶</a></h2>
+  <section id="projects-api">
+<h1>Projects API<a class="headerlink" href="#projects-api" title="Link to this heading"></a></h1>
+<section id="list-projects">
+<span id="api-projects-list"></span><h2>List projects<a class="headerlink" href="#list-projects" title="Link to this heading"></a></h2>
 <p>List all projects available on the server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span>
 </pre></div>
@@ -183,20 +187,14 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="create-new-project">
-<span id="api-projects-new"></span><h2>Create new project<a class="headerlink" href="#create-new-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="create-new-project">
+<span id="api-projects-new"></span><h2>Create new project<a class="headerlink" href="#create-new-project" title="Link to this heading"></a></h2>
 <p>Create a new, global project on the server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -249,20 +247,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-single-project">
-<span id="api-projects-get"></span><h2>Get single project<a class="headerlink" href="#get-single-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-single-project">
+<span id="api-projects-get"></span><h2>Get single project<a class="headerlink" href="#get-single-project" title="Link to this heading"></a></h2>
 <p>Retrieve a specific project from the server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -311,20 +303,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-single-project">
-<span id="api-projects-modify"></span><h2>Modify single project<a class="headerlink" href="#modify-single-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-single-project">
+<span id="api-projects-modify"></span><h2>Modify single project<a class="headerlink" href="#modify-single-project" title="Link to this heading"></a></h2>
 <p>Modify the fields of an existing project. All fields have to be given (even the ones that are unchanged).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -382,20 +368,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete-single-project">
-<span id="api-projects-delete"></span><h2>Delete single project<a class="headerlink" href="#delete-single-project" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="delete-single-project">
+<span id="api-projects-delete"></span><h2>Delete single project<a class="headerlink" href="#delete-single-project" title="Link to this heading"></a></h2>
 <p>Deletes a project and all associated data. This can not be undone!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="nb">id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -422,20 +402,14 @@
 </pre></div>
 </div>
 </div></div>
-</div>
-<div class="section" id="list-project-properties">
-<span id="api-projects-properties-list"></span><h2>List project properties<a class="headerlink" href="#list-project-properties" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="list-project-properties">
+<span id="api-projects-properties-list"></span><h2>List project properties<a class="headerlink" href="#list-project-properties" title="Link to this heading"></a></h2>
 <p>List all properties of a given project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">properties</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -497,20 +471,14 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="add-new-project-property">
-<span id="api-projects-properties-new"></span><h2>Add new project property<a class="headerlink" href="#add-new-project-property" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="add-new-project-property">
+<span id="api-projects-properties-new"></span><h2>Add new project property<a class="headerlink" href="#add-new-project-property" title="Link to this heading"></a></h2>
 <p>Add a new property to a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">properties</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -598,20 +566,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-single-project-property">
-<span id="api-projects-properties-get"></span><h2>Get single project property<a class="headerlink" href="#get-single-project-property" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-single-project-property">
+<span id="api-projects-properties-get"></span><h2>Get single project property<a class="headerlink" href="#get-single-project-property" title="Link to this heading"></a></h2>
 <p>Retrieve a specific property from a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">properties</span><span class="o">/</span><span class="p">:</span><span class="n">prop_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -656,20 +618,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-project-property">
-<span id="api-projects-properties-modify"></span><h2>Modify project property<a class="headerlink" href="#modify-project-property" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-project-property">
+<span id="api-projects-properties-modify"></span><h2>Modify project property<a class="headerlink" href="#modify-project-property" title="Link to this heading"></a></h2>
 <p>Modify the fields of an existing properties. All fields have to be given (even the ones that are unchanged).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">properties</span><span class="o">/</span><span class="p">:</span><span class="n">prop_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -764,20 +720,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete-project-property">
-<span id="api-projects-properties-delete"></span><h2>Delete project property<a class="headerlink" href="#delete-project-property" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="delete-project-property">
+<span id="api-projects-properties-delete"></span><h2>Delete project property<a class="headerlink" href="#delete-project-property" title="Link to this heading"></a></h2>
 <p>Deletes a property from a project. This can not be undone!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">properties</span><span class="o">/</span><span class="p">:</span><span class="n">prop_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -809,20 +759,14 @@
 </pre></div>
 </div>
 </div></div>
-</div>
-<div class="section" id="list-project-members">
-<span id="api-projects-members-list"></span><h2>List project members<a class="headerlink" href="#list-project-members" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="list-project-members">
+<span id="api-projects-members-list"></span><h2>List project members<a class="headerlink" href="#list-project-members" title="Link to this heading"></a></h2>
 <p>List all members of a given project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -865,20 +809,14 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="add-new-project-member">
-<span id="api-projects-members-new"></span><h2>Add new project member<a class="headerlink" href="#add-new-project-member" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="add-new-project-member">
+<span id="api-projects-members-new"></span><h2>Add new project member<a class="headerlink" href="#add-new-project-member" title="Link to this heading"></a></h2>
 <p>Add a new member to a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -939,20 +877,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-single-project-member">
-<span id="api-projects-members-get"></span><h2>Get single project member<a class="headerlink" href="#get-single-project-member" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-single-project-member">
+<span id="api-projects-members-get"></span><h2>Get single project member<a class="headerlink" href="#get-single-project-member" title="Link to this heading"></a></h2>
 <p>Retrieve a specific member from a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span><span class="o">/</span><span class="p">:</span><span class="n">member_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -998,20 +930,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-project-member">
-<span id="api-projects-members-modify"></span><h2>Modify project member<a class="headerlink" href="#modify-project-member" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-project-member">
+<span id="api-projects-members-modify"></span><h2>Modify project member<a class="headerlink" href="#modify-project-member" title="Link to this heading"></a></h2>
 <p>Modify the fields of an existing members. All fields have to be given (even the ones that are unchanged).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span><span class="o">/</span><span class="p">:</span><span class="n">member_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1079,20 +1005,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete-project-member">
-<span id="api-projects-members-delete"></span><h2>Delete project member<a class="headerlink" href="#delete-project-member" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="delete-project-member">
+<span id="api-projects-members-delete"></span><h2>Delete project member<a class="headerlink" href="#delete-project-member" title="Link to this heading"></a></h2>
 <p>Deletes a member from a project. This can not be undone!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">members</span><span class="o">/</span><span class="p">:</span><span class="n">member_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1124,20 +1044,14 @@
 </pre></div>
 </div>
 </div></div>
-</div>
-<div class="section" id="list-project-webhooks">
-<span id="api-projects-webhooks-list"></span><h2>List project webhooks<a class="headerlink" href="#list-project-webhooks" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="list-project-webhooks">
+<span id="api-projects-webhooks-list"></span><h2>List project webhooks<a class="headerlink" href="#list-project-webhooks" title="Link to this heading"></a></h2>
 <p>List all webhooks of a given project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">webhooks</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1180,20 +1094,14 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="add-new-project-webhook">
-<span id="api-projects-webhooks-new"></span><h2>Add new project webhook<a class="headerlink" href="#add-new-project-webhook" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="add-new-project-webhook">
+<span id="api-projects-webhooks-new"></span><h2>Add new project webhook<a class="headerlink" href="#add-new-project-webhook" title="Link to this heading"></a></h2>
 <p>Add a new webhook to a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">webhooks</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1283,20 +1191,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="get-single-project-webhook">
-<span id="api-projects-webhooks-get"></span><h2>Get single project webhook<a class="headerlink" href="#get-single-project-webhook" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="get-single-project-webhook">
+<span id="api-projects-webhooks-get"></span><h2>Get single project webhook<a class="headerlink" href="#get-single-project-webhook" title="Link to this heading"></a></h2>
 <p>Retrieve a specific webhook from a project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">webhooks</span><span class="o">/</span><span class="p">:</span><span class="n">webhook_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1342,20 +1244,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modify-project-webhook">
-<span id="api-projects-webhooks-modify"></span><h2>Modify project webhook<a class="headerlink" href="#modify-project-webhook" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="modify-project-webhook">
+<span id="api-projects-webhooks-modify"></span><h2>Modify project webhook<a class="headerlink" href="#modify-project-webhook" title="Link to this heading"></a></h2>
 <p>Modify the fields of an existing webhook. All fields have to be given (even the ones that are unchanged).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">webhooks</span><span class="o">/</span><span class="p">:</span><span class="n">webhook_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1460,20 +1356,14 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="delete-project-webhook">
-<span id="api-projects-webhooks-delete"></span><h2>Delete project webhook<a class="headerlink" href="#delete-project-webhook" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="delete-project-webhook">
+<span id="api-projects-webhooks-delete"></span><h2>Delete project webhook<a class="headerlink" href="#delete-project-webhook" title="Link to this heading"></a></h2>
 <p>Deletes a webhook from a project. This can not be undone!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DELETE</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">webhooks</span><span class="o">/</span><span class="p">:</span><span class="n">webhook_id</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1505,20 +1395,14 @@
 </pre></div>
 </div>
 </div></div>
-</div>
-<div class="section" id="retrieve-logs-of-a-webhook">
-<span id="api-projects-webhooks-logs-get"></span><h2>Retrieve logs of a webhook<a class="headerlink" href="#retrieve-logs-of-a-webhook" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="retrieve-logs-of-a-webhook">
+<span id="api-projects-webhooks-logs-get"></span><h2>Retrieve logs of a webhook<a class="headerlink" href="#retrieve-logs-of-a-webhook" title="Link to this heading"></a></h2>
 <p>Retrieves the history of trigger events for a webhook.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">webhooks</span><span class="o">/</span><span class="p">:</span><span class="n">webhook_id</span><span class="o">/</span><span class="n">logs</span>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
 <th class="head"><p>Type</p></th>
@@ -1638,8 +1522,8 @@
 <span class="p">]</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

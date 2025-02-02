@@ -1,17 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REST API &mdash; Django Testing Framework  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
   
-      <script src="../_static/jquery.js"></script>
-      <script src="../_static/underscore.js"></script>
-      <script src="../_static/doctools.js"></script>
-      <script src="../_static/language_data.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -38,7 +42,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Content:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Content:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-installation-for-nix">Example installation for *nix</a></li>
@@ -148,11 +152,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="rest-api">
-<h1>REST API<a class="headerlink" href="#rest-api" title="Permalink to this headline">¶</a></h1>
+  <section id="rest-api">
+<h1>REST API<a class="headerlink" href="#rest-api" title="Link to this heading"></a></h1>
 <p>The Django Testing Framework exposes a powerful REST API which can be used to control all aspects of the web-server.</p>
-<div class="section" id="general-usage">
-<h2>General usage<a class="headerlink" href="#general-usage" title="Permalink to this headline">¶</a></h2>
+<section id="general-usage">
+<h2>General usage<a class="headerlink" href="#general-usage" title="Link to this heading"></a></h2>
 <p>Currently all REST API endpoints start with the <code class="docutils literal notranslate"><span class="pre">/api/</span></code> prefix. As an example, let’s assume you have hosted your Django Testing Framework instance at <code class="docutils literal notranslate"><span class="pre">dtf.example.com</span></code>. A valid API request to the <a class="reference internal" href="api/projects.html#api-projects-list"><span class="std std-ref">projects</span></a> endpoint could look as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">&quot;http://dtf.example.com/api/projects&quot;</span>
 </pre></div>
@@ -161,9 +165,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span><span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="authentication">
-<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h2>
 <p>To access the API users must authenticate themselves. There are currently two end-user methods for authentication available:</p>
 <blockquote>
 <div><ul class="simple">
@@ -171,8 +175,8 @@
 <li><p><a class="reference internal" href="#api-authentication-token"><span class="std std-ref">User access Token</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="user-credentials">
-<span id="api-authentication-credentials"></span><h3>User credentials<a class="headerlink" href="#user-credentials" title="Permalink to this headline">¶</a></h3>
+<section id="user-credentials">
+<span id="api-authentication-credentials"></span><h3>User credentials<a class="headerlink" href="#user-credentials" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This method should not be used except for simple testing scenarios.</p>
@@ -182,9 +186,9 @@
 <span class="w">  </span><span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="user-access-token">
-<span id="api-authentication-token"></span><h3>User access Token<a class="headerlink" href="#user-access-token" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="user-access-token">
+<span id="api-authentication-token"></span><h3>User access Token<a class="headerlink" href="#user-access-token" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There is not yet any front-end functionality for a user to create tokens.</p>
@@ -194,10 +198,10 @@
 <span class="w">  </span><span class="s2">&quot;http://dtf.example.com/api/projects/4&quot;</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="api-overview">
-<h2>API Overview<a class="headerlink" href="#api-overview" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="api-overview">
+<h2>API Overview<a class="headerlink" href="#api-overview" title="Link to this heading"></a></h2>
 <p><a class="reference internal" href="api/projects.html"><span class="doc">Projects</span></a></p>
 <p><a class="reference internal" href="api/submissions.html"><span class="doc">Submissions</span></a></p>
 <p><a class="reference internal" href="api/test_results.html"><span class="doc">Test Results</span></a></p>
@@ -206,8 +210,8 @@
 <p><a class="reference internal" href="api/users.html"><span class="doc">Users</span></a></p>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
