@@ -20,6 +20,163 @@ _POSSIBLE_STATUS = [
     ("broken", "broken")
 ]
 
+_value_json_schema = {
+    'type': 'object',
+        'properties': {
+            'data': {},
+            'type': {
+                'type': 'string',
+                'enum': [
+                    'integer',
+                    'float',
+                    'string',
+                    'duration',
+                    'ndarray',
+                    'image'
+                ]
+            },
+        },
+    'allOf': [
+        {
+            'if': {
+                'properties': {'type': {'const': 'integer'}}
+            },
+            'then': {
+                'properties': {'data': {'type': 'integer'}}
+            }
+        },
+        {
+            'if': {
+                'properties': {'type': {'const': 'float'}}
+            },
+            'then': {
+                'properties': {'data': {'type': 'number'}}
+            }
+        },
+        {
+            'if': {
+                'properties': {'type': {'const': 'string'}}
+            },
+            'then': {
+                'properties': {'data': {'type': 'string'}}
+            }
+        },
+        {
+            'if': {
+                'properties': {'type': {'const': 'duration'}}
+            },
+            'then': {
+                'properties': {
+                    'data': {
+                        'type': 'string',
+                        # ISO 8601 duration
+                        'pattern': R'^(?P<sign>[-+]?)P(?:(?P<days>\d+(\.\d+)?)D)?(?:T(?:(?P<hours>\d+(\.\d+)?)H)?(?:(?P<minutes>\d+(\.\d+)?)M)?(?:(?P<seconds>\d+(\.\d+)?)S)?)?$'
+                    }
+                }
+            }
+        },
+        {
+            'if': {
+                'properties': {'type': {'const': 'ndarray'}}
+            },
+            'then': {
+                'properties': {'data': {
+                    'type': 'object',
+                    'properties': {
+                        'shape': {
+                            'type': 'array',
+                            'items': {'type': 'integer'}
+                        },
+                        'entries': {
+                            'type': 'array',
+                            'items': {'$ref': '#/definitions/value'}
+                        }
+                    },
+                    'required': ['shape', 'entries'],
+                    'additionalProperties': False
+                }}
+            }
+        },
+        {
+            'if': {
+                'properties': {'type': {'const': 'image'}}
+            },
+            'then': {
+                'properties': {'data': {'type': 'string',
+                                        'contentEncoding': 'base64',
+                                        'contentMediaType': 'image/png'}}
+            }
+        },
+    ],
+    'required': ['data', 'type'],
+    'additionalProperties': False
+}
+
+_results_json_schema = {
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'definitions': {
+        'value': _value_json_schema
+    },
+    'type': 'array',
+    'items': {
+        'type': 'object',
+        'properties': {
+            'name':  {
+                'type': 'string'
+            },
+            'value': {
+                'oneOf': [
+                    {'$ref': '#/definitions/value'},
+                    {'type': 'null'}
+                ]
+            },
+            'reference': {
+                'oneOf': [
+                    {'$ref': '#/definitions/value'},
+                    {'type': 'null'}
+                ]
+            },
+            'reference_source': {'type': 'integer'},
+            'status': {
+                'type': 'string',
+                'enum': [
+                    'skip',
+                    'successful',
+                    'unstable',
+                    'unknown',
+                    'failed',
+                    'broken'
+                ],
+                'default': 'unknown'
+            }
+        },
+        'additionalProperties': False,
+        'required': ['name', 'value']
+    }
+}
+
+_references_json_schema = {
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'definitions': {
+        'value': _value_json_schema
+    },
+    'type': 'object',
+    'additionalProperties': {
+        'type': 'object',
+        'properties': {
+            'value': {
+                'oneOf': [
+                    {'$ref': '#/definitions/value'},
+                    {'type': 'null'}
+                ]
+            },
+            'source': {'type': 'integer'},
+        },
+        'required': ['value'],
+        'additionalProperties': False
+    }
+}
+
 class Membership(models.Model):
     user = models.ForeignKey(
         User,
@@ -207,140 +364,6 @@ class TestResult(models.Model):
     """
     Model to store test results and metadata
     """
-    _value_json_schema = {
-        'type': 'object',
-            'properties': {
-                'data': {},
-                'type': {
-                    'type': 'string',
-                    'enum': [
-                        'integer',
-                        'float',
-                        'string',
-                        'duration',
-                        'ndarray',
-                        'image'
-                    ]
-                },
-            },
-        'allOf': [
-            {
-                'if': {
-                    'properties': {'type': {'const': 'integer'}}
-                },
-                'then': {
-                    'properties': {'data': {'type': 'integer'}}
-                }
-            },
-            {
-                'if': {
-                    'properties': {'type': {'const': 'float'}}
-                },
-                'then': {
-                    'properties': {'data': {'type': 'number'}}
-                }
-            },
-            {
-                'if': {
-                    'properties': {'type': {'const': 'string'}}
-                },
-                'then': {
-                    'properties': {'data': {'type': 'string'}}
-                }
-            },
-            {
-                'if': {
-                    'properties': {'type': {'const': 'duration'}}
-                },
-                'then': {
-                    'properties': {
-                        'data': {
-                            'type': 'string',
-                            # ISO 8601 duration
-                            'pattern': R'^(?P<sign>[-+]?)P(?:(?P<days>\d+(\.\d+)?)D)?(?:T(?:(?P<hours>\d+(\.\d+)?)H)?(?:(?P<minutes>\d+(\.\d+)?)M)?(?:(?P<seconds>\d+(\.\d+)?)S)?)?$'
-                        }
-                    }
-                }
-            },
-            {
-                'if': {
-                    'properties': {'type': {'const': 'ndarray'}}
-                },
-                'then': {
-                    'properties': {'data': {
-                        'type': 'object',
-                        'properties': {
-                            'shape': {
-                                'type': 'array',
-                                'items': {'type': 'integer'}
-                            },
-                            'entries': {
-                                'type': 'array',
-                                'items': {'$ref': '#/definitions/value'}
-                            }
-                        },
-                        'required': ['shape', 'entries'],
-                        'additionalProperties': False
-                    }}
-                }
-            },
-            {
-                'if': {
-                    'properties': {'type': {'const': 'image'}}
-                },
-                'then': {
-                    'properties': {'data': {'type': 'string',
-                                            'contentEncoding': 'base64',
-                                            'contentMediaType': 'image/png'}}
-                }
-            },
-        ],
-        'required': ['data', 'type'],
-        'additionalProperties': False
-    }
-
-    _results_json_schema = {
-        'schema': 'http://json-schema.org/draft-07/schema#',
-        'definitions': {
-            'value': _value_json_schema
-        },
-        'type': 'array',
-        'items': {
-            'type': 'object',
-            'properties': {
-                'name':  {
-                    'type': 'string'
-                },
-                'value': {
-                    'oneOf': [
-                        {'$ref': '#/definitions/value'},
-                        {'type': 'null'}
-                    ]
-                },
-                'reference': {
-                    'oneOf': [
-                        {'$ref': '#/definitions/value'},
-                        {'type': 'null'}
-                    ]
-                },
-                'reference_source': {'type': 'integer'},
-                'status': {
-                    'type': 'string',
-                    'enum': [
-                        'skip',
-                        'successful',
-                        'unstable',
-                        'unknown',
-                        'failed',
-                        'broken'
-                    ],
-                    'default': 'unknown'
-                }
-            },
-            'additionalProperties': False,
-            'required': ['name', 'value']
-        }
-    }
 
     name = models.CharField(max_length=100, blank=False, db_index=True)
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE, null=False, related_name="tests")
@@ -457,27 +480,6 @@ class TestReference(models.Model):
     The test_name is not, since the references can be from different test result \
         objects. The test name will be the same though. The test_name must not be UNIQUE constraint though, in order to allow equally named tests from multiple projects to be saved
     """
-    _references_json_schema = {
-        'schema': 'http://json-schema.org/draft-07/schema#',
-        'definitions': {
-            'value': TestResult._value_json_schema
-        },
-        'type': 'object',
-        'additionalProperties': {
-            'type': 'object',
-            'properties': {
-                'value': {
-                    'oneOf': [
-                        {'$ref': '#/definitions/value'},
-                        {'type': 'null'}
-                    ]
-                },
-                'source': {'type': 'integer'},
-            },
-            'required': ['value'],
-            'additionalProperties': False
-        }
-    }
 
     reference_set = models.ForeignKey(ReferenceSet, on_delete=models.CASCADE, null=False, related_name="test_references")
     test_name = models.CharField(max_length=100, blank=False)
