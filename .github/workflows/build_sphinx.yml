@@ -1,7 +1,6 @@
 
-name: "Build Docs"
+name: "Build Documentation"
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
@@ -15,3 +14,7 @@ jobs:
     - uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
+    - uses: actions/upload-artifact@v4
+      with:
+        name: documentation
+        path: docs/_build/html/

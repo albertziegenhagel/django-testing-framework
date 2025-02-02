@@ -12,17 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    # Standard drop-in approach that should work for most people.
     - uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
-    # Create an artifact of the html output.
-    - uses: actions/upload-artifact@v4
-      with:
-        name: DocumentationHTML
-        path: docs/_build/html/
-    # Publish built docs to gh-pages branch.
-    # ===============================
     - name: Commit documentation changes
       run: |
         git clone https://github.com/albertziegenhagel/django-testing-framework.git --branch gh-pages --single-branch gh-pages
@@ -40,4 +32,3 @@ jobs:
         branch: gh-pages
         directory: gh-pages
         github_token: ${{ secrets.GITHUB_TOKEN }}
-    # ===============================
