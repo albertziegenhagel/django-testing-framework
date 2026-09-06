@@ -17,10 +17,10 @@
             "required": true,
             "description": "The name of the new test."
         },
-        "results" : {
-            "type": "json",
+        "status" : {
+            "type": "string",
             "required": false,
-            "description": "Test results. TODO: add JSON schema"
+            "description": "Status of the test. Allowed values are 'skip', 'successful', 'unstable', 'unknown', 'failed', or 'broken'."
         }
     },
     "examples" : [
@@ -41,18 +41,7 @@
                 "submission_id": 1
             },
             "data": {
-                "name" : "New Test",
-                "results" : [
-                    {
-                        "name": "runtime",
-                        "value": {
-                            "data": "PT0.124356S",
-                            "type": "duration"
-                        },
-                        "status": "failed",
-                        "reference": null
-                    }
-                ]
+                "name" : "New Test"
             }
         }
     ]

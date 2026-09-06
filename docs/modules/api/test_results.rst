@@ -1,4 +1,4 @@
-Rest Results API
+Test Results API
 ================
 
 .. _api-test_results-project-list:

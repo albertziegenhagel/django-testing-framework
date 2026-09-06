@@ -186,3 +186,25 @@ def print_webhook_log_response(log_entry):
 @register.filter(is_safe=True)
 def to_js_dict(data):
     return mark_safe(json.dumps(data))
+
+@register.filter(is_safe=True)
+def measurements_to_js_dict(measurements):
+    data = []
+    _from_internal = {
+        "SK": "skip",
+        "SU": "successful",
+        "US": "unstable",
+        "UK": "unknown",
+        "FA": "failed",
+        "BR": "broken",
+    }
+    for measurement in measurements.all():
+        data.append({
+            'name': measurement.name,
+            'status': _from_internal.get(measurement.status, measurement.status),
+            'value': measurement.get_value(),
+            'reference': measurement.get_reference()
+        })
+        if measurement.reference_source is not None:
+            data[-1]['reference_source'] = measurement.reference_source.id
+    return mark_safe(json.dumps(data))

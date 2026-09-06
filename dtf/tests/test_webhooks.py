@@ -6,7 +6,7 @@ from unittest.mock import Mock, patch
 
 from django.test import TestCase, override_settings
 
-from dtf.models import Project, TestResult, ReferenceSet, TestReference, Submission, Webhook, WebhookLogEntry
+from dtf.models import Project, TestResult, ReferenceSet, TestReference, Submission, Webhook, WebhookLogEntry, TestMeasurement
 from dtf.serializers import ProjectSerializer, SubmissionSerializer, TestResultSerializer, ReferenceSetSerializer, TestReferenceSerializer
 
 @override_settings(DTF_WEBHOOK_THREADPOOL=False)
@@ -60,43 +60,44 @@ class WebhooksTest(TestCase):
         self._mock_response.text = "some content"
         self._mock_response.headers = {"X-Some-Header" : "value"}
 
-    def _check_webhook_submission(self, call_args, sender, event_type, data, required_webhooks):
+    def _check_webhook_submission(self, call_args, sender, event_type, data, required_webhooks, msg=None):
         (prepared_request,) = call_args[0]
 
-        self.assertEqual(prepared_request.method, "POST")
+        with self.subTest(msg):
+            self.assertEqual(prepared_request.method, "POST")
 
-        self.assertEqual(prepared_request.headers['content-type'], "application/json")
-        request_data = json.loads(prepared_request.body.decode('utf-8'))
+            self.assertEqual(prepared_request.headers['content-type'], "application/json")
+            request_data = json.loads(prepared_request.body.decode('utf-8'))
 
-        self.assertEqual(request_data['event'], event_type)
-        self.assertEqual(request_data['source'], sender.__name__.lower())
-        self.assertEqual(request_data['project'], ProjectSerializer(self.project).data)
-        self.assertEqual(request_data['object'], data)
+            self.assertEqual(request_data['event'], event_type)
+            self.assertEqual(request_data['source'], sender.__name__.lower())
+            self.assertEqual(request_data['project'], ProjectSerializer(self.project).data)
+            self.assertEqual(request_data['object'], data)
 
-        found_webhook = False
-        for index in range(len(required_webhooks)):
-            webhook_entry = required_webhooks[index]
-            [webhook, remaining] = webhook_entry
-            if remaining > 0 and webhook.url == prepared_request.url:
-                self.assertEqual(prepared_request.headers['X-DTF-Token'], webhook.secret_token)
+            found_webhook = False
+            for index in range(len(required_webhooks)):
+                webhook_entry = required_webhooks[index]
+                [webhook, remaining] = webhook_entry
+                if remaining > 0 and webhook.url == prepared_request.url:
+                    self.assertEqual(prepared_request.headers['X-DTF-Token'], webhook.secret_token)
 
-                found_webhook = True
-                break
+                    found_webhook = True
+                    break
 
-        self.assertTrue(found_webhook)
+            self.assertTrue(found_webhook)
 
-        log_entries = list(webhook.logs.all())
-        self.assertGreater(webhook.logs.count(), 0)
-        log_entry = list(webhook.logs.all())[-remaining]
-        self.assertEqual(log_entry.request_url, prepared_request.url)
-        self.assertEqual(log_entry.trigger, sender.__name__)
-        self.assertEqual(log_entry.request_data, request_data)
-        self.assertEqual(log_entry.request_headers, prepared_request.headers)
-        self.assertEqual(log_entry.response_status, self._mock_response.status_code)
-        self.assertEqual(log_entry.response_data, self._mock_response.text)
-        self.assertEqual(log_entry.response_headers, self._mock_response.headers)
+            log_entries = list(webhook.logs.all())
+            self.assertGreater(webhook.logs.count(), 0)
+            log_entry = list(webhook.logs.all())[-remaining]
+            self.assertEqual(log_entry.request_url, prepared_request.url)
+            self.assertEqual(log_entry.trigger, sender.__name__)
+            self.assertEqual(log_entry.request_data, request_data)
+            self.assertEqual(log_entry.request_headers, prepared_request.headers)
+            self.assertEqual(log_entry.response_status, self._mock_response.status_code)
+            self.assertEqual(log_entry.response_data, self._mock_response.text)
+            self.assertEqual(log_entry.response_headers, self._mock_response.headers)
 
-        webhook_entry[1] -= 1
+            webhook_entry[1] -= 1
 
     def test_on_submission(self):
         submission = Submission(project=self.project)
@@ -147,7 +148,7 @@ class WebhooksTest(TestCase):
         submission = Submission(project=self.project)
         with patch('dtf.webhooks._submit_webhook_request'):
             submission.save()
-        test_result = TestResult(submission=submission, name="Test 1", results=[{'name' : 'Result1', 'value' : 1, 'valuetype' : 'integer', 'status' : 'successful'}])
+        test_result = TestResult(submission=submission, name="Test 1")#, measurements=[{'name' : 'Result1', 'value' : 1, 'valuetype' : 'integer', 'status' : 'successful'}])
 
         # Create
         with patch('dtf.webhooks.requests.Session.send', return_value=self._mock_response) as send_mock:
@@ -156,17 +157,17 @@ class WebhooksTest(TestCase):
 
             required_webhooks = [[self.all_webhook, 2], [self.test_result_webhook, 1], [self.submission_webhook, 1]]
 
-            test_result_data = TestResultSerializer(test_result).data
-            self._check_webhook_submission(send_mock.call_args_list[0], TestResult, 'create', test_result_data, required_webhooks)
-            self._check_webhook_submission(send_mock.call_args_list[1], TestResult, 'create', test_result_data, required_webhooks)
             submission_data = SubmissionSerializer(submission).data
-            self._check_webhook_submission(send_mock.call_args_list[2], Submission, 'edit', submission_data, required_webhooks)
-            self._check_webhook_submission(send_mock.call_args_list[3], Submission, 'edit', submission_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[0], Submission, 'edit', submission_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[1], Submission, 'edit', submission_data, required_webhooks)
+            test_result_data = TestResultSerializer(test_result).data
+            self._check_webhook_submission(send_mock.call_args_list[2], TestResult, 'create', test_result_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[3], TestResult, 'create', test_result_data, required_webhooks)
 
             self.assertTrue(all(count == 0 for _, count in required_webhooks))
 
         # Edit
-        test_result.results = [{'name' : 'Result1', 'value' : 2, 'valuetype' : 'integer', 'status' : 'successful'}]
+        test_result.name = "Test 1 new"
         with patch('dtf.webhooks.requests.Session.send', return_value=self._mock_response) as send_mock:
             test_result.save()
             self.assertEqual(send_mock.call_count, 2)
@@ -180,21 +181,43 @@ class WebhooksTest(TestCase):
 
             self.assertTrue(all(count == 0 for _, count in required_webhooks))
 
-        # Edit with worse status
-        test_result.results = [{'name' : 'Result1', 'value' : 2, 'valuetype' : 'integer', 'status' : 'failed'}]
+        # Add measurement with same status
+        measurement = TestMeasurement(name="Measurement", status="SK", test_result=test_result)
+        with patch('dtf.webhooks.requests.Session.send', return_value=self._mock_response) as send_mock:
+            measurement.save()
+            self.assertEqual(send_mock.call_count, 0)
+
+        # Add measurement with worse status
+        measurement = TestMeasurement(name="Measurement", status="FA", test_result=test_result)
+        with patch('dtf.webhooks.requests.Session.send', return_value=self._mock_response) as send_mock:
+            measurement.save()
+            self.assertEqual(send_mock.call_count, 4)
+
+            required_webhooks = [[self.all_webhook, 2], [self.test_result_webhook, 1], [self.submission_webhook, 1]]
+
+            submission_data = SubmissionSerializer(submission).data
+            self._check_webhook_submission(send_mock.call_args_list[0], Submission, 'edit', submission_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[1], Submission, 'edit', submission_data, required_webhooks)
+            test_result_data = TestResultSerializer(test_result).data
+            self._check_webhook_submission(send_mock.call_args_list[2], TestResult, 'edit', test_result_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[3], TestResult, 'edit', test_result_data, required_webhooks)
+
+            self.assertTrue(all(count == 0 for _, count in required_webhooks))
+
+        # Edit test with even worse status
+        test_result.status = "broken"
         with patch('dtf.webhooks.requests.Session.send', return_value=self._mock_response) as send_mock:
             test_result.save()
             self.assertEqual(send_mock.call_count, 4)
 
             required_webhooks = [[self.all_webhook, 2], [self.test_result_webhook, 1], [self.submission_webhook, 1]]
 
-            data = TestResultSerializer(test_result).data
-            test_result_data = TestResultSerializer(test_result).data
-            self._check_webhook_submission(send_mock.call_args_list[0], TestResult, 'edit', test_result_data, required_webhooks)
-            self._check_webhook_submission(send_mock.call_args_list[1], TestResult, 'edit', test_result_data, required_webhooks)
             submission_data = SubmissionSerializer(submission).data
-            self._check_webhook_submission(send_mock.call_args_list[2], Submission, 'edit', submission_data, required_webhooks)
-            self._check_webhook_submission(send_mock.call_args_list[3], Submission, 'edit', submission_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[0], Submission, 'edit', submission_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[1], Submission, 'edit', submission_data, required_webhooks)
+            test_result_data = TestResultSerializer(test_result).data
+            self._check_webhook_submission(send_mock.call_args_list[2], TestResult, 'edit', test_result_data, required_webhooks)
+            self._check_webhook_submission(send_mock.call_args_list[3], TestResult, 'edit', test_result_data, required_webhooks)
 
             self.assertTrue(all(count == 0 for _, count in required_webhooks))
 
@@ -265,7 +288,7 @@ class WebhooksTest(TestCase):
         with patch('dtf.webhooks._submit_webhook_request'):
             submission.save()
 
-        test_result = TestResult(submission=submission, name="Test 1", results=[{'name' : 'Result1', 'value' : 1, 'valuetype' : 'integer', 'status' : 'successful'}])
+        test_result = TestResult(submission=submission, name="Test 1")#, measurements=[{'name' : 'Result1', 'value' : 1, 'valuetype' : 'integer', 'status' : 'successful'}])
         with patch('dtf.webhooks._submit_webhook_request'):
             test_result.save()
 

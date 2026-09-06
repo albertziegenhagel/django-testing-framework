@@ -3,6 +3,7 @@ Module containing all database definitions
 """
 import collections
 import json
+import hashlib
 
 from django.db import models
 from django.utils import timezone
@@ -18,6 +19,15 @@ _POSSIBLE_STATUS = [
     ("unknown", "unknown"),
     ("failed", "failed"),
     ("broken", "broken")
+]
+
+_status_choices = [
+    ('SK', 'skip'),
+    ('US', 'unstable'),
+    ('UK', 'unknown'),
+    ('SU', 'successful'),
+    ('FA', 'failed'),
+    ('BR', 'broken')
 ]
 
 _value_json_schema = {
@@ -110,6 +120,14 @@ _value_json_schema = {
     ],
     'required': ['data', 'type'],
     'additionalProperties': False
+}
+
+_value_json_schema_2 = {
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'definitions': {
+        'value': _value_json_schema
+    },
+    **_value_json_schema
 }
 
 _results_json_schema = {
@@ -369,7 +387,6 @@ class TestResult(models.Model):
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE, null=False, related_name="tests")
     created = models.DateTimeField(default=timezone.now, editable=False, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
-    results = models.JSONField(null=True, validators=[JSONSchemaValidator(schema=_results_json_schema)])
 
     status = models.CharField(choices=_POSSIBLE_STATUS, default="skip", max_length=20)
 
@@ -379,7 +396,21 @@ class TestResult(models.Model):
         "unknown": 2,
         "unstable": 3,
         "failed": 4,
-        "broken": 5
+        "broken": 5,
+        "SK": 0,
+        "SU": 1,
+        "UK": 2,
+        "US": 3,
+        "FA": 4,
+        "BR": 5
+    }
+    _from_short_status = {
+        "SK": "skip",
+        "SU": "successful",
+        "US": "unstable",
+        "UK": "unknown",
+        "FA": "failed",
+        "BR": "broken",
     }
 
     required_project_membership_role = {
@@ -390,17 +421,53 @@ class TestResult(models.Model):
     }
 
     def downgrade_status(self):
-        if self.results is None: return
-        for result in self.results:
-            if self.status_order[result['status']] > self.status_order[self.status]:
-                self.status = result['status']
+        highest_status = self.status
+        highest_rank = self.status_order[highest_status]
 
-    def save(self, *args, **kwargs):
-        self.downgrade_status()
-        super(TestResult, self).save(*args, **kwargs)
-        updated = self.submission.update_status(self.status)
-        if updated:
-            self.submission.save()
+        for measurement in self.measurements.all():
+            rank = self.status_order.get(measurement.status, 0)
+            if rank > highest_rank:
+                highest_rank = rank
+                highest_status = TestResult._from_short_status[measurement.status]
+
+        if self.status != highest_status:
+            self.status = highest_status
+            self.save(update_fields=['status'])
+
+        if getattr(self, 'submission', None):
+            updated = self.submission.update_status(self.status)
+            if updated:
+                self.submission.save()
+
+    def recalculate_status(self):
+        highest_status = None
+        highest_rank = -1
+
+        for measurement in self.measurements.all():
+            rank = self.status_order.get(measurement.status, 0)
+            if rank > highest_rank:
+                highest_rank = rank
+                highest_status = self._from_short_status[measurement.status]
+
+        if highest_status is None:
+            highest_status = "unknown"
+
+        if self.status != highest_status:
+            self.status = highest_status
+            self.save(update_fields=['status'])
+
+    # def downgrade_status(self):
+    #     if self.measurements is None: return
+    #     for result in self.measurements.all():
+    #         if self.status_order[result.status] > self.status_order[self.status]:
+    #             self.status = result.status
+
+    # def save(self, *args, **kwargs):
+    #     # self.downgrade_status()
+    #     super(TestResult, self).save(*args, **kwargs)
+    #     updated = self.submission.update_status(self.status)
+    #     if updated:
+    #         self.submission.save()
 
     def delete(self, *args, **kwargs):
         submission = self.submission
@@ -427,6 +494,49 @@ class TestResult(models.Model):
     class Meta:
         app_label = 'dtf'
 
+class TestMeasurementImage(models.Model):
+    md5sum  = models.CharField(max_length=36, unique=True, blank=False)
+    data    = models.TextField(null=False, blank=False)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            md5 = hashlib.md5()
+            md5.update(self.data.encode('utf-8'))
+            self.md5sum = md5.hexdigest()
+        super().save(*args, **kwargs)
+
+class TestMeasurement(models.Model):
+    name = models.CharField(max_length=100, blank=False, db_index=True)
+
+    status = models.CharField(choices=_status_choices, default="UK", max_length=2)
+
+    test_result      = models.ForeignKey(TestResult, on_delete=models.CASCADE, null=False, related_name="measurements")
+    reference_source = models.ForeignKey(TestResult, on_delete=models.SET_NULL, null=True)
+
+    data_value      = models.JSONField(null=True, validators=[JSONSchemaValidator(schema=_value_json_schema)])
+    image_value     = models.ForeignKey(TestMeasurementImage, on_delete=models.PROTECT, null=True, related_name='value_measurements')
+
+    data_reference  = models.JSONField(null=True, validators=[JSONSchemaValidator(schema=_value_json_schema)])
+    image_reference = models.ForeignKey(TestMeasurementImage, on_delete=models.PROTECT, null=True, related_name='reference_measurements')
+
+    required_project_membership_role = {
+        'view'   : 'guest',
+        'add'    : 'developer',
+        'change' : 'developer',
+        'delete' : 'owner'
+    }
+
+    def get_value(self):
+        if self.image_value is not None:
+            return {'type': 'image',
+                    'data': self.image_value.data}
+        return self.data_value
+
+    def get_reference(self):
+        if self.image_reference is not None:
+            return {'type': 'image',
+                    'data': self.image_reference.data}
+        return self.data_reference
 
 class ReferenceSet(models.Model):
 

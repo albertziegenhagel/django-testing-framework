@@ -119,11 +119,13 @@ def trigger_webhooks(event, instance, sender, db_alias):
             trigger_webhook(webhook, data, sender, db_alias)
 
 def _on_model_save(sender, instance, created, **kwargs):
-    trigger_webhooks('create' if created else 'edit', instance, sender, db_alias=kwargs.get('using'))
+    if not kwargs.get('raw', False):
+        trigger_webhooks('create' if created else 'edit', instance, sender, db_alias=kwargs.get('using'))
 
 def _on_model_delete(sender, instance, **kwargs):
-    # trigger_webhooks('delete', instance, sender)
-    pass
+    if not kwargs.get('raw', False):
+        # trigger_webhooks('delete', instance, sender)
+        pass
 
 def _on_pre_migrate(sender, **kwargs):
     disconnect_webhook_signals()
