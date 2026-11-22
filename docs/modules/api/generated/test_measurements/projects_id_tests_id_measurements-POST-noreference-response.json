@@ -1,0 +1,12 @@
+{
+    "name": "New Measurement",
+    "id": 15,
+    "test_result": 1,
+    "status": "unknown",
+    "value": {
+        "data": 42,
+        "type": "integer"
+    },
+    "reference": null,
+    "reference_source": null
+}

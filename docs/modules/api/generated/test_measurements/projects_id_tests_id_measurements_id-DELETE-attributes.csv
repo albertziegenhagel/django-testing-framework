@@ -1,0 +1,4 @@
+Attribute|Type|Required|Description
+``:project_id``|string/integer|yes|The id or slug of the project.
+``:test_id``|integer|yes|The id of the test result.
+``:meas_id``|integer|yes|The id of the test measurement to delete.

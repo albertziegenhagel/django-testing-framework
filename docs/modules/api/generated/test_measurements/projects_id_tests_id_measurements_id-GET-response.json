@@ -1,0 +1,15 @@
+{
+    "name": "runtime",
+    "id": 8,
+    "test_result": 2,
+    "status": "successful",
+    "value": {
+        "data": "PT0.094780S",
+        "type": "duration"
+    },
+    "reference": {
+        "data": "PT0.124356S",
+        "type": "duration"
+    },
+    "reference_source": 1
+}

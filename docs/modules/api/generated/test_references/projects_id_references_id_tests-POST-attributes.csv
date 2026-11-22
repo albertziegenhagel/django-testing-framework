@@ -2,5 +2,5 @@ Attribute|Type|Required|Description
 ``:project_id``|string/integer|yes|The id or slug of the project of the reference set to create the new test reference for.
 ``:reference_id``|integer|yes|The id of the reference set to create a new test reference for.
 ``test_name``|string|yes|The name of the test the new references are for.
-``default_source``|integer|no|The id of the TestResult used as the default source when a measurement does not specify source.
+``default_source``|integer|no|The id of the test result used as the default source when a measurement does not specify source.
 ``measurements``|json|no|A list of named reference measurements. Each entry has a name, a typed value (or null), and an optional source TestResult id.
