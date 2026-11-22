@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rest References API &mdash; Django Testing Framework  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
 
   
@@ -90,7 +90,7 @@
 <li class="toctree-l4"><a class="reference internal" href="submissions.html#delete-submissions-of-a-project">Delete submissions of a project</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="test_results.html">Rest Results API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_results.html">Test Results API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#list-test-results-of-a-project">List test results of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#get-single-test-result-of-a-project">Get single test result of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-test-results-of-a-project">Modify test results of a project</a></li>
@@ -159,7 +159,9 @@
 <h1>Rest References API<a class="headerlink" href="#rest-references-api" title="Link to this heading"></a></h1>
 <section id="list-test-references-of-a-reference-set">
 <span id="api-test-references-reference-set-list"></span><h2>List test references of a reference set<a class="headerlink" href="#list-test-references-of-a-reference-set" title="Link to this heading"></a></h2>
-<p>List all test references from a reference set.</p>
+<p>List all test references from a reference set.
+Each test reference contains a <code class="docutils literal notranslate"><span class="pre">measurements</span></code> list. A measurement has a <code class="docutils literal notranslate"><span class="pre">name</span></code>,
+typed <code class="docutils literal notranslate"><span class="pre">value</span></code> (which may be null), and an optional <code class="docutils literal notranslate"><span class="pre">source</span></code> TestResult id.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span>
 </pre></div>
 </div>
@@ -203,57 +205,71 @@
 <span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;measurements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runtime&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;residual[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;residual[0]&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;integer[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer[0]&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;algorithm-time[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;algorithm-time[0]&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;argument[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;argument[0]&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;argument[1]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;argument[1]&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 2&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;screenshot-image.png&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;screenshot-image.png&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </pre></div>
@@ -261,7 +277,9 @@
 </section>
 <section id="add-new-test-reference-to-a-reference-set">
 <span id="api-test-references-reference-set-create"></span><h2>Add new test reference to a reference set<a class="headerlink" href="#add-new-test-reference-to-a-reference-set" title="Link to this heading"></a></h2>
-<p>Add a new test reference to the reference set.</p>
+<p>Add a new test reference to the reference set.
+Provide <code class="docutils literal notranslate"><span class="pre">measurements</span></code> as a list of named entries. If an entry omits
+<code class="docutils literal notranslate"><span class="pre">source</span></code>, the optional <code class="docutils literal notranslate"><span class="pre">default_source</span></code> is used.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span>
 </pre></div>
 </div>
@@ -292,12 +310,12 @@
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default_source</span></code></p></td>
 <td><p>integer</p></td>
 <td><p>no</p></td>
-<td><p>The id of the submission which is used as default source for references that do not have an explicit source given.</p></td>
+<td><p>The id of the TestResult used as the default source when a measurement does not specify source.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">references</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">measurements</span></code></p></td>
 <td><p>json</p></td>
-<td><p>yes</p></td>
-<td><p>Test result references. TODO: add JSON schema</p></td>
+<td><p>no</p></td>
+<td><p>A list of named reference measurements. Each entry has a name, a typed value (or null), and an optional source TestResult id.</p></td>
 </tr>
 </tbody>
 </table>
@@ -308,21 +326,23 @@
 <span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;test_name&quot;: &quot;New Test&quot;,</span>
 <span class="s1">             &quot;default_source&quot;: 2,</span>
-<span class="s1">             &quot;references&quot;: {</span>
-<span class="s1">                 &quot;runtime&quot;: {</span>
+<span class="s1">             &quot;measurements&quot;: [</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;name&quot;: &quot;runtime&quot;,</span>
 <span class="s1">                     &quot;value&quot;: {</span>
 <span class="s1">                         &quot;data&quot;: &quot;PT0.124356S&quot;,</span>
 <span class="s1">                         &quot;type&quot;: &quot;duration&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;source&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;Result1&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;name&quot;: &quot;Result1&quot;,</span>
 <span class="s1">                     &quot;value&quot;: {</span>
 <span class="s1">                         &quot;data&quot;: 123,</span>
 <span class="s1">                         &quot;type&quot;: &quot;integer&quot;</span>
 <span class="s1">                     }</span>
 <span class="s1">                 }</span>
-<span class="s1">             }</span>
+<span class="s1">             ]</span>
 <span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>http://dtf.example.com/api/projects/1/references/1/tests
 </pre></div>
@@ -332,21 +352,23 @@
   <span class="p">-</span><span class="n">-data</span> <span class="s1">&#39;{</span>
 <span class="s1">             &quot;&quot;test_name&quot;&quot;: &quot;&quot;New Test&quot;&quot;,</span>
 <span class="s1">             &quot;&quot;default_source&quot;&quot;: 2,</span>
-<span class="s1">             &quot;&quot;references&quot;&quot;: {</span>
-<span class="s1">                 &quot;&quot;runtime&quot;&quot;: {</span>
+<span class="s1">             &quot;&quot;measurements&quot;&quot;: [</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;&quot;name&quot;&quot;: &quot;&quot;runtime&quot;&quot;,</span>
 <span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
 <span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;PT0.124356S&quot;&quot;,</span>
 <span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;duration&quot;&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;&quot;Result1&quot;&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;&quot;name&quot;&quot;: &quot;&quot;Result1&quot;&quot;,</span>
 <span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
 <span class="s1">                         &quot;&quot;data&quot;&quot;: 123,</span>
 <span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;integer&quot;&quot;</span>
 <span class="s1">                     }</span>
 <span class="s1">                 }</span>
-<span class="s1">             }</span>
+<span class="s1">             ]</span>
 <span class="s1">         }&#39;</span> <span class="p">`</span>
   <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">tests</span>
 </pre></div>
@@ -359,22 +381,26 @@
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:17.566513Z&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:17.566513Z&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;measurements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runtime&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;Result1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Result1&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -429,64 +455,81 @@
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;measurements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runtime&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;residual[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;residual[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;integer[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;algorithm-time[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;algorithm-time[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;argument[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;argument[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;argument[1]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;argument[1]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 2&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;screenshot-image.png&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;screenshot-image.png&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="modify-test-references-of-a-reference-set">
 <span id="api-test-references-reference-set-modify"></span><h2>Modify test references of a reference set<a class="headerlink" href="#modify-test-references-of-a-reference-set" title="Link to this heading"></a></h2>
-<p>Modify the fields of an existing test reference. All fields have to be given (even the ones that are unchanged).</p>
+<p>Modify an existing test reference. PUT replaces its measurements when
+<code class="docutils literal notranslate"><span class="pre">measurements</span></code> is provided. PATCH upserts measurements by name; use
+<code class="docutils literal notranslate"><span class="pre">{&quot;name&quot;:</span> <span class="pre">&quot;measurement-name&quot;,</span> <span class="pre">&quot;delete&quot;:</span> <span class="pre">true}</span></code> to remove one. A null
+<code class="docutils literal notranslate"><span class="pre">value</span></code> is retained as a measurement value and does not remove the entry.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PUT</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span><span class="o">/</span><span class="p">:</span><span class="n">reference_id</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">:</span><span class="n">test_id</span>
 </pre></div>
 </div>
@@ -519,10 +562,10 @@
 <td><p>yes</p></td>
 <td><p>The name of the test the references are for.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">references</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">measurements</span></code></p></td>
 <td><p>json</p></td>
-<td><p>yes</p></td>
-<td><p>Test references. TODO: add JSON schema</p></td>
+<td><p>no</p></td>
+<td><p>The list of named reference measurements. Each entry has a name, a typed value (or null), and its source TestResult id.</p></td>
 </tr>
 </tbody>
 </table>
@@ -533,43 +576,48 @@
 <span class="w">  </span>--data<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">             &quot;reference_set&quot;: 1,</span>
 <span class="s1">             &quot;test_name&quot;: &quot;demo (np=1)&quot;,</span>
-<span class="s1">             &quot;references&quot;: {</span>
-<span class="s1">                 &quot;runtime&quot;: {</span>
+<span class="s1">             &quot;measurements&quot;: [</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;name&quot;: &quot;runtime&quot;,</span>
 <span class="s1">                     &quot;value&quot;: {</span>
 <span class="s1">                         &quot;data&quot;: &quot;PT0.124356S&quot;,</span>
 <span class="s1">                         &quot;type&quot;: &quot;duration&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;source&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;residual[0]&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;name&quot;: &quot;residual[0]&quot;,</span>
 <span class="s1">                     &quot;value&quot;: {</span>
 <span class="s1">                         &quot;data&quot;: 2.345,</span>
 <span class="s1">                         &quot;type&quot;: &quot;float&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;source&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;integer[0]&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;name&quot;: &quot;integer[0]&quot;,</span>
 <span class="s1">                     &quot;value&quot;: {</span>
 <span class="s1">                         &quot;data&quot;: 98,</span>
 <span class="s1">                         &quot;type&quot;: &quot;integer&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;source&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;algorithm-time[0]&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;name&quot;: &quot;algorithm-time[0]&quot;,</span>
 <span class="s1">                     &quot;value&quot;: {</span>
 <span class="s1">                         &quot;data&quot;: &quot;PT0.345000S&quot;,</span>
 <span class="s1">                         &quot;type&quot;: &quot;duration&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;source&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;argument[0]&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;name&quot;: &quot;argument[0]&quot;,</span>
 <span class="s1">                     &quot;value&quot;: {</span>
 <span class="s1">                         &quot;data&quot;: &quot;process argument 1&quot;,</span>
 <span class="s1">                         &quot;type&quot;: &quot;string&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;source&quot;: 1</span>
 <span class="s1">                 }</span>
-<span class="s1">             }</span>
+<span class="s1">             ]</span>
 <span class="s1">         }&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>http://dtf.example.com/api/projects/1/references/1/tests/1
 </pre></div>
@@ -579,43 +627,48 @@
   <span class="p">-</span><span class="n">-data</span> <span class="s1">&#39;{</span>
 <span class="s1">             &quot;&quot;reference_set&quot;&quot;: 1,</span>
 <span class="s1">             &quot;&quot;test_name&quot;&quot;: &quot;&quot;demo (np=1)&quot;&quot;,</span>
-<span class="s1">             &quot;&quot;references&quot;&quot;: {</span>
-<span class="s1">                 &quot;&quot;runtime&quot;&quot;: {</span>
+<span class="s1">             &quot;&quot;measurements&quot;&quot;: [</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;&quot;name&quot;&quot;: &quot;&quot;runtime&quot;&quot;,</span>
 <span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
 <span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;PT0.124356S&quot;&quot;,</span>
 <span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;duration&quot;&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;&quot;residual[0]&quot;&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;&quot;name&quot;&quot;: &quot;&quot;residual[0]&quot;&quot;,</span>
 <span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
 <span class="s1">                         &quot;&quot;data&quot;&quot;: 2.345,</span>
 <span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;float&quot;&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;&quot;integer[0]&quot;&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;&quot;name&quot;&quot;: &quot;&quot;integer[0]&quot;&quot;,</span>
 <span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
 <span class="s1">                         &quot;&quot;data&quot;&quot;: 98,</span>
 <span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;integer&quot;&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;&quot;algorithm-time[0]&quot;&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;&quot;name&quot;&quot;: &quot;&quot;algorithm-time[0]&quot;&quot;,</span>
 <span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
 <span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;PT0.345000S&quot;&quot;,</span>
 <span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;duration&quot;&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
 <span class="s1">                 },</span>
-<span class="s1">                 &quot;&quot;argument[0]&quot;&quot;: {</span>
+<span class="s1">                 {</span>
+<span class="s1">                     &quot;&quot;name&quot;&quot;: &quot;&quot;argument[0]&quot;&quot;,</span>
 <span class="s1">                     &quot;&quot;value&quot;&quot;: {</span>
 <span class="s1">                         &quot;&quot;data&quot;&quot;: &quot;&quot;process argument 1&quot;&quot;,</span>
 <span class="s1">                         &quot;&quot;type&quot;&quot;: &quot;&quot;string&quot;&quot;</span>
 <span class="s1">                     },</span>
 <span class="s1">                     &quot;&quot;source&quot;&quot;: 1</span>
 <span class="s1">                 }</span>
-<span class="s1">             }</span>
+<span class="s1">             ]</span>
 <span class="s1">         }&#39;</span> <span class="p">`</span>
   <span class="n">http</span><span class="p">://</span><span class="n">dtf</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">projects</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">references</span><span class="p">/</span><span class="n">1</span><span class="p">/</span><span class="n">tests</span><span class="p">/</span><span class="n">1</span>
 </pre></div>
@@ -628,43 +681,53 @@
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-04-06T08:03:29.072000Z&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:12.122702Z&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;references&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;runtime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;measurements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runtime&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;residual[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;residual[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;integer[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;algorithm-time[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;algorithm-time[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;argument[0]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;argument[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
