@@ -1,7 +1,7 @@
-References API
-==============
+Reference Sets API
+==================
 
-.. _api-references-list:
+.. _api-reference-sets-list:
 
 List reference sets of a project
 --------------------------------
