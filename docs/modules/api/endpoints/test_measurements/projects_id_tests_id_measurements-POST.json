@@ -49,7 +49,7 @@
                 "name" : "New Measurement",
                 "status" : "unknown",
                 "value": {
-                    "data": "42",
+                    "data": 42,
                     "type": "integer"
                 },
                 "reference": null
@@ -65,11 +65,11 @@
                 "name" : "New Measurement",
                 "status" : "failed",
                 "value": {
-                    "data": "123",
+                    "data": 123,
                     "type": "integer"
                 },
                 "reference": {
-                    "data": "42",
+                    "data": 42,
                     "type": "integer"
                 },
                 "reference_source": 1

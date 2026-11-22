@@ -1,0 +1,8 @@
+Attribute|Type|Required|Description
+``:project_id``|string/integer|yes|The id or slug of the project.
+``:test_id``|integer|yes|The id of the test result.
+``name``|string|yes|The name of the new test measurement.
+``status``|string|yes|Status of the test measurement. Allowed values are 'skip', 'successful', 'unstable', 'unknown', 'failed', or 'broken'.
+``value``|json|yes|measurement value. TODO: add JSON schema
+``reference``|json|no|measurement reference value. TODO: add JSON schema
+``reference_source``|integer|no|ID of the test result that is the source of the reference value

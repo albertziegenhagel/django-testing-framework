@@ -6,7 +6,7 @@
     "last_updated": "2023-11-25T15:39:12.122702Z",
     "measurements": [
         {
-            "id": 1,
+            "id": 8,
             "name": "runtime",
             "value": {
                 "data": "PT0.124356S",
@@ -15,7 +15,7 @@
             "source": 1
         },
         {
-            "id": 2,
+            "id": 9,
             "name": "residual[0]",
             "value": {
                 "data": 2.345,
@@ -24,7 +24,7 @@
             "source": 1
         },
         {
-            "id": 3,
+            "id": 10,
             "name": "integer[0]",
             "value": {
                 "data": 98,
@@ -33,7 +33,7 @@
             "source": 1
         },
         {
-            "id": 4,
+            "id": 11,
             "name": "algorithm-time[0]",
             "value": {
                 "data": "PT0.345000S",
@@ -42,7 +42,7 @@
             "source": 1
         },
         {
-            "id": 5,
+            "id": 12,
             "name": "argument[0]",
             "value": {
                 "data": "process argument 1",

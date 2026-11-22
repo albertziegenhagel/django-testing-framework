@@ -2,7 +2,7 @@ curl -X POST `
   --header "Content-Type: application/json" `
   --data '{
              ""name"": ""New Test"",
-             ""results"": [
+             ""measurements"": [
                  {
                      ""name"": ""runtime"",
                      ""value"": {

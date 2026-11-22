@@ -17,10 +17,15 @@
             "required": true,
             "description": "The name of the new test."
         },
+        "measurements" : {
+            "type": "array",
+            "required": false,
+            "description": "An array of measurements to create for the new test."
+        },
         "status" : {
             "type": "string",
             "required": false,
-            "description": "Status of the test. Allowed values are 'skip', 'successful', 'unstable', 'unknown', 'failed', or 'broken'."
+            "description": "Status of the test. If not set, the status will be computed from the measurements.Allowed values are 'skip', 'successful', 'unstable', 'unknown', 'failed', or 'broken'."
         }
     },
     "examples" : [
@@ -41,7 +46,18 @@
                 "submission_id": 1
             },
             "data": {
-                "name" : "New Test"
+                "name" : "New Test",
+                "measurements" : [
+                    {
+                        "name": "runtime",
+                        "value": {
+                            "data": "PT0.124356S",
+                            "type": "duration"
+                        },
+                        "status": "failed",
+                        "reference": null
+                    }
+                ]
             }
         }
     ]
