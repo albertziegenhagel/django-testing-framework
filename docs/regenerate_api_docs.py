@@ -150,7 +150,11 @@ def regenerate_docs():
 if not args.no_setup:
     setup_db_script_path = os.path.join(root_path, "setup-demo-db.py")
 
-    os.system(f"{sys.executable} {setup_db_script_path}")
+    cmd = [sys.executable, setup_db_script_path]
+    if args.force:
+        cmd.append("--force")
+
+    subprocess.run(cmd, check=True, cwd=root_path)
 
 # Run demo server in the background
 if args.no_server:
@@ -164,7 +168,7 @@ else:
         with subprocess.Popen(args=[sys.executable, "-u", manage_script_path, "runserver"], stdout=server_output, stderr=subprocess.STDOUT, cwd=root_path, env=env) as server_process:
             print(f"Started server with pid: {server_process.pid}")
             proc = psutil.Process(server_process.pid)
-            time.sleep(1)
+            time.sleep(5)
             try:
                 regenerate_docs()
             finally:
