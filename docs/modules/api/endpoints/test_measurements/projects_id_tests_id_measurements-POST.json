@@ -1,0 +1,79 @@
+{
+    "endpoint": "/projects/:project_id/tests/:test_id/measurements",
+    "method": "POST",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project."
+        },
+        ":test_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the test result."
+        },
+        "name" : {
+            "type": "string",
+            "required": true,
+            "description": "The name of the new test measurement."
+        },
+        "status" : {
+            "type": "string",
+            "required": true,
+            "description": "Status of the test measurement. Allowed values are 'skip', 'successful', 'unstable', 'unknown', 'failed', or 'broken'."
+        },
+        "value" : {
+            "type": "json",
+            "required": true,
+            "description": "measurement value. TODO: add JSON schema"
+        },
+        "reference" : {
+            "type": "json",
+            "required": false,
+            "description": "measurement reference value. TODO: add JSON schema"
+        },
+        "reference_source" : {
+            "type": "integer",
+            "required": false,
+            "description": "ID of the test result that is the source of the reference value"
+        }
+    },
+    "examples" : [
+        {
+            "name" : "noreference",
+            "arguments" : {
+                "project_id" : 1,
+                "test_id": 1
+            },
+            "data": {
+                "name" : "New Measurement",
+                "status" : "unknown",
+                "value": {
+                    "data": "42",
+                    "type": "integer"
+                },
+                "reference": null
+            }
+        },
+        {
+            "name" : "withreference",
+            "arguments" : {
+                "project_id" : 1,
+                "test_id": 2
+            },
+            "data": {
+                "name" : "New Measurement",
+                "status" : "failed",
+                "value": {
+                    "data": "123",
+                    "type": "integer"
+                },
+                "reference": {
+                    "data": "42",
+                    "type": "integer"
+                },
+                "reference_source": 1
+            }
+        }
+    ]
+}

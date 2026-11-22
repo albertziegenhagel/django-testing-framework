@@ -411,9 +411,9 @@ class TestMeasurementHistoryView(ProjectViewMixin, ProjectPermissionRequiredMixi
 
         measurement_global_reference = None
         if test_reference is not None:
-            reference = test_reference.references.get(measurement_name)
+            reference = test_reference.measurements.filter(name=measurement_name).first()
             if reference is not None:
-                measurement_global_reference = reference['value']
+                measurement_global_reference = reference.get_value()
 
         return super().get_context_data(**kwargs,
                                         display_timezone=settings.DTF_DEFAULT_DISPLAY_TIME_ZONE,

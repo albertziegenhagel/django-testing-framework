@@ -95,8 +95,8 @@ def create_html_representation(data, valuetype):
 def as_measurement_entry(entry, project):
     if entry is None:
         return "N/A"
-    value = entry.get('value', None)
-    source = entry.get('source', None)
+    value = entry.get_value()
+    source = entry.source_id
     if value is not None and 'data' in value and 'type' in value:
         text = create_html_representation(value['data'], value['type'])
     else:
@@ -185,4 +185,37 @@ def print_webhook_log_response(log_entry):
 
 @register.filter(is_safe=True)
 def to_js_dict(data):
+    return mark_safe(json.dumps(data))
+
+@register.filter(is_safe=True)
+def measurements_to_js_dict(measurements):
+    data = []
+    _from_internal = {
+        "SK": "skip",
+        "SU": "successful",
+        "US": "unstable",
+        "UK": "unknown",
+        "FA": "failed",
+        "BR": "broken",
+    }
+    for measurement in measurements.all():
+        data.append({
+            'name': measurement.name,
+            'status': _from_internal.get(measurement.status, measurement.status),
+            'value': measurement.get_value(),
+            'reference': measurement.get_reference()
+        })
+        if measurement.reference_source is not None:
+            data[-1]['reference_source'] = measurement.reference_source.id
+    return mark_safe(json.dumps(data))
+
+@register.filter(is_safe=True)
+def reference_measurements_to_js_dict(measurements):
+    data = {
+        measurement.name: {
+            'value': measurement.get_value(),
+            'source': measurement.source_id,
+        }
+        for measurement in measurements.all()
+    }
     return mark_safe(json.dumps(data))

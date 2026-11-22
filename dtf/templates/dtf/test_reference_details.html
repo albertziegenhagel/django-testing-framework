@@ -78,10 +78,10 @@
     </tr>
     </thead>
     <tbody class="list">
-    {% for name, entry in test_reference.references.items %}
+    {% for entry in test_reference.measurements.all %}
         <tr>
             <td class="name name-filter">
-                {{ name }}
+                {{ entry.name }}
             </td>
             <td class="value value-filter">
                 {{ entry|as_measurement_entry:test_reference.reference_set.project }}

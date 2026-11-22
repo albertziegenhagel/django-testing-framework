@@ -4,41 +4,51 @@
     "id": 1,
     "created": "2021-04-06T08:03:29.072000Z",
     "last_updated": "2023-11-25T15:39:12.122702Z",
-    "references": {
-        "runtime": {
+    "measurements": [
+        {
+            "id": 1,
+            "name": "runtime",
             "value": {
                 "data": "PT0.124356S",
                 "type": "duration"
             },
             "source": 1
         },
-        "residual[0]": {
+        {
+            "id": 2,
+            "name": "residual[0]",
             "value": {
                 "data": 2.345,
                 "type": "float"
             },
             "source": 1
         },
-        "integer[0]": {
+        {
+            "id": 3,
+            "name": "integer[0]",
             "value": {
                 "data": 98,
                 "type": "integer"
             },
             "source": 1
         },
-        "algorithm-time[0]": {
+        {
+            "id": 4,
+            "name": "algorithm-time[0]",
             "value": {
                 "data": "PT0.345000S",
                 "type": "duration"
             },
             "source": 1
         },
-        "argument[0]": {
+        {
+            "id": 5,
+            "name": "argument[0]",
             "value": {
                 "data": "process argument 1",
                 "type": "string"
             },
             "source": 1
         }
-    }
+    ]
 }

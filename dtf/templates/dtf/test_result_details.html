@@ -26,9 +26,9 @@
 
 <script>
 
-const initialTestResultsData =  {{ test_result.results | to_js_dict }};
+const initialTestMeasurementsData =  {{ test_result.measurements | measurements_to_js_dict }};
 {% if test_reference is not None %}
-const initialTestReferencesData = {{ test_reference.references | to_js_dict }};
+const initialTestReferencesData = {{ test_reference.measurements.all | reference_measurements_to_js_dict }};
 {% else %}
 const initialTestReferencesData = {};
 {% endif %}
@@ -38,7 +38,7 @@ function onReferenceUpdateButton() {
         "{{ csrf_token }}",
         "{{ test_result.name }}",
         {{ test_result.id }},
-        initialTestResultsData,
+        initialTestMeasurementsData,
         {{ property_values | to_js_dict }},
         {% if reference_set is not None %}
             {{ reference_set.id }},
@@ -57,7 +57,7 @@ $('document').ready(function(){
     buildResultsTable(
         "{{ test_result.submission.project.slug }}",
         {{ test_result.id }},
-        initialTestResultsData,
+        initialTestMeasurementsData,
         initialTestReferencesData,
         {% if test_reference_permissions.add or test_reference_permissions.change %}
         true

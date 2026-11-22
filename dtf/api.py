@@ -19,7 +19,8 @@ from rest_framework import views
 from dtf.serializers import UserSerializer
 from dtf.serializers import ProjectSerializer
 from dtf.serializers import MembershipSerializer
-from dtf.serializers import TestResultSerializer
+from dtf.serializers import TestResultSerializer, TestResultCreateSerializer
+from dtf.serializers import TestMeasurementSerializer
 from dtf.serializers import ReferenceSetSerializer
 from dtf.serializers import TestReferenceSerializer
 from dtf.serializers import SubmissionSerializer
@@ -27,7 +28,7 @@ from dtf.serializers import ProjectSubmissionPropertySerializer
 from dtf.serializers import WebhookSerializer
 from dtf.serializers import WebhookLogEntrySerializer
 
-from dtf.models import TestResult, Membership, Project, ReferenceSet, TestReference, Submission, ProjectSubmissionProperty, Webhook
+from dtf.models import TestResult, Membership, Project, ReferenceSet, TestReference, Submission, ProjectSubmissionProperty, Webhook, TestMeasurement
 from dtf.functions import get_project_by_id_or_slug, create_reference_query
 from dtf.permissions import ProjectPermission
 
@@ -222,12 +223,42 @@ class ProjectTestResultDetail(generics.RetrieveUpdateDestroyAPIView, ProjectAPIV
         return TestResult.objects.filter(submission__project__id=self.get_project().id).all()
 
 #
+# Project Test Measurement API endpoints
+#
+
+class ProjectTestResultMeasurementList(generics.ListCreateAPIView, ProjectAPIViewMixin):
+    serializer_class = TestMeasurementSerializer
+    permission_classes = [ProjectPermission]
+
+    def get_queryset(self):
+        test_result = get_child_or_404(TestResult.objects.filter(submission__project__id=self.get_project().id), pk=self.kwargs['test_id'])
+        return test_result.measurements
+
+    def create(self, request, *args, **kwargs):
+        request.data['test_result'] = get_child_or_404(TestResult.objects.filter(submission__project__id=self.get_project().id), pk=self.kwargs['test_id']).id
+        return super().create(request, *args, **kwargs)
+
+class ProjectTestResultMeasurementDetail(generics.RetrieveUpdateDestroyAPIView, ProjectAPIViewMixin):
+    serializer_class = TestMeasurementSerializer
+    permission_classes = [ProjectPermission]
+    lookup_url_kwarg = 'meas_id'
+
+    def get_queryset(self):
+        test_result = get_child_or_404(TestResult.objects.filter(submission__project__id=self.get_project().id), pk=self.kwargs['test_id'])
+        return test_result.measurements.all()
+
+#
 # Project Submission Test API endpoints
 #
 
 class ProjectSubmissionTestResultList(generics.ListCreateAPIView, ProjectAPIViewMixin):
     serializer_class = TestResultSerializer
     permission_classes = [ProjectPermission]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return TestResultCreateSerializer
+        return super().get_serializer_class()
 
     def get_queryset(self):
         submission = get_child_or_404(self.get_project().submissions, pk=self.kwargs['submission_id'])
@@ -314,20 +345,6 @@ class ProjectReferenceSetTestReferenceDetail(generics.RetrieveUpdateDestroyAPIVi
         except IntegrityError as error:
             return Response(str(error), status.HTTP_400_BAD_REQUEST)
 
-    def partial_update(self, request, *args, **kwargs):
-        test_references = self.get_object()
-
-        # TODO: should we introduce a special serializer here?
-        test_references.update_references(
-            request.data['references'],
-            request.data['default_source'])
-        try:
-            test_references.save()
-            serializer = self.get_serializer(test_references)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as err:
-            return Response(str(err), status=status.HTTP_400_BAD_REQUEST)
-
 class TestMeasurementHistory(views.APIView, ProjectAPIViewMixin):
     permission_classes = [ProjectPermission]
     permission_model = TestResult
@@ -382,14 +399,13 @@ class TestMeasurementHistory(views.APIView, ProjectAPIViewMixin):
                 'value_source' : test.id,
                 'date' : test.created
             }
-            if test.results is not None:
-                for measurement in test.results:
-                    if measurement['name'] == measurement_name:
-                        entry['value'] = copy.deepcopy(measurement['value'])
-                        entry['reference'] = copy.deepcopy(measurement['reference'])
-                        entry['status'] = copy.deepcopy(measurement['status'])
-                        entry['reference_source'] = measurement.get('reference_source')
-                        break
+            if test.measurements is not None:
+                measurement = test.measurements.filter(name=measurement_name).first()
+                if measurement is not None:
+                    entry['value'] = copy.deepcopy(measurement.get_value())
+                    entry['reference'] = copy.deepcopy(measurement.get_reference())
+                    entry['status'] = copy.deepcopy(measurement.status)
+                    entry['reference_source'] = measurement.reference_source_id
             data.append(entry)
 
         return Response(data, status.HTTP_200_OK)

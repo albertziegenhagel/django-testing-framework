@@ -1,0 +1,65 @@
+{
+    "endpoint": "/projects/:project_id/tests/:test_id/measurements/:meas_id",
+    "method": "PUT",
+    "attributes" : {
+        ":project_id" : {
+            "type": "string/integer",
+            "required": true,
+            "description": "The id or slug of the project."
+        },
+        ":test_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the test result."
+        },
+        ":meas_id" : {
+            "type": "integer",
+            "required": true,
+            "description": "The id of the test measurement to modify."
+        },
+        "name" : {
+            "type": "string",
+            "required": true,
+            "description": "The name of the new test measurement."
+        },
+        "status" : {
+            "type": "string",
+            "required": true,
+            "description": "Status of the test measurement. Allowed values are 'skip', 'successful', 'unstable', 'unknown', 'failed', or 'broken'."
+        },
+        "value" : {
+            "type": "json",
+            "required": true,
+            "description": "measurement value. TODO: add JSON schema"
+        },
+        "reference" : {
+            "type": "json",
+            "required": true,
+            "description": "measurement reference value. TODO: add JSON schema"
+        },
+        "reference_source" : {
+            "type": "integer",
+            "required": true,
+            "description": "ID of the test result that is the source of the reference value"
+        }
+    },
+    "examples" : [
+        {
+            "arguments" : {
+                "project_id" : 1,
+                "test_id": 1,
+                "meas_id": 1
+            },
+            "data": {
+                "name": "runtime",
+                "value": {
+                    "data": "PT0.124356S",
+                    "type": "duration"
+                },
+                "status": "unknown",
+                "reference": null,
+                "reference_source": null
+            }
+        }
+    ]
+}

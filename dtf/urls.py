@@ -56,6 +56,8 @@ urlpatterns = [
 
     path('api/projects/<str:project_id>/tests', api.ProjectTestResultList.as_view(), name='api_project_tests'),
     path('api/projects/<str:project_id>/tests/<str:test_id>', api.ProjectTestResultDetail.as_view(), name='api_project_test'),
+    path('api/projects/<str:project_id>/tests/<str:test_id>/measurements', api.ProjectTestResultMeasurementList.as_view(), name='api_project_test_measurements'),
+    path('api/projects/<str:project_id>/tests/<str:test_id>/measurements/<str:meas_id>', api.ProjectTestResultMeasurementDetail.as_view(), name='api_project_test_measurement'),
 
     path('api/projects/<str:project_id>/submissions', api.ProjectSubmissionList.as_view(), name='api_project_submissions'),
     path('api/projects/<str:project_id>/submissions/<str:submission_id>', api.ProjectSubmissionDetail.as_view(), name='api_project_submission'),
