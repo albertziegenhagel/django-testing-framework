@@ -1,4 +1,4 @@
-Rest References API
+Test References API
 ===================
 
 .. _api-test_references-reference_set-list:

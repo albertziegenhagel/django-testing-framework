@@ -314,6 +314,190 @@ An example could look as follows:
          :language: powershell
 
 
+.. _api-test_results-measurements-list:
+
+List measurements of a test result
+----------------------------------
+
+List all measurements from a specific test result.
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/test_measurements/projects_id_tests_id_measurements-GET-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-curl.ps1
+         :language: powershell
+
+which might give a result like this:
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-response.json
+   :language: json
+
+
+.. _api-test_results-measurements-create:
+
+Add a measurement to a test result
+----------------------------------
+
+Add a new measurement to the test result.
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-POST-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/test_measurements/projects_id_tests_id_measurements-POST-attributes.csv
+   :delim: |
+
+An example to create a measurement without a reference could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-POST-noreference-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-POST-noreference-curl.ps1
+         :language: powershell
+
+which might give a result like this:
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-POST-noreference-response.json
+   :language: json
+
+Or an example to create a measurement with a reference:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-POST-withreference-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-POST-withreference-curl.ps1
+         :language: powershell
+
+which might give a result like this:
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-POST-withreference-response.json
+   :language: json
+
+
+.. _api-test_results-measurements-get:
+
+Get a single measurement of a test result
+-----------------------------------------
+
+Retrieve a specific measurement from a test result.
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-GET-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/test_measurements/projects_id_tests_id_measurements_id-GET-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-GET-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-GET-curl.ps1
+         :language: powershell
+
+which might give a result like this:
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-GET-response.json
+   :language: json
+
+
+.. _api-test_results-measurements-modify:
+
+Modify a measurement of a test result
+-------------------------------------
+
+Modify the fields of an existing measurement. All fields have to be given (even the ones that are unchanged).
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-PUT-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/test_measurements/projects_id_tests_id_measurements_id-PUT-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-PUT-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-PUT-curl.ps1
+         :language: powershell
+
+which might give a result like this:
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-PUT-response.json
+   :language: json
+
+
+.. _api-test_results-measurements-delete:
+
+Delete a measurement of a test result
+-------------------------------------
+
+Deletes a measurement from a test result. This can not be undone!
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-DELETE-desc.txt
+
+.. csv-table::
+   :header-rows: 1
+   :file: generated/test_measurements/projects_id_tests_id_measurements_id-DELETE-attributes.csv
+   :delim: |
+
+An example could look as follows:
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-DELETE-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements_id-DELETE-curl.ps1
+         :language: powershell
+
+
 .. _api-test_results-history:
 
 History of a test result measurement

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>References API &mdash; Django Testing Framework  documentation</title>
+  <title>Reference Sets API &mdash; Django Testing Framework  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
@@ -21,7 +21,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Rest References API" href="test_references.html" />
+    <link rel="next" title="Test References API" href="test_references.html" />
     <link rel="prev" title="Test Results API" href="test_results.html" /> 
 </head>
 
@@ -100,10 +100,15 @@
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#get-single-test-result-of-a-submission">Get single test result of a submission</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-test-results-of-a-submission">Modify test results of a submission</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-test-results-of-a-submission">Delete test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#list-measurements-of-a-test-result">List measurements of a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#add-a-measurement-to-a-test-result">Add a measurement to a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#get-a-single-measurement-of-a-test-result">Get a single measurement of a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-a-measurement-of-a-test-result">Modify a measurement of a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-a-measurement-of-a-test-result">Delete a measurement of a test result</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#history-of-a-test-result-measurement">History of a test result measurement</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">References API</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Reference Sets API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#list-reference-sets-of-a-project">List reference sets of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#create-new-reference-set">Create new reference set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-single-reference-set-of-a-project">Get single reference set of a project</a></li>
@@ -111,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#delete-reference-sets-of-a-project">Delete reference sets of a project</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="test_references.html">Rest References API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_references.html">Test References API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="test_references.html#list-test-references-of-a-reference-set">List test references of a reference set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_references.html#add-new-test-reference-to-a-reference-set">Add new test reference to a reference set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_references.html#get-single-test-reference-of-a-reference-set">Get single test reference of a reference set</a></li>
@@ -145,7 +150,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../api.html">REST API</a></li>
-      <li class="breadcrumb-item active">References API</li>
+      <li class="breadcrumb-item active">Reference Sets API</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/modules/api/references.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -155,10 +160,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="references-api">
-<h1>References API<a class="headerlink" href="#references-api" title="Link to this heading"></a></h1>
+  <section id="reference-sets-api">
+<h1>Reference Sets API<a class="headerlink" href="#reference-sets-api" title="Link to this heading"></a></h1>
 <section id="list-reference-sets-of-a-project">
-<span id="api-references-list"></span><h2>List reference sets of a project<a class="headerlink" href="#list-reference-sets-of-a-project" title="Link to this heading"></a></h2>
+<span id="api-reference-sets-list"></span><h2>List reference sets of a project<a class="headerlink" href="#list-reference-sets-of-a-project" title="Link to this heading"></a></h2>
 <p>List all reference sets of a given project.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">project_id</span><span class="o">/</span><span class="n">references</span>
 </pre></div>
@@ -443,7 +448,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="test_results.html" class="btn btn-neutral float-left" title="Test Results API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="test_references.html" class="btn btn-neutral float-right" title="Rest References API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="test_references.html" class="btn btn-neutral float-right" title="Test References API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

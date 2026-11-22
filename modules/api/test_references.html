@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rest References API &mdash; Django Testing Framework  documentation</title>
+  <title>Test References API &mdash; Django Testing Framework  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Users API" href="users.html" />
-    <link rel="prev" title="References API" href="references.html" /> 
+    <link rel="prev" title="Reference Sets API" href="references.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -100,10 +100,15 @@
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#get-single-test-result-of-a-submission">Get single test result of a submission</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-test-results-of-a-submission">Modify test results of a submission</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-test-results-of-a-submission">Delete test results of a submission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#list-measurements-of-a-test-result">List measurements of a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#add-a-measurement-to-a-test-result">Add a measurement to a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#get-a-single-measurement-of-a-test-result">Get a single measurement of a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#modify-a-measurement-of-a-test-result">Modify a measurement of a test result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_results.html#delete-a-measurement-of-a-test-result">Delete a measurement of a test result</a></li>
 <li class="toctree-l4"><a class="reference internal" href="test_results.html#history-of-a-test-result-measurement">History of a test result measurement</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="references.html">References API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="references.html">Reference Sets API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="references.html#list-reference-sets-of-a-project">List reference sets of a project</a></li>
 <li class="toctree-l4"><a class="reference internal" href="references.html#create-new-reference-set">Create new reference set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="references.html#get-single-reference-set-of-a-project">Get single reference set of a project</a></li>
@@ -111,7 +116,7 @@
 <li class="toctree-l4"><a class="reference internal" href="references.html#delete-reference-sets-of-a-project">Delete reference sets of a project</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Rest References API</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Test References API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#list-test-references-of-a-reference-set">List test references of a reference set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#add-new-test-reference-to-a-reference-set">Add new test reference to a reference set</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#get-single-test-reference-of-a-reference-set">Get single test reference of a reference set</a></li>
@@ -145,7 +150,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../api.html">REST API</a></li>
-      <li class="breadcrumb-item active">Rest References API</li>
+      <li class="breadcrumb-item active">Test References API</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/modules/api/test_references.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -155,8 +160,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="rest-references-api">
-<h1>Rest References API<a class="headerlink" href="#rest-references-api" title="Link to this heading"></a></h1>
+  <section id="test-references-api">
+<h1>Test References API<a class="headerlink" href="#test-references-api" title="Link to this heading"></a></h1>
 <section id="list-test-references-of-a-reference-set">
 <span id="api-test-references-reference-set-list"></span><h2>List test references of a reference set<a class="headerlink" href="#list-test-references-of-a-reference-set" title="Link to this heading"></a></h2>
 <p>List all test references from a reference set.
@@ -222,7 +227,7 @@ typed <code class="docutils literal notranslate"><span class="pre">value</span><
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
@@ -240,7 +245,7 @@ typed <code class="docutils literal notranslate"><span class="pre">value</span><
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
@@ -249,7 +254,7 @@ typed <code class="docutils literal notranslate"><span class="pre">value</span><
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
@@ -258,16 +263,16 @@ typed <code class="docutils literal notranslate"><span class="pre">value</span><
 <span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 2&quot;</span><span class="p">,</span>
 <span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">            </span><span class="p">},</span>
 <span class="w">            </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;screenshot-image.png&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span>
+<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
@@ -310,7 +315,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default_source</span></code></p></td>
 <td><p>integer</p></td>
 <td><p>no</p></td>
-<td><p>The id of the TestResult used as the default source when a measurement does not specify source.</p></td>
+<td><p>The id of the test result used as the default source when a measurement does not specify source.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">measurements</span></code></p></td>
 <td><p>json</p></td>
@@ -383,7 +388,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:17.566513Z&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;measurements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runtime&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
@@ -392,7 +397,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Result1&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
@@ -472,7 +477,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;float&quot;</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
@@ -490,7 +495,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;duration&quot;</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
@@ -499,7 +504,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
@@ -508,16 +513,16 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 2&quot;</span><span class="p">,</span>
 <span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;screenshot-image.png&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span>
+<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;image&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAODaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pg0KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPg0KICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPg0KICAgIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NjI3NTk3QzkxNTIwNjgxMTk3QTVENkZCNTAzMEMyMUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUE0Q0YyRTc0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUE0Q0YyRTY0RTlGMTFFMzhFQkFEREEzMjM4MTA0NDIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSI+DQogICAgICA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNTgwMTE3NDA3MjA2ODExODIyQUE3NDk3QjdFNzQyMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2Mjc1OTdDOTE1MjA2ODExOTdBNUQ2RkI1MDMwQzIxQyIgLz4NCiAgICA8L3JkZjpEZXNjcmlwdGlvbj4NCiAgPC9yZGY6UkRGPg0KPC94OnhtcG1ldGE+DQo8P3hwYWNrZXQgZW5kPSJyIj8+VtnJzwAAABZJREFUGFdj/M/A8M3iP6OxyH+u13EAKIYFyOIlKZYAAAAASUVORK5CYII=&quot;</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
@@ -565,7 +570,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">measurements</span></code></p></td>
 <td><p>json</p></td>
 <td><p>no</p></td>
-<td><p>The list of named reference measurements. Each entry has a name, a typed value (or null), and its source TestResult id.</p></td>
+<td><p>The list of named reference measurements. Each entry has a name, a typed value (or null), and its source test result id.</p></td>
 </tr>
 </tbody>
 </table>
@@ -683,7 +688,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-11-25T15:39:12.122702Z&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;measurements&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;runtime&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.124356S&quot;</span><span class="p">,</span>
@@ -692,7 +697,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;residual[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.345</span><span class="p">,</span>
@@ -701,7 +706,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span>
@@ -710,7 +715,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;algorithm-time[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PT0.345000S&quot;</span><span class="p">,</span>
@@ -719,7 +724,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
 <span class="w">            </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">        </span><span class="p">},</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;argument[0]&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;process argument 1&quot;</span><span class="p">,</span>
@@ -782,7 +787,7 @@ Provide <code class="docutils literal notranslate"><span class="pre">measurement
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="references.html" class="btn btn-neutral float-left" title="References API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="references.html" class="btn btn-neutral float-left" title="Reference Sets API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="users.html" class="btn btn-neutral float-right" title="Users API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
