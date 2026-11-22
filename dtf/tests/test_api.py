@@ -25,7 +25,7 @@ from django.contrib.auth.models import User
 
 from dtf.models import Project, Membership, TestResult, ReferenceSet, TestReference, Submission, ProjectSubmissionProperty, Webhook, TestMeasurement, TestMeasurementImage
 
-from dtf.serializers import ProjectSerializer
+from dtf.serializers import ProjectSerializer, StatusField
 from dtf.serializers import TestResultSerializer
 from dtf.serializers import TestMeasurementSerializer
 from dtf.serializers import ProjectSubmissionPropertySerializer
@@ -1073,7 +1073,7 @@ class TestResultHistoryApiTest(ApiTestCase):
             'date' : self.test_3.created,
             'value' : self.test_3.measurements.first().get_value(),
             'reference' : self.test_3.measurements.first().get_reference(),
-            'status' : self.test_3.measurements.first().status,
+            'status' : StatusField._from_internal.get(self.test_3.measurements.first().status, self.test_3.measurements.first().status),
             'reference_source' : self.test_3.measurements.first().reference_source_id,
         },
         {
@@ -1085,7 +1085,7 @@ class TestResultHistoryApiTest(ApiTestCase):
             'date' : self.test_1.created,
             'value' : self.test_1.measurements.first().get_value(),
             'reference' : self.test_1.measurements.first().get_reference(),
-            'status' : self.test_1.measurements.first().status,
+            'status' : StatusField._from_internal.get(self.test_1.measurements.first().status, self.test_1.measurements.first().status),
             'reference_source' : self.test_1.measurements.first().reference_source_id,
         }]
 
@@ -1108,7 +1108,7 @@ class TestResultHistoryApiTest(ApiTestCase):
             'date' : self.test_3.created,
             'value' : self.test_3.measurements.first().get_value(),
             'reference' : self.test_3.measurements.first().get_reference(),
-            'status' : self.test_3.measurements.first().status,
+            'status' : StatusField._from_internal.get(self.test_3.measurements.first().status, self.test_3.measurements.first().status),
             'reference_source' : self.test_3.measurements.first().reference_source_id,
         },
         {

@@ -16,7 +16,7 @@ from rest_framework import status
 from rest_framework import generics
 from rest_framework import views
 
-from dtf.serializers import UserSerializer
+from dtf.serializers import UserSerializer, StatusField
 from dtf.serializers import ProjectSerializer
 from dtf.serializers import MembershipSerializer
 from dtf.serializers import TestResultSerializer, TestResultCreateSerializer
@@ -404,7 +404,7 @@ class TestMeasurementHistory(views.APIView, ProjectAPIViewMixin):
                 if measurement is not None:
                     entry['value'] = copy.deepcopy(measurement.get_value())
                     entry['reference'] = copy.deepcopy(measurement.get_reference())
-                    entry['status'] = copy.deepcopy(measurement.status)
+                    entry['status'] = copy.deepcopy(StatusField._from_internal.get(measurement.status, measurement.status))
                     entry['reference_source'] = measurement.reference_source_id
             data.append(entry)
 
