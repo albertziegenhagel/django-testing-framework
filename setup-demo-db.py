@@ -1,6 +1,7 @@
 import os
 import sys
 import argparse
+import subprocess
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--force', action='store_true',
@@ -30,7 +31,7 @@ if os.path.exists(db_path):
     if args.force:
         print("Deleting file due to --force being used.")
     else:
-        print("Procceding will delete all data in that file.")
+        print("Proceeding will delete all data in that file.")
         print("Are you sure you want to continue? [Y/n]")
         answer = sys.stdin.read(1)
         if answer != 'Y' and answer != 'y':
@@ -40,8 +41,18 @@ if os.path.exists(db_path):
 
 os.environ["DTF_ENABLE_WEBHOOKS"] = "0"
 
-os.system(f"{sys.executable} {manage_script_path} migrate --database {args.db}")
-os.system(f"{sys.executable} {manage_script_path} loaddata --database {args.db} demo-user") # Name: root PW: test1234 ; Name: demo PW: demopassword
-os.system(f"{sys.executable} {manage_script_path} loaddata --database {args.db} demo-project")
-os.system(f"{sys.executable} {manage_script_path} loaddata --database {args.db} demo-submissions")
-os.system(f"{sys.executable} {manage_script_path} loaddata --database {args.db} demo-webhook-log")
+subprocess.run(
+    [sys.executable, manage_script_path, "migrate", "--database", args.db],
+    check=True,
+    cwd=root_path,
+)
+
+# Users:
+# - Name: root PW: test1234
+# - Name: demo PW: demopassword
+for fixture in ("demo-user", "demo-project", "demo-submissions", "demo-webhook-log"):
+    subprocess.run(
+        [sys.executable, manage_script_path, "loaddata", "--database", args.db, fixture],
+        check=True,
+        cwd=root_path,
+    )
