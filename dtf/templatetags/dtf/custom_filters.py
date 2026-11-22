@@ -95,8 +95,8 @@ def create_html_representation(data, valuetype):
 def as_measurement_entry(entry, project):
     if entry is None:
         return "N/A"
-    value = entry.get('value', None)
-    source = entry.get('source', None)
+    value = entry.get_value()
+    source = entry.source_id
     if value is not None and 'data' in value and 'type' in value:
         text = create_html_representation(value['data'], value['type'])
     else:
@@ -207,4 +207,15 @@ def measurements_to_js_dict(measurements):
         })
         if measurement.reference_source is not None:
             data[-1]['reference_source'] = measurement.reference_source.id
+    return mark_safe(json.dumps(data))
+
+@register.filter(is_safe=True)
+def reference_measurements_to_js_dict(measurements):
+    data = {
+        measurement.name: {
+            'value': measurement.get_value(),
+            'source': measurement.source_id,
+        }
+        for measurement in measurements.all()
+    }
     return mark_safe(json.dumps(data))

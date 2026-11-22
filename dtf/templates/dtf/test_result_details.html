@@ -28,7 +28,7 @@
 
 const initialTestMeasurementsData =  {{ test_result.measurements | measurements_to_js_dict }};
 {% if test_reference is not None %}
-const initialTestReferencesData = {{ test_reference.references | to_js_dict }};
+const initialTestReferencesData = {{ test_reference.measurements.all | reference_measurements_to_js_dict }};
 {% else %}
 const initialTestReferencesData = {};
 {% endif %}

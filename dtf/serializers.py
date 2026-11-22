@@ -6,12 +6,13 @@ and the database model of data
 import hashlib
 import json
 
+from django.conf import settings
 from rest_framework import serializers
 
 from django.contrib.auth.models import User
 from django.db import transaction
 
-from dtf.models import Project, Membership, TestResult, ReferenceSet, TestReference, Submission, ProjectSubmissionProperty, Webhook, WebhookLogEntry, TestMeasurement, TestMeasurement, TestMeasurementImage, _value_json_schema_2
+from dtf.models import Project, Membership, TestResult, ReferenceSet, TestReference, TestReferenceMeasurement, Submission, ProjectSubmissionProperty, Webhook, WebhookLogEntry, TestMeasurement, TestMeasurementImage, _value_json_schema_2
 from dtf.functions import create_reference_query
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -110,8 +111,62 @@ class ReferenceSetSerializer(serializers.ModelSerializer):
                   'property_values']
         extra_kwargs = {'created': {'read_only': False, 'required':False}}
 
+class TestMeasurementValueField(serializers.Field):
+    def to_representation(self, value):
+        image = getattr(value, f'image_{self.field_name}')
+        if image is not None:
+            return {
+                'type': 'image',
+                'data': image.data
+            }
+        return getattr(value, f'data_{self.field_name}')
+
+    def to_internal_value(self, data):
+        if data is None:
+            return {}
+        if data['type'] == 'image':
+            return {f'image_{self.field_name}': data['data']}
+        return {f'data_{self.field_name}': data}
+
+
+class TestReferenceMeasurementValueField(TestMeasurementValueField):
+    def to_internal_value(self, data):
+        # TODO: this should probably also be done in the parent class
+        if data is None:
+            return {f'data_{self.field_name}': None,
+                    f'image_{self.field_name}': None}
+        return super().to_internal_value(data)
+
+class TestReferenceMeasurementSerializer(serializers.ModelSerializer):
+    value = TestReferenceMeasurementValueField(source='*', required=False, allow_null=True)
+    delete = serializers.BooleanField(write_only=True, required=False)
+
+    _data_value_validator = JSONSchemaValidator(schema=_value_json_schema_2)
+
+    class Meta:
+        model = TestReferenceMeasurement
+        fields = ['id', 'name', 'value', 'source', 'delete']
+
+    def to_internal_value(self, data):
+        return super().to_internal_value(data)
+
+    def validate(self, attrs):
+        if attrs.get('image_value') is not None:
+            attrs['image_value'] = _get_or_create_test_measurement_image(
+                attrs.pop('image_value')
+            )
+        if attrs.get('data_value') is not None:
+            self._data_value_validator(attrs['data_value'])
+        return attrs
+
+
 class TestReferenceSerializer(serializers.ModelSerializer):
-    default_source = serializers.PrimaryKeyRelatedField(queryset=TestResult.objects.all(), required=False)
+    default_source = serializers.PrimaryKeyRelatedField(
+        queryset=TestResult.objects.all(),
+        required=False,
+        write_only=True,
+    )
+    measurements = TestReferenceMeasurementSerializer(many=True, required=False)
 
     class Meta:
         model = TestReference
@@ -121,26 +176,123 @@ class TestReferenceSerializer(serializers.ModelSerializer):
                   'id',
                   'created',
                   'last_updated',
-                  'references']
+                  'measurements']
         extra_kwargs = {'created': {'read_only': False, 'required':False}}
 
+    def to_internal_value(self, data):
+        return super().to_internal_value(data)
+
     def validate(self, data):
-        if 'default_source' in data:
-            default_source = data['default_source'].id
-            del data['default_source']
-        else:
-            default_source = None
+        default_source = data.get('default_source')
+        measurements = data.get('measurements', [])
+        measurement_names = set()
 
-        reference_data = data['references']
+        for measurement in measurements:
+            name = measurement['name']
+            if name in measurement_names:
+                raise serializers.ValidationError({
+                    'measurements': f"Duplicate measurement name: {name}"
+                })
+            measurement_names.add(name)
 
-        for parameter_name, parameter_values in reference_data.items():
-            if not 'source' in parameter_values:
-                if default_source is None:
-                    raise serializers.ValidationError(\
-                        "No test found with the given test id. Need a valid 'default_source' to properly set the reference")
-                parameter_values['source'] = default_source
+            if measurement.get('delete', False):
+                if not self.partial or self.instance is None:
+                    raise serializers.ValidationError({
+                        'measurements': "Measurements can only be removed with PATCH."
+                    })
+                continue
+
+            existing = None
+            if self.partial and self.instance is not None:
+                existing = self.instance.measurements.filter(name=name).first()
+
+            has_value = 'data_value' in measurement or 'image_value' in measurement
+            if not has_value and existing is None:
+                raise serializers.ValidationError({
+                    'measurements': f"A value is required for measurement '{name}'."
+                })
+
+            if 'source' not in measurement:
+                if default_source is not None:
+                    measurement['source'] = default_source
+                elif existing is not None:
+                    measurement['source'] = existing.source
+                else:
+                    raise serializers.ValidationError({
+                        'measurements': (
+                            "No test found with the given test id. Need a valid "
+                            "'default_source' or 'source' for each measurement."
+                        )
+                    })
 
         return data
+
+    def create(self, validated_data):
+        validated_data.pop('default_source', None)
+        measurements_data = validated_data.pop('measurements', [])
+
+        with transaction.atomic():
+            test_reference = TestReference(**validated_data)
+            test_reference._suppress_webhook = True
+            try:
+                test_reference.save()
+            finally:
+                del test_reference._suppress_webhook
+
+            for measurement_data in measurements_data:
+                measurement_data.pop('delete', None)
+                TestReferenceMeasurement.objects.create(
+                    test_reference=test_reference,
+                    **measurement_data,
+                )
+
+            if settings.DTF_ENABLE_WEBHOOKS:
+                from dtf.webhooks import trigger_webhooks
+                trigger_webhooks(
+                    'create',
+                    test_reference,
+                    TestReference,
+                    test_reference._state.db,
+                )
+        return test_reference
+
+    def update(self, instance, validated_data):
+        validated_data.pop('default_source', None)
+        measurements_data = validated_data.pop('measurements', None)
+
+        with transaction.atomic():
+            if measurements_data is not None and not self.partial:
+                instance.measurements.all().delete()
+
+            for measurement_data in measurements_data or []:
+                delete = measurement_data.pop('delete', False)
+                name = measurement_data['name']
+                measurement = instance.measurements.filter(name=name).first()
+
+                if delete:
+                    if measurement is not None:
+                        measurement.delete()
+                    continue
+
+                if measurement is None:
+                    TestReferenceMeasurement.objects.create(
+                        test_reference=instance,
+                        **measurement_data,
+                    )
+                    continue
+
+                for field in ('data_value', 'image_value', 'source'):
+                    if field in measurement_data:
+                        setattr(measurement, field, measurement_data[field])
+                if 'data_value' in measurement_data and 'image_value' not in measurement_data:
+                    measurement.image_value = None
+                elif 'image_value' in measurement_data and 'data_value' not in measurement_data:
+                    measurement.data_value = None
+                measurement.save()
+
+            instance = super().update(instance, validated_data)
+
+        return instance
 
 class TestResultSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
@@ -226,27 +378,6 @@ class TestResultSerializer(serializers.ModelSerializer):
     def get_url(self, obj):
         url = reverse('test_result_details', kwargs={'project_slug' : obj.submission.project.slug, 'test_id' : obj.pk})
         return _try_build_absolute_uri(self, url)
-
-class TestMeasurementValueField(serializers.Field):
-    def to_representation(self, value):
-        image = getattr(value, f'image_{self.field_name}')
-        if image is not None:
-            return {
-                'type': 'image',
-                'data': image.data
-            }
-        else:
-            return getattr(value, f'data_{self.field_name}')
-
-    def to_internal_value(self, data):
-        if data is None:
-            return {}
-            # return {f'image_{self.field_name}' : 'null',
-            #         f'data_{self.field_name}' : 'null'}
-        if data['type'] == 'image':
-            return {f'image_{self.field_name}' : data['data']}
-        else:
-            return {f'data_{self.field_name}' : data}
 
 class StatusField(serializers.ChoiceField):
     _from_internal = {

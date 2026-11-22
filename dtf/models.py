@@ -173,28 +173,6 @@ _results_json_schema = {
     }
 }
 
-_references_json_schema = {
-    'schema': 'http://json-schema.org/draft-07/schema#',
-    'definitions': {
-        'value': _value_json_schema
-    },
-    'type': 'object',
-    'additionalProperties': {
-        'type': 'object',
-        'properties': {
-            'value': {
-                'oneOf': [
-                    {'$ref': '#/definitions/value'},
-                    {'type': 'null'}
-                ]
-            },
-            'source': {'type': 'integer'},
-        },
-        'required': ['value'],
-        'additionalProperties': False
-    }
-}
-
 class Membership(models.Model):
     user = models.ForeignKey(
         User,
@@ -597,28 +575,12 @@ class TestReference(models.Model):
     created = models.DateTimeField(default=timezone.now, editable=False, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
 
-    # maybe this should just have a testresult as a foreign key?
-    references = models.JSONField(null=False, default=dict, validators=[JSONSchemaValidator(schema=_references_json_schema)])
-
     required_project_membership_role = {
         'view'   : 'guest',
         'add'    : 'developer',
         'change' : 'developer',
         'delete' : 'owner'
     }
-
-    def update_references(self, new_references, default_source):
-        for name, data in new_references.items():
-            if data is not None:
-                self.references[name] = {
-                    'value': data['value'],
-                    'source': default_source
-                }
-            elif name in self.references:
-                del self.references[name]
-
-    def get_reference_or_none(self, value_name):
-        return self.references.get(value_name, None)
 
     def __str__(self):
         if self.reference_set:
@@ -631,6 +593,30 @@ class TestReference(models.Model):
             models.UniqueConstraint(
                 fields=['reference_set', 'test_name'], 
                 name='unique_test_reference_property'
+            )
+        ]
+
+class TestReferenceMeasurement(models.Model):
+    name = models.CharField(max_length=100, blank=False, db_index=True)
+
+    test_reference = models.ForeignKey(TestReference, on_delete=models.CASCADE, null=False, related_name="measurements")
+    source = models.ForeignKey(TestResult, on_delete=models.SET_NULL, null=True)
+
+    data_value = models.JSONField(null=True, validators=[JSONSchemaValidator(schema=_value_json_schema_2)])
+    image_value = models.ForeignKey(TestMeasurementImage, on_delete=models.PROTECT, null=True, related_name='test_reference_measurements')
+
+    def get_value(self):
+        if self.image_value is not None:
+            return {'type': 'image',
+                    'data': self.image_value.data}
+        return self.data_value
+
+    class Meta:
+        app_label = 'dtf'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['test_reference', 'name'],
+                name='unique_test_reference_measurement_name'
             )
         ]
 

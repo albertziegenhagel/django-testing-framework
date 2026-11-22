@@ -66,7 +66,15 @@ function buildResultsTable(projectSlug, testId, results, references, canUpdate) 
     });
 }
 
-function updateResultsTableReferences(projectSlug, testResults, references) {
+function updateResultsTableReferences(projectSlug, testResults, measurements) {
+    let references = {};
+    measurements.forEach(function (measurement) {
+        references[measurement['name']] = {
+            value: measurement['value'],
+            source: measurement['reference_source']
+        };
+    });
+
     let resultsRows = $('#resultsTable > tbody > tr');
 
     resultsRows.each(function(index, tr) {
@@ -108,8 +116,7 @@ function postReferenceUpdate(csrfToken, testName, testId, testResults, reference
     let data = {
         "test_name": testName,
         "default_source": testId,
-        "references": {
-        }
+        "measurements": []
     }
 
     let resultsRows = $('#resultsTable > tbody > tr');
@@ -119,9 +126,10 @@ function postReferenceUpdate(csrfToken, testName, testId, testResults, reference
         if(checkBox.checked) {
             const testResultIndex = tr.getAttribute('test-result-index');
             const testResult = testResults[testResultIndex];
-            data["references"][testResult['name']]= {
+            data["measurements"].push({
+                "name": testResult['name'],
                 "value": testResult['value']
-            };
+            });
         }
     });
 
@@ -134,7 +142,7 @@ function postReferenceUpdate(csrfToken, testName, testId, testResults, reference
         var method = "PATCH";
     }
     
-    let updatedCount = Object.keys(data["references"]).length;
+    let updatedCount = data["measurements"].length;
 
     $.ajax({
         beforeSend: function(xhr, settings) {
@@ -149,7 +157,7 @@ function postReferenceUpdate(csrfToken, testName, testId, testResults, reference
                 type: 'success',
                 content: `Successfully updated ${updatedCount} references.`
             });
-            updateResultsTableReferences(projectSlug, testResults, result['references']);
+            updateResultsTableReferences(projectSlug, testResults, result['measurements']);
             uncheckAllBoxes();
         },
         error: function(result) {

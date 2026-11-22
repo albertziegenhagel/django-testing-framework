@@ -4,20 +4,24 @@
     "id": 2,
     "created": "2023-11-25T15:39:17.566513Z",
     "last_updated": "2023-11-25T15:39:17.566513Z",
-    "references": {
-        "runtime": {
+    "measurements": [
+        {
+            "id": 1,
+            "name": "runtime",
             "value": {
                 "data": "PT0.124356S",
                 "type": "duration"
             },
             "source": 1
         },
-        "Result1": {
+        {
+            "id": 2,
+            "name": "Result1",
             "value": {
                 "data": 123,
                 "type": "integer"
             },
             "source": 2
         }
-    }
+    ]
 }

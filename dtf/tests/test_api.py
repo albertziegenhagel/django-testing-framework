@@ -1750,71 +1750,154 @@ class TestReferencesApiTest(ApiTestCase):
         self.url = reverse('api_project_reference_tests', kwargs={'project_id' : self.project_id, 'reference_id' : self.reference_set_1_id})
 
     def test_create_empty(self):
-        response, data = self.post(self.url, {'test_name' : 'Test 1', 'default_source' : self.test_1_1_id, 'references' : {}})
+        response, data = self.post(self.url, {
+            'test_name': 'Test 1',
+            'default_source': self.test_1_1_id,
+            'measurements': [],
+        })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TestReference.objects.count(), 1)
         self.assertEqual(self.reference_set_1.test_references.count(), 1)
 
     def test_create_non_empty(self):
-        response, data = self.post(self.url, {'test_name' : "Test 1", 'default_source' : self.test_1_1_id, 'references' : {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}}}})
+        response, data = self.post(self.url, {
+            'test_name': "Test 1",
+            'default_source': self.test_1_1_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}}
+            ],
+        })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TestReference.objects.count(), 1)
         self.assertEqual(self.reference_set_1.test_references.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.first().references, {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_1_1_id}})
+        measurement = self.reference_set_1.test_references.first().measurements.get(name='Result1')
+        self.assertEqual(measurement.get_value(), {'data': 2, 'type': 'integer'})
+        self.assertEqual(measurement.source_id, self.test_1_1_id)
+        self.assertEqual(data['measurements'][0]['source'], self.test_1_1_id)
 
     def test_create_explicit_test_id(self):
-        response, data = self.post(self.url, {'test_name' : "Test 2", 'default_source' : self.test_2_1_id, 'references' : {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_2_2_id}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}, 'source' : self.test_2_1_id}}})
+        response, _ = self.post(self.url, {
+            'test_name': "Test 2",
+            'measurements': [
+                {
+                    'name': 'Result1',
+                    'value': {'data': 2, 'type': 'integer'},
+                    'source': self.test_2_2_id,
+                },
+                {
+                    'name': 'Result2',
+                    'value': {'data': 3.0, 'type': 'float'},
+                    'source': self.test_2_1_id,
+                },
+            ],
+        })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(TestReference.objects.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.first().references, {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_2_2_id}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}, 'source' : self.test_2_1_id}})
+        test_reference = self.reference_set_1.test_references.get(test_name='Test 2')
+        self.assertEqual(test_reference.measurements.get(name='Result1').source_id, self.test_2_2_id)
+        self.assertEqual(test_reference.measurements.get(name='Result2').source_id, self.test_2_1_id)
 
     def test_create_only_explicit_test_id(self):
-        response, data = self.post(self.url, {'test_name' : "Test 2", 'references' : {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_2_2_id}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}, 'source' : self.test_2_1_id}}})
+        response, _ = self.post(self.url, {
+            'test_name': "Test 2",
+            'measurements': [
+                {
+                    'name': 'Result1',
+                    'value': {'data': 2, 'type': 'integer'},
+                    'source': self.test_2_2_id,
+                },
+                {
+                    'name': 'Result2',
+                    'value': {'data': 3.0, 'type': 'float'},
+                    'source': self.test_2_1_id,
+                },
+            ],
+        })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(TestReference.objects.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.first().references, {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_2_2_id}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}, 'source' : self.test_2_1_id}})
+        self.assertEqual(self.reference_set_1.test_references.get(test_name='Test 2').measurements.count(), 2)
 
     def test_create_default_and_explicit_test_id(self):
-        response, data = self.post(self.url, {'test_name' : "Test 2", 'default_source' : self.test_2_1_id, 'references' : {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_2_2_id}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'} }}})
+        response, _ = self.post(self.url, {
+            'test_name': "Test 2",
+            'default_source': self.test_2_1_id,
+            'measurements': [
+                {
+                    'name': 'Result1',
+                    'value': {'data': 2, 'type': 'integer'},
+                    'source': self.test_2_2_id,
+                },
+                {'name': 'Result2', 'value': {'data': 3.0, 'type': 'float'}},
+            ],
+        })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(TestReference.objects.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.first().references, {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_2_2_id}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}, 'source' : self.test_2_1_id}})
+        test_reference = self.reference_set_1.test_references.get(test_name='Test 2')
+        self.assertEqual(test_reference.measurements.get(name='Result1').source_id, self.test_2_2_id)
+        self.assertEqual(test_reference.measurements.get(name='Result2').source_id, self.test_2_1_id)
 
     def test_create_null_value(self):
-        response, data = self.post(self.url, {'test_name' : "Test 1", 'default_source' : self.test_1_1_id, 'references' : {'Result1' : {'value' : None}}})
+        response, _ = self.post(self.url, {
+            'test_name': "Test 1",
+            'default_source': self.test_1_1_id,
+            'measurements': [{'name': 'Result1', 'value': None}],
+        })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(TestReference.objects.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.count(), 1)
-        self.assertEqual(self.reference_set_1.test_references.first().references, {'Result1' : {'value' : None, 'source' : self.test_1_1_id}})
+        measurement = self.reference_set_1.test_references.first().measurements.get(name='Result1')
+        self.assertIsNone(measurement.get_value())
+        self.assertEqual(measurement.source_id, self.test_1_1_id)
+
+    def test_create_image_value(self):
+        response, _ = self.post(self.url, {
+            'test_name': "Test 1",
+            'default_source': self.test_1_1_id,
+            'measurements': [{
+                'name': 'Screenshot',
+                'value': {'data': 'aW1hZ2U=', 'type': 'image'},
+            }],
+        })
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        measurement = self.reference_set_1.test_references.first().measurements.get(name='Screenshot')
+        self.assertEqual(measurement.get_value(), {'data': 'aW1hZ2U=', 'type': 'image'})
 
     def test_create_missing_test_id(self):
-        response, data = self.post(self.url, {'test_name' : "Test 2", 'references' : {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_2_2_id}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'} }}})
+        response, _ = self.post(self.url, {
+            'test_name': "Test 2",
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}}
+            ],
+        })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(TestReference.objects.count(), 0)
         self.assertEqual(self.reference_set_1.test_references.count(), 0)
 
     def test_create_invalid(self):
-        response, data = self.post(self.url, {'test_name' : "Test 2", 'references' : []})
+        response, _ = self.post(self.url, {'test_name': "Test 2", 'measurements': {}})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(TestReference.objects.count(), 0)
-        self.assertEqual(self.reference_set_1.test_references.count(), 0)
 
-        response, data = self.post(self.url, {'test_name' : "Test 2", 'references' : {'Result1' : {'source' : self.test_2_2_id}}})
+        response, _ = self.post(self.url, {
+            'test_name': "Test 2",
+            'measurements': [
+                {'name': 'Result1', 'source': self.test_2_2_id}
+            ],
+        })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(TestReference.objects.count(), 0)
         self.assertEqual(self.reference_set_1.test_references.count(), 0)
 
     def test_create_non_unique(self):
-        response, data = self.post(self.url, {'test_name' : "Test 1", 'default_source' : self.test_1_1_id, 'references' : {}})
+        response, _ = self.post(self.url, {
+            'test_name': "Test 1",
+            'default_source': self.test_1_1_id,
+            'measurements': [],
+        })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TestReference.objects.count(), 1)
         self.assertEqual(self.reference_set_1.test_references.count(), 1)
 
         with transaction.atomic():
-            response, data = self.post(self.url, {'test_name' : "Test 1", 'default_source' : self.test_1_1_id, 'references' : {}})
+            response, _ = self.post(self.url, {
+                'test_name': "Test 1",
+                'default_source': self.test_1_1_id,
+                'measurements': [],
+            })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(TestReference.objects.count(), 1)
         self.assertEqual(self.reference_set_1.test_references.count(), 1)
@@ -1822,20 +1905,33 @@ class TestReferencesApiTest(ApiTestCase):
     def test_create_force_create_date(self):
         created = datetime.datetime(year=2020, month=11, day=17, hour=14, minute=44, tzinfo=datetime.timezone(+datetime.timedelta(hours=1)))
         payload = {
-            'test_name' : "Test 1",
-            'default_source' : self.test_1_1_id,
-            'references' : {},
+            'test_name': "Test 1",
+            'default_source': self.test_1_1_id,
+            'measurements': [],
             'created': created.isoformat()
         }
-        response, data = self.post(self.url, payload)
+        response, _ = self.post(self.url, payload)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(self.reference_set_1.test_references.count(), 1)
         test_reference = self.reference_set_1.test_references.first()
         self.assertEqual(test_reference.created, created)
 
     def test_get(self):
-        self.post(self.url, {'test_name' : "Test 1", 'default_source' : self.test_1_1_id, 'references' : {'Result1' : {'value' : 2}}})
-        self.post(self.url, {'test_name' : "Test 2", 'default_source' : self.test_2_1_id, 'references' : {'Result1' : {'value' : 2}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}}}})
+        self.post(self.url, {
+            'test_name': "Test 1",
+            'default_source': self.test_1_1_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}}
+            ],
+        })
+        self.post(self.url, {
+            'test_name': "Test 2",
+            'default_source': self.test_2_1_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}},
+                {'name': 'Result2', 'value': {'data': 3.0, 'type': 'float'}},
+            ],
+        })
         response = client.get(self.url)
         test_references = self.reference_set_1.test_references.order_by('-pk')
         serializer = TestReferenceSerializer(test_references, many=True)
@@ -1843,8 +1939,21 @@ class TestReferencesApiTest(ApiTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_query(self):
-        self.post(self.url, {'test_name' : "Test 1", 'default_source' : self.test_1_1_id, 'references' : {'Result1' : {'value' : 2}}})
-        self.post(self.url, {'test_name' : "Test 2", 'default_source' : self.test_2_1_id, 'references' : {'Result1' : {'value' : 2}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}}}})
+        self.post(self.url, {
+            'test_name': "Test 1",
+            'default_source': self.test_1_1_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}}
+            ],
+        })
+        self.post(self.url, {
+            'test_name': "Test 2",
+            'default_source': self.test_2_1_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}},
+                {'name': 'Result2', 'value': {'data': 3.0, 'type': 'float'}},
+            ],
+        })
 
         response = client.get(self.url, {"test_name" : "Test 1"})
         test_references = self.reference_set_1.test_references.filter(test_name='Test 1').order_by('-pk')
@@ -1885,10 +1994,23 @@ class TestReferenceApiTest(ApiTestCase):
         self.reference_set_1 = ReferenceSet.objects.get(id=self.reference_set_1_id)
 
         create_test_reference_url = reverse('api_project_reference_tests', kwargs={'project_id' : self.project_id, 'reference_id' : self.reference_set_1_id})
-        _, data = self.post(create_test_reference_url, {'test_name' : "Test 1", 'default_source' : self.test_1_id, 'references' : {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}}}})
+        _, data = self.post(create_test_reference_url, {
+            'test_name': "Test 1",
+            'default_source': self.test_1_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}}
+            ],
+        })
         self.test_reference_1_id = data['id']
         self.test_reference_1 = TestReference.objects.get(id=self.test_reference_1_id)
-        _, data = self.post(create_test_reference_url, {'test_name' : "Test 2", 'default_source' : self.test_2_id, 'references' : {'Result1' : {'value' : { 'data' : 2, 'type' : 'integer'}}, 'Result2' : {'value' : { 'data' : 3.0, 'type' : 'float'}}}})
+        _, data = self.post(create_test_reference_url, {
+            'test_name': "Test 2",
+            'default_source': self.test_2_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 2, 'type': 'integer'}},
+                {'name': 'Result2', 'value': {'data': 3.0, 'type': 'float'}},
+            ],
+        })
         self.test_reference_2_id = data['id']
         self.test_reference_2 = TestReference.objects.get(id=self.test_reference_2_id)
 
@@ -1922,54 +2044,70 @@ class TestReferenceApiTest(ApiTestCase):
 
         data = copy.deepcopy(response.data)
         data['default_source'] = self.test_1_id
-        data['references']['Result2'] = {'value' : { 'data' : 3, 'type' : 'integer'}}
+        data['measurements'].append({
+            'name': 'Result2',
+            'value': {'data': 3, 'type': 'integer'},
+        })
         response, data = self.put(self.url_1, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         test_reference_1 = TestReference.objects.get(id=self.test_reference_1_id)
-        self.assertEqual(test_reference_1.references["Result2"], {'value' : { 'data' : 3, 'type' : 'integer'}, 'source' : self.test_1_id})
+        self.assertEqual(
+            test_reference_1.measurements.get(name='Result2').get_value(),
+            {'data': 3, 'type': 'integer'},
+        )
 
     def test_update_new(self):
-        data = {}
-        data['default_source'] = self.test_1_id
-        data['references'] = {'Result2' : {'value' : { 'data' : 3, 'type' : 'integer'}}}
+        data = {
+            'default_source': self.test_1_id,
+            'measurements': [
+                {'name': 'Result2', 'value': {'data': 3, 'type': 'integer'}}
+            ],
+        }
         response, data = self.patch(self.url_1, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         test_reference_1 = TestReference.objects.get(id=self.test_reference_1_id)
-        self.assertEqual(test_reference_1.references["Result1"], {'value' : { 'data' : 2, 'type' : 'integer'}, 'source' : self.test_1_id})
-        self.assertEqual(test_reference_1.references["Result2"], {'value' : { 'data' : 3, 'type' : 'integer'}, 'source' : self.test_1_id})
+        self.assertEqual(test_reference_1.measurements.count(), 2)
+        self.assertEqual(test_reference_1.measurements.get(name='Result2').get_value(), {'data': 3, 'type': 'integer'})
+        self.assertEqual(test_reference_1.measurements.get(name='Result2').source_id, self.test_1_id)
 
     def test_update_change(self):
-        data = {}
-        data['default_source'] = self.test_1_id
-        data['references'] = {'Result1' : {'value' : { 'data' : 3, 'type' : 'integer'}}}
+        data = {
+            'default_source': self.test_1_id,
+            'measurements': [
+                {'name': 'Result1', 'value': {'data': 3, 'type': 'integer'}}
+            ],
+        }
         response, data = self.patch(self.url_1, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         test_reference_1 = TestReference.objects.get(id=self.test_reference_1_id)
-        self.assertEqual(test_reference_1.references["Result1"], {'value' : { 'data' : 3, 'type' : 'integer'}, 'source' : self.test_1_id})
+        self.assertEqual(test_reference_1.measurements.get(name='Result1').get_value(), {'data': 3, 'type': 'integer'})
+        self.assertEqual(test_reference_1.measurements.get(name='Result1').source_id, self.test_1_id)
 
     def test_update_change_to_null(self):
-        data = {}
-        data['default_source'] = self.test_1_id
-        data['references'] = {'Result1' : {'value' : None}}
+        data = {
+            'default_source': self.test_1_id,
+            'measurements': [{'name': 'Result1', 'value': None}],
+        }
         response, data = self.patch(self.url_1, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         test_reference_1 = TestReference.objects.get(id=self.test_reference_1_id)
-        self.assertEqual(test_reference_1.references["Result1"], {'value' : None, 'source' : self.test_1_id})
+        self.assertIsNone(test_reference_1.measurements.get(name='Result1').get_value())
 
     def test_update_remove(self):
-        data = {}
-        data['default_source'] = self.test_2_id
-        data['references'] = {'Result1' : None}
+        data = {'measurements': [{'name': 'Result1', 'delete': True}]}
         response, data = self.patch(self.url_2, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         test_reference_2 = TestReference.objects.get(id=self.test_reference_2_id)
-        self.assertFalse("Result1" in test_reference_2.references)
-        self.assertEqual(test_reference_2.references["Result2"], {'value' : { 'data' : 3.0, 'type' : 'float'}, 'source' : self.test_2_id})
+        self.assertFalse(test_reference_2.measurements.filter(name='Result1').exists())
+        self.assertEqual(
+            test_reference_2.measurements.get(name='Result2').get_value(),
+            {'data': 3.0, 'type': 'float'},
+        )
 
     def test_delete(self):
         response = client.delete(self.url_1)

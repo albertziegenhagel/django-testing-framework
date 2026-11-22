@@ -7,6 +7,8 @@ List test references of a reference set
 ---------------------------------------
 
 List all test references from a reference set.
+Each test reference contains a ``measurements`` list. A measurement has a ``name``,
+typed ``value`` (which may be null), and an optional ``source`` TestResult id.
 
 .. literalinclude :: generated/test_references/projects_id_references_id_tests-GET-desc.txt
 
@@ -41,6 +43,8 @@ Add new test reference to a reference set
 -----------------------------------------
 
 Add a new test reference to the reference set.
+Provide ``measurements`` as a list of named entries. If an entry omits
+``source``, the optional ``default_source`` is used.
 
 .. literalinclude :: generated/test_references/projects_id_references_id_tests-POST-desc.txt
 
@@ -108,7 +112,10 @@ which might give a result like this:
 Modify test references of a reference set
 -----------------------------------------
 
-Modify the fields of an existing test reference. All fields have to be given (even the ones that are unchanged).
+Modify an existing test reference. PUT replaces its measurements when
+``measurements`` is provided. PATCH upserts measurements by name; use
+``{"name": "measurement-name", "delete": true}`` to remove one. A null
+``value`` is retained as a measurement value and does not remove the entry.
 
 .. literalinclude :: generated/test_references/projects_id_references_id_tests_id-PUT-desc.txt
 

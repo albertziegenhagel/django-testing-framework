@@ -296,11 +296,20 @@ class WebhooksTest(TestCase):
         with patch('dtf.webhooks._submit_webhook_request'):
             reference_set.save()
 
-        test_reference = TestReference(reference_set=reference_set, test_name="Test 1", references={'Result1' : {'value' : 2, 'source' : test_result.id}})
+        serializer = TestReferenceSerializer(data={
+            'reference_set': reference_set.pk,
+            'test_name': 'Test 1',
+            'default_source': test_result.pk,
+            'measurements': [{
+                'name': 'Result1',
+                'value': {'type': 'integer', 'data': 2},
+            }],
+        })
+        self.assertTrue(serializer.is_valid(), serializer.errors)
 
         # Create
         with patch('dtf.webhooks.requests.Session.send', return_value=self._mock_response) as send_mock:
-            test_reference.save()
+            test_reference = serializer.save()
             self.assertEqual(send_mock.call_count, 2)
 
             required_webhooks = [[self.all_webhook, 1], [self.test_reference_webhook, 1]]
@@ -312,7 +321,9 @@ class WebhooksTest(TestCase):
             self.assertTrue(all(count == 0 for _, count in required_webhooks))
 
         # Edit
-        test_reference.references={'Result1' : {'value' : 1, 'source' : test_result.id}}
+        measurement = test_reference.measurements.get(name='Result1')
+        measurement.data_value = {'type': 'integer', 'data': 1}
+        measurement.save()
         with patch('dtf.webhooks.requests.Session.send', return_value=self._mock_response) as send_mock:
             test_reference.save()
             self.assertEqual(send_mock.call_count, 2)

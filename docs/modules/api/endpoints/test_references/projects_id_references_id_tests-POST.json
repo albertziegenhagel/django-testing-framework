@@ -20,12 +20,12 @@
         "default_source" : {
             "type": "integer",
             "required": false,
-            "description": "The id of the submission which is used as default source for references that do not have an explicit source given."
+            "description": "The id of the test result used as the default source when a measurement does not specify source."
         },
-        "references" : {
+        "measurements" : {
             "type": "json",
-            "required": true,
-            "description": "Test result references. TODO: add JSON schema"
+            "required": false,
+            "description": "A list of named reference measurements. Each entry has a name, a typed value (or null), and an optional source TestResult id."
         }
     },
     "examples" : [
@@ -37,21 +37,23 @@
             "data": {
                 "test_name" : "New Test",
                 "default_source" : 2,
-                "references" : {
-                    "runtime" : {
+                "measurements" : [
+                    {
+                        "name": "runtime",
                         "value": {
                             "data": "PT0.124356S",
                             "type": "duration"
                         },
-                        "source" : 1
+                        "source": 1
                     },
-                    "Result1" : {
-                        "value" : {
+                    {
+                        "name": "Result1",
+                        "value": {
                             "data": 123,
                             "type": "integer"
                         }
                     }
-                }
+                ]
             }
         }
     ]

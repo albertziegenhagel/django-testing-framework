@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from dtf.models import Membership, Project, ProjectSubmissionProperty, TestResult, ReferenceSet, TestReference, Submission, Webhook
+from dtf.models import Membership, Project, ProjectSubmissionProperty, TestResult, ReferenceSet, TestReference, TestReferenceMeasurement, Submission, Webhook
 
 # Register your models here.
 
@@ -27,6 +27,10 @@ class ReferenceSetAdmin(admin.ModelAdmin):
 @admin.register(TestReference)
 class TestReferenceAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(TestReferenceMeasurement)
+class TestReferenceMeasurementAdmin(admin.ModelAdmin):
+    list_display = ['name', 'test_reference', 'source']
 
 @admin.register(Submission)
 class SubmissionAdmin(admin.ModelAdmin):

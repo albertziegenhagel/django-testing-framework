@@ -5,7 +5,12 @@ django.setup()
 
 from django.test import TestCase
 
-from dtf.templatetags.dtf.custom_filters import create_html_representation
+from dtf.models import Project, ReferenceSet, Submission, TestReference, TestReferenceMeasurement, TestResult
+from dtf.templatetags.dtf.custom_filters import (
+    as_measurement_entry,
+    create_html_representation,
+    reference_measurements_to_js_dict,
+)
 
 class ValueHtmlRepresentationTestCase(TestCase):
 
@@ -174,3 +179,43 @@ class ValueHtmlRepresentationTestCase(TestCase):
         result = create_html_representation(str([1.0, 2.0, 3.0]), 'list')
         result = "".join(result.split()) # remove all whitespace
         self.assertEqual(result, "1.0<br>2.0<br>3.0")
+
+
+class ReferenceMeasurementFilterTestCase(TestCase):
+    def setUp(self):
+        project = Project.objects.create(name='Test project', slug='test-project')
+        submission = Submission.objects.create(project=project)
+        self.source = TestResult.objects.create(name='Test', submission=submission)
+        reference_set = ReferenceSet.objects.create(project=project)
+        test_reference = TestReference.objects.create(
+            reference_set=reference_set,
+            test_name='Test',
+        )
+        self.measurement = TestReferenceMeasurement.objects.create(
+            test_reference=test_reference,
+            name='Result',
+            data_value={'type': 'integer', 'data': 7},
+            source=self.source,
+        )
+        self.project = project
+
+    def test_reference_measurements_to_js_dict(self):
+        import json
+
+        result = json.loads(reference_measurements_to_js_dict(
+            self.measurement.test_reference.measurements
+        ))
+        self.assertEqual(
+            result,
+            {
+                'Result': {
+                    'value': {'type': 'integer', 'data': 7},
+                    'source': self.source.pk,
+                }
+            },
+        )
+
+    def test_as_measurement_entry(self):
+        result = as_measurement_entry(self.measurement, self.project)
+        self.assertIn(f"href='/{self.project.slug}/tests/{self.source.pk}'", result)
+        self.assertIn('>7</a>', result)

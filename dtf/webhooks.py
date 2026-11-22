@@ -119,7 +119,7 @@ def trigger_webhooks(event, instance, sender, db_alias):
             trigger_webhook(webhook, data, sender, db_alias)
 
 def _on_model_save(sender, instance, created, **kwargs):
-    if not kwargs.get('raw', False):
+    if not kwargs.get('raw', False) and not getattr(instance, '_suppress_webhook', False):
         trigger_webhooks('create' if created else 'edit', instance, sender, db_alias=kwargs.get('using'))
 
 def _on_model_delete(sender, instance, **kwargs):

@@ -3,4 +3,4 @@ Attribute|Type|Required|Description
 ``:reference_id``|integer|yes|The id of the reference set.
 ``:test_id``|integer|yes|The id of the test references to modify.
 ``test_name``|string|yes|The name of the test the references are for.
-``references``|json|yes|Test references. TODO: add JSON schema
+``measurements``|json|no|The list of named reference measurements. Each entry has a name, a typed value (or null), and its source TestResult id.

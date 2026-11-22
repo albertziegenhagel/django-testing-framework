@@ -345,20 +345,6 @@ class ProjectReferenceSetTestReferenceDetail(generics.RetrieveUpdateDestroyAPIVi
         except IntegrityError as error:
             return Response(str(error), status.HTTP_400_BAD_REQUEST)
 
-    def partial_update(self, request, *args, **kwargs):
-        test_references = self.get_object()
-
-        # TODO: should we introduce a special serializer here?
-        test_references.update_references(
-            request.data['references'],
-            request.data['default_source'])
-        try:
-            test_references.save()
-            serializer = self.get_serializer(test_references)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as err:
-            return Response(str(err), status=status.HTTP_400_BAD_REQUEST)
-
 class TestMeasurementHistory(views.APIView, ProjectAPIViewMixin):
     permission_classes = [ProjectPermission]
     permission_model = TestResult
