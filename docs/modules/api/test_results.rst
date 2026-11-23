@@ -321,6 +321,8 @@ List measurements of a test result
 
 List all measurements from a specific test result.
 
+Use the optional ``name`` query parameter to return only the measurement with that exact name.
+
 .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-desc.txt
 
 .. csv-table::
@@ -334,19 +336,37 @@ An example could look as follows:
 
    .. group-tab:: Bash
 
-      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-curl.sh
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-all-curl.sh
          :language: bash
 
    .. group-tab:: PowerShell
 
-      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-curl.ps1
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-all-curl.ps1
          :language: powershell
 
 which might give a result like this:
 
-.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-response.json
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-all-response.json
    :language: json
 
+Or an example to return only the measurement with the name "runtime":
+
+.. tabs::
+
+   .. group-tab:: Bash
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-by_name-curl.sh
+         :language: bash
+
+   .. group-tab:: PowerShell
+
+      .. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-by_name-curl.ps1
+         :language: powershell
+
+which might give a result like this:
+
+.. literalinclude :: generated/test_measurements/projects_id_tests_id_measurements-GET-by_name-response.json
+   :language: json
 
 .. _api-test_results-measurements-create:
 

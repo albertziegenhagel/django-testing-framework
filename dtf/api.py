@@ -232,7 +232,11 @@ class ProjectTestResultMeasurementList(generics.ListCreateAPIView, ProjectAPIVie
 
     def get_queryset(self):
         test_result = get_child_or_404(TestResult.objects.filter(submission__project__id=self.get_project().id), pk=self.kwargs['test_id'])
-        return test_result.measurements
+        measurements = test_result.measurements
+        name = self.request.query_params.get('name')
+        if name is not None:
+            measurements = measurements.filter(name=name)
+        return measurements
 
     def create(self, request, *args, **kwargs):
         request.data['test_result'] = get_child_or_404(TestResult.objects.filter(submission__project__id=self.get_project().id), pk=self.kwargs['test_id']).id
