@@ -1,5 +1,8 @@
 
 {% load dtf.custom_filters %}
+{% load static %}
+
+<script src="{% static 'dtf/status_filter.js' %}"></script>
 
 <div class="row">
     <div class="col">
@@ -52,6 +55,12 @@ function restoreFilterState(status_type, filter_status) {
 
 $('document').ready(function(){
 
+const rows = document.getElementsByClassName("filtered-row");
+disableAbsentStatusFilters(
+    rows,
+    document.querySelectorAll("input[name='filter_status']")
+);
+
 if(sessionStorage) {
     var filter_status = {};
     filter_status["successful"] = restoreFilterState("successful");
@@ -61,7 +70,6 @@ if(sessionStorage) {
     filter_status["broken"] = restoreFilterState("broken", filter_status);
     filter_status["unknown"] = restoreFilterState("unknown", filter_status);
 
-    const rows = document.getElementsByClassName("filtered-row");
     Array.prototype.forEach.call(rows, function(item){
         const row_status_type = item.getElementsByClassName("status-filter")[0].textContent.trim();
         const checked = filter_status[row_status_type]
