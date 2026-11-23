@@ -233,15 +233,30 @@
 
                     $('#test-created').removeClass("spinner-border spinner-border-sm text-secondary");
                     $('#test-status').removeClass("spinner-border spinner-border-sm text-secondary");
-                    $('#test-value').removeClass("spinner-border spinner-border-sm text-secondary");
 
                     const date = new Date(data['created']);
                     $('#test-created').text(date.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'medium', timeZone: '{{ display_timezone }}' }));
                     $('#test-status').empty()
                         .append(renderStatusBadge(data['status']));
-                    const measurement = data['results'].find(element => element.name == '{{ measurement_name }}');
-                    $('#test-value').empty()
-                        .append(renderTestResultValueData(measurement['value']));
+
+                    $.ajax({
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                        },
+                        type: 'GET',
+                        url: `/api/projects/{{ test_result.submission.project.id }}/tests/${value_source}/measurements?name={{ measurement_name|urlencode:"" }}`,
+                        success: function (measurements) {
+                            $('#test-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            const measurement = measurements.find(element => element.name == '{{ measurement_name }}');
+                            $('#test-value').empty()
+                                .append(renderTestResultValueData(measurement ? measurement['value'] : null));
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#test-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            $('#test-value').text('N/A');
+                            alert(`Error: ${jqXHR.status} - ${jqXHR.statusText}`);
+                        }
+                    });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $('#test-created').removeClass("spinner-border spinner-border-sm text-secondary");
@@ -282,13 +297,28 @@
                     $('#reference-id').attr('href', data['url']);
 
                     $('#reference-created').removeClass("spinner-border spinner-border-sm text-secondary");
-                    $('#reference-value').removeClass("spinner-border spinner-border-sm text-secondary");
 
                     const date = new Date(data['created']);
                     $('#reference-created').text(date.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'medium', timeZone: '{{ display_timezone }}' }));
-                    const measurement = data['results'].find(element => element.name == '{{ measurement_name }}');
-                    $('#reference-value').empty()
-                        .append(renderTestResultValueData(measurement['value']));
+
+                    $.ajax({
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                        },
+                        type: 'GET',
+                        url: `/api/projects/{{ test_result.submission.project.id }}/tests/${reference_source}/measurements?name={{ measurement_name|urlencode:"" }}`,
+                        success: function (measurements) {
+                            $('#reference-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            const measurement = measurements.find(element => element.name == '{{ measurement_name }}');
+                            $('#reference-value').empty()
+                                .append(renderTestResultValueData(measurement ? measurement['value'] : null));
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#reference-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            $('#reference-value').text('N/A');
+                            alert(`Error: ${jqXHR.status} - ${jqXHR.statusText}`);
+                        }
+                    });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $('#reference-created').removeClass("spinner-border spinner-border-sm text-secondary");
