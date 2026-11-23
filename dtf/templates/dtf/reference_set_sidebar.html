@@ -9,7 +9,7 @@
     <div>
         <p class="mb-1"><span><b>Created:</b> {{reference_set.created}}</span></p>
         {% for property in reference_set.project.properties.all %}
-            {% if property.display %}
+            {% if property.influence_reference %}
                 <p class="mb-1"><span><b>{{ property.name }}:</b> {{ property|reference_property:reference_set }}</span></p>
             {% endif %}
         {% endfor %}
