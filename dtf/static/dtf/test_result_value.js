@@ -25,7 +25,7 @@ function renderTestResultValueData(value) {
         const entries = value.data.entries.map(entry => renderTestResultValueData(entry));
 
         const tensorOrder = shape.length;
-        const totalCount = shape.reduce((accumulator, currentValue) => accumulator + currentValue);
+        const totalCount = shape.reduce((accumulator, currentValue) => accumulator * currentValue, 1);
 
         const inconsistent = totalCount != entries.length;
 
@@ -33,7 +33,7 @@ function renderTestResultValueData(value) {
 
         if(inconsistent || tensorOrder > 3) {
             // Just print a 1D list of all available values
-            var size0 = len(entries)
+            var size0 = entries.length
             var size1 = 1
             var size2 = 1
             const shapeStr = shape.join(',');

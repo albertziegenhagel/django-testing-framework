@@ -84,7 +84,7 @@
         tooltip: {
             trigger: 'axis',
             formatter: function(params, ticket, callback) {
-                if (params.Length === 0) {
+                if (params.length === 0) {
                     return '';
                 }
                 const date = new Date(params[0].data[0]);
@@ -103,6 +103,7 @@
                         .append(renderStatusBadge(params[0].data[3]).addClass('ms-auto'))
                     )
                 params.forEach(function (entry) {
+                    const rawValue = entry.data[entry.encode.y[0] + 2];
                     result.append($('<div>')
                             .attr('class', 'd-flex mb-1')
                             .append($('<div>')
@@ -119,7 +120,7 @@
                             .append($('<span>')
                                 .attr('class', 'ms-auto')
                                 .append($('<b>')
-                                    .text(entry.data[entry.encode.y[0]])
+                                    .append(renderTestResultValueData(rawValue))
                                 )
                             )
                         )
@@ -134,7 +135,7 @@
         },
         dataset: {
             source: [
-                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference']
+                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference', 'valueRaw', 'referenceRaw']
             ]
         },
         legend: {
@@ -319,14 +320,14 @@
         url: '{% url 'api_project_submission_test_measurement_history' test_result.submission.project.slug test_result.submission.pk test_result.pk %}?measurement_name={{ measurement_name|urlencode:"" }}' + (limit ? `&limit=${limit}` : ""),
         success: function (data) {
             source = [
-                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference']
+                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference', 'valueRaw', 'referenceRaw']
             ]
             for (let index = data.length - 1; index >= 0; index--) {
                 const entry = data[index];
                 value = extractValue(entry.value)
                 reference = extractValue(entry.reference)
                 source.push(
-                    [entry.date, entry.value_source, entry.reference_source, entry.status, value, reference]
+                    [entry.date, entry.value_source, entry.reference_source, entry.status, value, reference, entry.value, entry.reference]
                 )
             }
             historyChart.setOption({
