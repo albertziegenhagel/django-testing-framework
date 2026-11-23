@@ -38,7 +38,7 @@ function fillFormErrors(form_id, errors) {
         alert.removeAttr("hidden");
         alert.text("");
         errors["__all__"].forEach(function (element) {
-            if($.trim(alert.text())) {
+            if(alert.text().trim()) {
                 alert.append('<br>');
             }
             alert.append(element['message']);
