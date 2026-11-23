@@ -84,7 +84,7 @@
         tooltip: {
             trigger: 'axis',
             formatter: function(params, ticket, callback) {
-                if (params.Length === 0) {
+                if (params.length === 0) {
                     return '';
                 }
                 const date = new Date(params[0].data[0]);
@@ -103,6 +103,7 @@
                         .append(renderStatusBadge(params[0].data[3]).addClass('ms-auto'))
                     )
                 params.forEach(function (entry) {
+                    const rawValue = entry.data[entry.encode.y[0] + 2];
                     result.append($('<div>')
                             .attr('class', 'd-flex mb-1')
                             .append($('<div>')
@@ -119,7 +120,7 @@
                             .append($('<span>')
                                 .attr('class', 'ms-auto')
                                 .append($('<b>')
-                                    .text(entry.data[entry.encode.y[0]])
+                                    .append(renderTestResultValueData(rawValue))
                                 )
                             )
                         )
@@ -134,7 +135,7 @@
         },
         dataset: {
             source: [
-                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference']
+                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference', 'valueRaw', 'referenceRaw']
             ]
         },
         legend: {
@@ -232,15 +233,30 @@
 
                     $('#test-created').removeClass("spinner-border spinner-border-sm text-secondary");
                     $('#test-status').removeClass("spinner-border spinner-border-sm text-secondary");
-                    $('#test-value').removeClass("spinner-border spinner-border-sm text-secondary");
 
                     const date = new Date(data['created']);
                     $('#test-created').text(date.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'medium', timeZone: '{{ display_timezone }}' }));
                     $('#test-status').empty()
                         .append(renderStatusBadge(data['status']));
-                    const measurement = data['results'].find(element => element.name == '{{ measurement_name }}');
-                    $('#test-value').empty()
-                        .append(renderTestResultValueData(measurement['value']));
+
+                    $.ajax({
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                        },
+                        type: 'GET',
+                        url: `/api/projects/{{ test_result.submission.project.id }}/tests/${value_source}/measurements?name={{ measurement_name|urlencode:"" }}`,
+                        success: function (measurements) {
+                            $('#test-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            const measurement = measurements.find(element => element.name == '{{ measurement_name }}');
+                            $('#test-value').empty()
+                                .append(renderTestResultValueData(measurement ? measurement['value'] : null));
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#test-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            $('#test-value').text('N/A');
+                            alert(`Error: ${jqXHR.status} - ${jqXHR.statusText}`);
+                        }
+                    });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $('#test-created').removeClass("spinner-border spinner-border-sm text-secondary");
@@ -281,13 +297,28 @@
                     $('#reference-id').attr('href', data['url']);
 
                     $('#reference-created').removeClass("spinner-border spinner-border-sm text-secondary");
-                    $('#reference-value').removeClass("spinner-border spinner-border-sm text-secondary");
 
                     const date = new Date(data['created']);
                     $('#reference-created').text(date.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'medium', timeZone: '{{ display_timezone }}' }));
-                    const measurement = data['results'].find(element => element.name == '{{ measurement_name }}');
-                    $('#reference-value').empty()
-                        .append(renderTestResultValueData(measurement['value']));
+
+                    $.ajax({
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                        },
+                        type: 'GET',
+                        url: `/api/projects/{{ test_result.submission.project.id }}/tests/${reference_source}/measurements?name={{ measurement_name|urlencode:"" }}`,
+                        success: function (measurements) {
+                            $('#reference-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            const measurement = measurements.find(element => element.name == '{{ measurement_name }}');
+                            $('#reference-value').empty()
+                                .append(renderTestResultValueData(measurement ? measurement['value'] : null));
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#reference-value').removeClass("spinner-border spinner-border-sm text-secondary");
+                            $('#reference-value').text('N/A');
+                            alert(`Error: ${jqXHR.status} - ${jqXHR.statusText}`);
+                        }
+                    });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $('#reference-created').removeClass("spinner-border spinner-border-sm text-secondary");
@@ -319,14 +350,14 @@
         url: '{% url 'api_project_submission_test_measurement_history' test_result.submission.project.slug test_result.submission.pk test_result.pk %}?measurement_name={{ measurement_name|urlencode:"" }}' + (limit ? `&limit=${limit}` : ""),
         success: function (data) {
             source = [
-                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference']
+                ['date', 'value_source', 'reference_source', 'status', 'value', 'reference', 'valueRaw', 'referenceRaw']
             ]
             for (let index = data.length - 1; index >= 0; index--) {
                 const entry = data[index];
                 value = extractValue(entry.value)
                 reference = extractValue(entry.reference)
                 source.push(
-                    [entry.date, entry.value_source, entry.reference_source, entry.status, value, reference]
+                    [entry.date, entry.value_source, entry.reference_source, entry.status, value, reference, entry.value, entry.reference]
                 )
             }
             historyChart.setOption({

@@ -11,13 +11,29 @@
             "type": "integer",
             "required": true,
             "description": "The id of the test result."
+        },
+        "name" : {
+            "type": "string",
+            "required": false,
+            "description": "Only return measurements with this name."
         }
     },
     "examples" : [
         {
+            "name" : "all",
             "arguments" : {
                 "project_id" : 1,
                 "test_id": 2
+            }
+        },
+        {
+            "name" : "by_name",
+            "arguments" : {
+                "project_id" : 1,
+                "test_id": 2
+            },
+            "query_params" : {
+                "name" : "runtime"
             }
         }
     ]
