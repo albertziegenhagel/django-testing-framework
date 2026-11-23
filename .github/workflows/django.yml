@@ -15,11 +15,25 @@ jobs:
       matrix:
         include:
           - os: ubuntu-24.04
-            python-version: 3.9
+            python-version: '3.9'
+            common_constraints: common-py39.txt
+            constraints: django-legacy.txt
           - os: ubuntu-24.04
-            python-version: 3.13
+            python-version: '3.11'
+            common_constraints: common.txt
+            constraints: django-lts.txt
+          - os: ubuntu-24.04
+            python-version: '3.14'
+            common_constraints: common.txt
+            constraints: django-lts.txt
+          - os: ubuntu-24.04
+            python-version: '3.12'
+            common_constraints: common.txt
+            constraints: django-current.txt
           - os: ubuntu-latest
-            python-version: 3.15
+            python-version: '3.15'
+            common_constraints: common.txt
+            constraints: django-current.txt
 
     steps:
     - uses: actions/checkout@v4
@@ -30,8 +44,7 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -r requirements-devel.txt
+        pip install -r requirements.txt -r requirements-devel.txt -c .github/constraints/${{ matrix.common_constraints }} -c .github/constraints/${{ matrix.constraints }}
     - name: Run Tests
       run: |
         coverage run --source='dtf' --omit='*tests*,*migrations*,*wsgi*,*asgi*' manage.py test -v2

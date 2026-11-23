@@ -1,0 +1,3 @@
+# Python 3.9 compatibility lane; Django 4.2 is end-of-support.
+Django==4.2.30
+djangorestframework==3.16.1

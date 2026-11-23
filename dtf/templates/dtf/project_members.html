@@ -41,13 +41,13 @@
 
       <div class="row mb-3">
         <div class="col">
-          <div class="form-group">
+          <div>
             {{ form.user.label_tag }}
             {{ form.user|as_dynamic_bootstrap_field }}
           </div>
         </div>
         <div class="col-2">
-          <div class="form-group">
+          <div>
             {{ form.role.label_tag }}
             {{ form.role|as_dynamic_bootstrap_field }}
           </div>
@@ -115,7 +115,7 @@
                   .text(data['role'])
               )
               .append($('<td>')
-                  .attr('class', 'text-right fit')
+                  .attr('class', 'text-end fit')
                   .append($('<div>')
                       {% if member_permissions.change %}
                       .append($('<button>')

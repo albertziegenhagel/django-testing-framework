@@ -14,7 +14,7 @@
     {% csrf_token %}
 
     {% comment %} <img class="mb-4" src="/docs/4.6/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> {% endcomment %}
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     {% for hidden_field in form.hidden_fields %}
       {{ hidden_field }}
