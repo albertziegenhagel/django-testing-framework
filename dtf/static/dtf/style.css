@@ -59,6 +59,10 @@ img {
     padding: 4px;
 }
 
+.section-header .section-toggle {
+    cursor: pointer;
+}
+
 .section-header .section-toggle:before {
     font-family: 'bootstrap-icons';
     content: "\f285";
@@ -67,7 +71,7 @@ img {
     transition: all 0.5s ease;
 }
 
-.section-header .section-toggle.collapsed:before {
+.section-header .section-toggle:not(.collapsed):before {
     transform: rotate(90deg);
 }
 
