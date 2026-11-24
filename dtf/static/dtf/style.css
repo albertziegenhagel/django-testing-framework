@@ -85,6 +85,20 @@ a:hover.btn{
     text-decoration: none;
 }
 
+.reference-update-icon {
+    display: inline-block;
+    position: relative;
+    line-height: 1;
+}
+
+.reference-update-star {
+    position: absolute;
+    right: -0.15em;
+    bottom: -0.05em;
+    font-size: 0.55em;
+    line-height: 1;
+}
+
 /*
  * table
  */

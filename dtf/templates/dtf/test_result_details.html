@@ -232,7 +232,15 @@ $('document').ready(function(){
 
     {% if test_reference_permissions.add or test_reference_permissions.change %}
     <div class="col-md-auto">
-        <button class="btn btn-sm btn-primary btn-lg active" onclick="onReferenceUpdateButton()">Update selected references</button>
+        <span class="d-inline-block" title="Update selected references">
+            <button id="updateSelectedReferencesButton" class="btn btn-sm btn-primary btn-lg" onclick="onReferenceUpdateButton()" aria-label="Update selected references" disabled>
+                <span class="reference-update-icon">
+                    <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
+                    <i class="bi bi-star reference-update-star" aria-hidden="true"></i>
+                </span>
+                Update
+            </button>
+        </span>
     </div>
     {% endif %}
 </div>

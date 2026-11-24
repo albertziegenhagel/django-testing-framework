@@ -64,6 +64,16 @@ function buildResultsTable(projectSlug, testId, results, references, canUpdate) 
         }
         tableBody.append(row);
     });
+
+    $('#resultsTable')
+        .off('change', '[id=updateReferenceCheckbox]')
+        .on('change', '[id=updateReferenceCheckbox]', updateReferenceUpdateButtonState);
+    updateReferenceUpdateButtonState();
+}
+
+function updateReferenceUpdateButtonState() {
+    let hasSelectedReferences = $('[id=updateReferenceCheckbox]:checked').length > 0;
+    $('#updateSelectedReferencesButton').prop('disabled', !hasSelectedReferences);
 }
 
 function updateResultsTableReferences(projectSlug, testResults, measurements) {
@@ -101,6 +111,7 @@ function toggleAllBoxes(){
         }
         allBoxes[i].checked = toggleAllBox.checked;
     }
+    updateReferenceUpdateButtonState();
 }
 
 function uncheckAllBoxes(){
@@ -110,6 +121,7 @@ function uncheckAllBoxes(){
     for (var i = 0; i < allBoxes.length; i++) {
         allBoxes[i].checked = false;
     }
+    updateReferenceUpdateButtonState();
 }
 
 function postReferenceUpdate(csrfToken, testName, testId, testResults, referenceSetId, testReferenceId, projectSlug){
