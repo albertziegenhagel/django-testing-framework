@@ -1,4 +1,5 @@
 import re
+from unittest.mock import patch
 
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -205,7 +206,8 @@ class TestResultNavigationTestCase(TestCase):
             'nav-last-non-successful',
         )
 
-    def test_navigation_controls_link_to_neighboring_test_results(self):
+    @patch.object(Project, 'get_nav_data')
+    def test_detail_view_does_not_compute_across_submission_navigation(self, get_nav_data):
         response = self.client.get(reverse(
             'test_result_details',
             kwargs={
@@ -215,51 +217,4 @@ class TestResultNavigationTestCase(TestCase):
         ))
 
         self.assertEqual(response.status_code, 200)
-        self.assert_nav_control_links_to(
-            response,
-            'nav-previous-submission',
-            self.results[0],
-        )
-        self.assert_nav_control_links_to(
-            response,
-            'nav-next-submission',
-            self.results[2],
-        )
-        self.assert_nav_control_links_to(
-            response,
-            'nav-latest-submission',
-            self.results[2],
-        )
-
-    def test_navigation_controls_are_disabled_at_boundaries(self):
-        response = self.client.get(reverse(
-            'test_result_details',
-            kwargs={
-                'project_slug': self.project.slug,
-                'test_id': self.results[0].pk,
-            },
-        ))
-
-        self.assertEqual(response.status_code, 200)
-        self.assert_nav_control_disabled(
-            response,
-            'nav-previous-submission',
-        )
-
-        response = self.client.get(reverse(
-            'test_result_details',
-            kwargs={
-                'project_slug': self.project.slug,
-                'test_id': self.results[2].pk,
-            },
-        ))
-
-        self.assertEqual(response.status_code, 200)
-        self.assert_nav_control_disabled(
-            response,
-            'nav-next-submission',
-        )
-        self.assert_nav_control_disabled(
-            response,
-            'nav-latest-submission',
-        )
+        get_nav_data.assert_not_called()

@@ -122,6 +122,8 @@ $('document').ready(function(){
 <div class="row">
     <div class="col">
         <div class="d-flex flex-wrap align-items-end gap-3">
+            {% comment %}
+            Temporarily disabled while across-submission navigation performance is investigated.
             <div>
                 <div class="btn-group" role="group" aria-label="Navigate between submissions containing this test">
                     <a id="nav-previous-submission"
@@ -150,6 +152,7 @@ $('document').ready(function(){
                     </a>
                 </div>
             </div>
+            {% endcomment %}
 
             <div>
                 <div class="btn-group" role="group" aria-label="Navigate within this submission">
