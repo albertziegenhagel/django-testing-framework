@@ -121,13 +121,110 @@ $('document').ready(function(){
 
 <div class="row">
     <div class="col">
-        {% with not_successful=test_result.get_next_not_successful_test_id %}
-        {% if not_successful is None %}
-        <a href="#" class="btn btn-sm btn-secondary me-1 disabled">Next not successful</a>
-        {% else %}
-        <a href="{% url 'test_result_details' test_result.submission.project.slug not_successful %}" class="btn btn-sm btn-secondary active me-1">Next not successful</a>
-        {% endif %}
-        {% endwith %}
+        <div class="d-flex flex-wrap align-items-end gap-3">
+            <div>
+                <div class="btn-group" role="group" aria-label="Navigate between submissions containing this test">
+                    <a id="nav-previous-submission"
+                        href="{% if nav_data.previous is not None %}{% url 'test_result_details' test_result.submission.project.slug nav_data.previous %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-primary{% if nav_data.previous is None %} disabled{% endif %}"
+                        title="Go to this test in the previous submission containing it"
+                        aria-label="Previous submission containing this test"
+                        {% if nav_data.previous is None %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-next-submission"
+                        href="{% if nav_data.next is not None %}{% url 'test_result_details' test_result.submission.project.slug nav_data.next %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-primary{% if nav_data.next is None %} disabled{% endif %}"
+                        title="Go to this test in the next submission containing it"
+                        aria-label="Next submission containing this test"
+                        {% if nav_data.next is None %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-latest-submission"
+                        href="{% if nav_data.most_recent != test_result.id %}{% url 'test_result_details' test_result.submission.project.slug nav_data.most_recent %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-primary{% if nav_data.most_recent == test_result.id %} disabled{% endif %}"
+                        title="Go to this test in its latest submission"
+                        aria-label="Latest submission containing this test"
+                        {% if nav_data.most_recent == test_result.id %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-bar-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <div class="btn-group" role="group" aria-label="Navigate within this submission">
+                    <a id="nav-first-in-submission"
+                        href="{% if submission_nav_data.first != test_result.id %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.first %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-secondary{% if submission_nav_data.first == test_result.id %} disabled{% endif %}"
+                        title="Go to the first test in this submission"
+                        aria-label="First test in this submission"
+                        {% if submission_nav_data.first == test_result.id %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-bar-left" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-previous-in-submission"
+                        href="{% if submission_nav_data.previous is not None %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.previous %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-secondary{% if submission_nav_data.previous is None %} disabled{% endif %}"
+                        title="Go to the previous test in this submission"
+                        aria-label="Previous test in this submission"
+                        {% if submission_nav_data.previous is None %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-next-in-submission"
+                        href="{% if submission_nav_data.next is not None %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.next %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-secondary{% if submission_nav_data.next is None %} disabled{% endif %}"
+                        title="Go to the next test in this submission"
+                        aria-label="Next test in this submission"
+                        {% if submission_nav_data.next is None %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-last-in-submission"
+                        href="{% if submission_nav_data.last != test_result.id %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.last %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-secondary{% if submission_nav_data.last == test_result.id %} disabled{% endif %}"
+                        title="Go to the last test in this submission"
+                        aria-label="Last test in this submission"
+                        {% if submission_nav_data.last == test_result.id %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-bar-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <div class="btn-group" role="group" aria-label="Navigate between non-successful tests in this submission">
+                    <a id="nav-first-non-successful"
+                        href="{% if submission_nav_data.first_not_successful is not None and submission_nav_data.first_not_successful != test_result.id %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.first_not_successful %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-danger{% if submission_nav_data.first_not_successful is None or submission_nav_data.first_not_successful == test_result.id %} disabled{% endif %}"
+                        title="Go to the first test in this submission that is not successful"
+                        aria-label="First test in this submission that is not successful"
+                        {% if submission_nav_data.first_not_successful is None or submission_nav_data.first_not_successful == test_result.id %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-bar-left" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-previous-non-successful"
+                        href="{% if submission_nav_data.previous_not_successful is not None %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.previous_not_successful %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-danger{% if submission_nav_data.previous_not_successful is None %} disabled{% endif %}"
+                        title="Go to the previous test in this submission that is not successful"
+                        aria-label="Previous test in this submission that is not successful"
+                        {% if submission_nav_data.previous_not_successful is None %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-next-non-successful"
+                        href="{% if submission_nav_data.next_not_successful is not None %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.next_not_successful %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-danger{% if submission_nav_data.next_not_successful is None %} disabled{% endif %}"
+                        title="Go to the next test in this submission that is not successful"
+                        aria-label="Next test in this submission that is not successful"
+                        {% if submission_nav_data.next_not_successful is None %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </a>
+                    <a id="nav-last-non-successful"
+                        href="{% if submission_nav_data.last_not_successful is not None and submission_nav_data.last_not_successful != test_result.id %}{% url 'test_result_details' test_result.submission.project.slug submission_nav_data.last_not_successful %}{% else %}#{% endif %}"
+                        class="btn btn-sm btn-danger{% if submission_nav_data.last_not_successful is None or submission_nav_data.last_not_successful == test_result.id %} disabled{% endif %}"
+                        title="Go to the last test in this submission that is not successful"
+                        aria-label="Last test in this submission that is not successful"
+                        {% if submission_nav_data.last_not_successful is None or submission_nav_data.last_not_successful == test_result.id %}aria-disabled="true" tabindex="-1"{% endif %}>
+                        <i class="bi bi-chevron-bar-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     {% if test_reference_permissions.add or test_reference_permissions.change %}

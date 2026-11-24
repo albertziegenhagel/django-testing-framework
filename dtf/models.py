@@ -228,44 +228,23 @@ class Project(models.Model):
     }
 
     def get_nav_data(self, test_name, submission_id):
-        nav_data = {
-            "previous": {
-                "exists": False
-            },
-            "next": {
-                "exists": False
-            },
-            "most_recent": {
-            }
-        }
-        
         same_project_tests = TestResult.objects.filter(
             name=test_name,
-            submission__project__id=self.id
-        ).order_by("id")
+            submission__project_id=self.id
+        )
 
-        # previous test
-        previous_test = same_project_tests.filter(
-            submission__id__lt=submission_id
-        ).order_by("-id").first()
-        
-        if previous_test:
-            nav_data["previous"]["exists"] = True
-            nav_data["previous"]["id"] = previous_test.id
-
-        # next test
-        next_test = same_project_tests.filter(
-            submission__id__gt=submission_id
-        ).order_by("id").first()
-
-        if next_test:
-            nav_data["next"]["exists"] = True
-            nav_data["next"]["id"] = next_test.id
-
-        # most recent
-        most_recent_test = same_project_tests.order_by("-submission__id").first()
-        nav_data["most_recent"]["id"] = most_recent_test.id
-        return nav_data
+        return {
+            "previous": same_project_tests.filter(
+                submission_id__lt=submission_id
+            ).order_by("-submission_id", "-pk").values_list("pk", flat=True).first(),
+            "next": same_project_tests.filter(
+                submission_id__gt=submission_id
+            ).order_by("submission_id", "pk").values_list("pk", flat=True).first(),
+            "most_recent": same_project_tests.order_by(
+                "-submission_id",
+                "-pk"
+            ).values_list("pk", flat=True).first(),
+        }
 
     def __str__(self):
         return f"{self.name} [id = {self.id}]"
@@ -454,15 +433,34 @@ class TestResult(models.Model):
         if updated:
             submission.save()
 
-    def get_next_not_successful_test_id(self):
+    def get_submission_nav_data(self):
         same_submission_tests = self.submission.tests.all()
-        not_successful = same_submission_tests.filter(
-            created__gt=self.created
-        ).exclude(status = "successful").order_by("created").values("id").first()
-        
-        if not_successful:
-            return not_successful["id"]
-        return None
+        return {
+            # First, Previous, Next, Last test in the submission
+            "first": same_submission_tests.order_by("pk").values_list("pk", flat=True).first(),
+            "previous": same_submission_tests.filter(
+                pk__lt=self.pk
+            ).order_by("-pk").values_list("pk", flat=True).first(),
+            "next": same_submission_tests.filter(
+                pk__gt=self.pk
+            ).order_by("pk").values_list("pk", flat=True).first(),
+            "last": same_submission_tests.order_by(
+                "-pk"
+            ).values_list("pk", flat=True).first(),
+            # First, Previous, Next, Last NOT SUCCESSFUL test in the submission
+            "first_not_successful": same_submission_tests.exclude(
+                status="successful"
+            ).order_by("pk").values_list("pk", flat=True).first(),
+            "previous_not_successful": same_submission_tests.filter(
+                pk__lt=self.pk
+            ).exclude(status="successful").order_by("-pk").values_list("pk", flat=True).first(),
+            "next_not_successful": same_submission_tests.filter(
+                pk__gt=self.pk
+            ).exclude(status="successful").order_by("pk").values_list("pk", flat=True).first(),
+            "last_not_successful": same_submission_tests.exclude(
+                status="successful"
+            ).order_by("-pk").values_list("pk", flat=True).first(),
+        }
 
     def __str__(self):
         if self.submission:
