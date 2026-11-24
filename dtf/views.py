@@ -310,15 +310,18 @@ class TestResultDetailView(ProjectViewMixin, ProjectPermissionRequiredMixin, gen
                     if not prop_value is None:
                         property_values[prop.name] = prop_value
 
-        # nav_data = project.get_nav_data(test_result.name, test_result.submission.id)
+        # Temporarily disabled while across-submission navigation performance is investigated.
+        # nav_data = project.get_nav_data(test_result.name, submission.id)
+        submission_nav_data = test_result.get_submission_nav_data()
         return super().get_context_data(**kwargs,
                                         project=project,
                                         reference_set=reference_set,
                                         test_reference=test_reference,
                                         test_result=test_result,
                                         property_values=property_values,
+                                        # nav_data=nav_data,
+                                        submission_nav_data=submission_nav_data,
                                         placeholder_range=range(10),
-                                        #nav_data=nav_data,
                                         test_result_permissions=get_model_permissions(self.request.user, project, TestResult, operations=['delete']),
                                         test_reference_permissions=get_model_permissions(self.request.user, project, TestReference))
 
