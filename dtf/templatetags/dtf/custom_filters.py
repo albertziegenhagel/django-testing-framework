@@ -1,18 +1,52 @@
 
 import operator
 import functools
+import datetime
 
 import json
 
 from django import template
 from django.template import Context
 from django.template.loader import get_template
+from django.utils import timezone
+from django.utils.formats import date_format
+from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.dateparse import parse_duration
 from django.urls import reverse
 from django import forms
 
 register = template.Library()
+
+@register.filter(is_safe=True)
+def local_datetime(value):
+    if value is None:
+        return ""
+
+    if timezone.is_aware(value):
+        utc_value = timezone.localtime(value, datetime.timezone.utc)
+        fallback_value = timezone.localtime(value)
+    elif isinstance(value, datetime.datetime):
+        utc_value = timezone.make_aware(value, timezone.get_current_timezone())
+        utc_value = timezone.localtime(utc_value, datetime.timezone.utc)
+        fallback_value = timezone.localtime(
+            timezone.make_aware(value, timezone.get_current_timezone())
+        )
+    else:
+        return ""
+
+    iso_value = utc_value.isoformat().replace("+00:00", "Z")
+    fallback = escape(date_format(fallback_value, "DATETIME_FORMAT"))
+    timezone_name = fallback_value.tzname()
+    fallback_title = escape(
+        fallback_value.strftime("%Y-%m-%d %H:%M:%S")
+        + (f" {timezone_name}" if timezone_name else "")
+        + f" ({fallback_value.strftime('%z')})"
+    )
+    return mark_safe(
+        f'<time data-local-datetime="{escape(iso_value)}" datetime="{escape(iso_value)}" '
+        f'title="{fallback_title}">{fallback}</time>'
+    )
 
 @register.filter
 def status_badge(text):

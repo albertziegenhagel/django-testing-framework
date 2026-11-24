@@ -9,7 +9,7 @@
 </div>
 <hr class="mt-2 mb-2">
 <div>
-    <p class="mb-1"><span><b>Created:</b> {{submission.created}}</span></p>
+    <p class="mb-1"><span><b>Created:</b> {{submission.created|local_datetime}}</span></p>
     <p class="mb-1"><span><b>Status:</b> {{ submission.status|status_badge }}</span></p>
     {% for property in submission.project.properties.all %}
         {% if property.display %}

@@ -44,7 +44,7 @@
             <a href="{% url 'reference_set_details' project.slug reference_set.pk %}">{{ reference_set.pk }}</a>
         </td>
         <td class="date">
-            <a href="{% url 'reference_set_details' project.slug reference_set.pk %}">{{ reference_set.created }}</a>
+            <a href="{% url 'reference_set_details' project.slug reference_set.pk %}">{{ reference_set.created|local_datetime }}</a>
         </td>
         {% for property in properties %}
             {% if property.influence_reference %}

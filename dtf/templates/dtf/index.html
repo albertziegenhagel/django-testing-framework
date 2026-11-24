@@ -7,7 +7,7 @@
 <br>
 <hr>
 {% for test_result in data %}
-    <h6>Date: {{ test_result.last_updated}}</h6>
+    <h6>Date: {{ test_result.last_updated|local_datetime}}</h6>
     <div class="page-header row">
         <div class="col">
             <h2>{{ test_result.name }}</h2>

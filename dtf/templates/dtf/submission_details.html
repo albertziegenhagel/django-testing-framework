@@ -78,7 +78,7 @@
             <a class="name-filter" href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.name }}</a>
         </td>
         <td class="date">
-            <a class="date-filter" href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.created }}</a>
+            <a class="date-filter" href="{% url 'test_result_details' submission.project.slug test.pk %}">{{ test.created|local_datetime }}</a>
         </td>
     </tr>
     {% endfor %}

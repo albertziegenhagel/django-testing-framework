@@ -67,7 +67,7 @@
             {{ log_entry.request_url }}
         </td>
         <td>
-            {{ log_entry.created }}
+            {{ log_entry.created|local_datetime }}
         </td>
     </tr>
     <tr id="entry_{{log_entry.id}}" class="no-hover collapse">
