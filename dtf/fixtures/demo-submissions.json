@@ -50,6 +50,28 @@
         }
     },
     {
+        "model": "dtf.testresult",
+        "pk": 3,
+        "fields": {
+            "name": "demo (np=2)",
+            "submission": 2,
+            "created": "2021-04-06T08:10:29.345Z",
+            "last_updated": "2021-04-06T08:10:29.345Z",
+            "status": "successful"
+        }
+    },
+    {
+        "model": "dtf.testresult",
+        "pk": 4,
+        "fields": {
+            "name": "other",
+            "submission": 2,
+            "created": "2021-04-06T08:10:30.899Z",
+            "last_updated": "2021-04-06T08:10:30.899Z",
+            "status": "unknown"
+        }
+    },
+    {
         "model": "dtf.referenceset",
         "pk": 1,
         "fields": {
@@ -69,7 +91,17 @@
             "reference_set": 1,
             "test_name": "demo (np=1)",
             "created": "2021-04-06T08:03:29.072Z",
-            "last_updated": "2026-11-21T13:08:18.253Z"
+            "last_updated": "2021-04-06T08:03:29.072Z"
+        }
+    },
+    {
+        "model": "dtf.testreference",
+        "pk": 2,
+        "fields": {
+            "reference_set": 1,
+            "test_name": "demo (np=2)",
+            "created": "2021-04-06T08:10:29.60145Z",
+            "last_updated": "2021-04-06T08:10:29.60145Z"
         }
     },
     {
@@ -331,6 +363,43 @@
         }
     },
     {
+        "model": "dtf.testmeasurement",
+        "pk": 15,
+        "fields": {
+            "name": "runtime",
+            "status": "SU",
+            "test_result": 3,
+            "reference_source": 3,
+            "data_value": {
+                "data": "PT0.215826S",
+                "type": "duration"
+            },
+            "image_value": null,
+            "data_reference": {
+                "data": "PT0.215826S",
+                "type": "duration"
+            },
+            "image_reference": null
+        }
+    },
+    {
+        "model": "dtf.testmeasurement",
+        "pk": 16,
+        "fields": {
+            "name": "runtime",
+            "status": "UK",
+            "test_result": 4,
+            "reference_source": null,
+            "data_value": {
+                "data": "PT0.124356S",
+                "type": "duration"
+            },
+            "image_value": null,
+            "data_reference": null,
+            "image_reference": null
+        }
+    },
+    {
         "model": "dtf.testreferencemeasurement",
         "pk": 1,
         "fields": {
@@ -423,6 +492,20 @@
             "source": 2,
             "data_value": null,
             "image_value": 1
+        }
+    },
+    {
+        "model": "dtf.testreferencemeasurement",
+        "pk": 8,
+        "fields": {
+            "name": "runtime",
+            "test_reference": 2,
+            "source": 3,
+            "data_value": {
+                "data": "PT0.215826S",
+                "type": "duration"
+            },
+            "image_value": null
         }
     }
 ]
