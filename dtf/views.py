@@ -419,7 +419,6 @@ class TestMeasurementHistoryView(ProjectViewMixin, ProjectPermissionRequiredMixi
                 measurement_global_reference = reference.get_value()
 
         return super().get_context_data(**kwargs,
-                                        display_timezone=settings.DTF_DEFAULT_DISPLAY_TIME_ZONE,
                                         measurement_name=measurement_name,
                                         limit=limit,
                                         measurement_global_reference=measurement_global_reference)

@@ -50,7 +50,7 @@
             <a href="{% url 'submission_details' project.slug submission.pk %}">{{ submission.pk }}</a>
         </td>
         <td class="date">
-            <a href="{% url 'submission_details' project.slug submission.pk %}">{{ submission.created }}</a>
+            <a href="{% url 'submission_details' project.slug submission.pk %}">{{ submission.created|local_datetime }}</a>
         </td>
         {% for property in properties %}
             {% if property.display %}

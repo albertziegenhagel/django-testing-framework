@@ -1,18 +1,37 @@
 
 import django
+import datetime
 
 django.setup()
 
 from django.test import TestCase
+from django.utils import timezone
 
 from dtf.models import Project, ReferenceSet, Submission, TestReference, TestReferenceMeasurement, TestResult
 from dtf.templatetags.dtf.custom_filters import (
     as_measurement_entry,
     create_html_representation,
+    local_datetime,
     reference_measurements_to_js_dict,
 )
 
 class ValueHtmlRepresentationTestCase(TestCase):
+
+    def test_local_datetime_serializes_aware_value_as_iso8601(self):
+        value = datetime.datetime(
+            2026, 11, 24, 10, 9, 5,
+            tzinfo=datetime.timezone(datetime.timedelta(hours=1)),
+        )
+
+        result = str(local_datetime(value))
+
+        self.assertIn('datetime="2026-11-24T09:09:05Z"', result)
+        self.assertIn('data-local-datetime="2026-11-24T09:09:05Z"', result)
+        self.assertIn('title=', result)
+        self.assertIn('<time ', result)
+
+    def test_local_datetime_none_is_empty(self):
+        self.assertEqual(local_datetime(None), "")
 
     def test_none(self):
         result = create_html_representation(None, None)
